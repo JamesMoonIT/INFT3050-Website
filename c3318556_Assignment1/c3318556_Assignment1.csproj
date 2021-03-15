@@ -68,11 +68,14 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="UL\about.aspx" />
+    <Content Include="UL\cart.aspx" />
+    <Content Include="UL\contact.aspx" />
     <Content Include="UL\CSS\masterstyle.css" />
     <Content Include="UL\CSS\style.css" />
     <Content Include="UL\home.aspx" />
     <Content Include="UL\IMG\logo.png" />
     <Content Include="UL\login.aspx" />
+    <Content Include="UL\products.aspx" />
     <Content Include="UL\register.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -84,6 +87,20 @@
     </Compile>
     <Compile Include="UL\about.aspx.designer.cs">
       <DependentUpon>about.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UL\cart.aspx.cs">
+      <DependentUpon>cart.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UL\cart.aspx.designer.cs">
+      <DependentUpon>cart.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UL\contact.aspx.cs">
+      <DependentUpon>contact.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UL\contact.aspx.designer.cs">
+      <DependentUpon>contact.aspx</DependentUpon>
     </Compile>
     <Compile Include="UL\home.aspx.cs">
       <DependentUpon>home.aspx</DependentUpon>
@@ -105,6 +122,13 @@
     </Compile>
     <Compile Include="UL\MasterPage\Site.Master.designer.cs">
       <DependentUpon>Site.Master</DependentUpon>
+    </Compile>
+    <Compile Include="UL\products.aspx.cs">
+      <DependentUpon>products.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UL\products.aspx.designer.cs">
+      <DependentUpon>products.aspx</DependentUpon>
     </Compile>
     <Compile Include="UL\register.aspx.cs">
       <DependentUpon>register.aspx</DependentUpon>
