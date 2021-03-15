@@ -67,13 +67,24 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="UL\about.aspx" />
     <Content Include="UL\CSS\masterstyle.css" />
     <Content Include="UL\CSS\style.css" />
     <Content Include="UL\home.aspx" />
+    <Content Include="UL\IMG\logo.png" />
+    <Content Include="UL\login.aspx" />
+    <Content Include="UL\register.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UL\about.aspx.cs">
+      <DependentUpon>about.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UL\about.aspx.designer.cs">
+      <DependentUpon>about.aspx</DependentUpon>
+    </Compile>
     <Compile Include="UL\home.aspx.cs">
       <DependentUpon>home.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -81,12 +92,26 @@
     <Compile Include="UL\home.aspx.designer.cs">
       <DependentUpon>home.aspx</DependentUpon>
     </Compile>
+    <Compile Include="UL\login.aspx.cs">
+      <DependentUpon>login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UL\login.aspx.designer.cs">
+      <DependentUpon>login.aspx</DependentUpon>
+    </Compile>
     <Compile Include="UL\MasterPage\Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="UL\MasterPage\Site.Master.designer.cs">
       <DependentUpon>Site.Master</DependentUpon>
+    </Compile>
+    <Compile Include="UL\register.aspx.cs">
+      <DependentUpon>register.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UL\register.aspx.designer.cs">
+      <DependentUpon>register.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -102,7 +127,6 @@
   <ItemGroup>
     <Folder Include="BL\" />
     <Folder Include="DAL\" />
-    <Folder Include="UL\IMG\" />
     <Folder Include="UL\Scripts\" />
   </ItemGroup>
   <PropertyGroup>
