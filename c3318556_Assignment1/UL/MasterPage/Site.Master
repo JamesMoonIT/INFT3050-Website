@@ -6,9 +6,9 @@
 <head runat="server">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <title><%: Page.Title %> - My Website</title>
     <link rel="stylesheet" href="../CSS/masterstyle.css" />
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> -->
+    <title><%: Page.Title %> - My Website</title>
 </head>
 <body>
     <form runat="server">
@@ -20,7 +20,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>                        
                     </button>
-                    <a class="navbar-brand" href="#">Logo</a>
+                    <asp:Image runat="server" class="navbar-brand" href="#" ImageURL="~/UL/IMG/logo.png"></asp:Image>
                 </div>
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav">
@@ -31,6 +31,7 @@
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                        <li><a href="#"> Register</a></li>
                     </ul>
                 </div>
             </div>
@@ -40,7 +41,7 @@
             </asp:ContentPlaceHolder>
             <hr />
             <footer>
-                <p>&copy; <%: DateTime.Now.Year %> - Storage Drive</p>
+                <p>&copy; <%: DateTime.Now.Year %> - GarageBay</p>
             </footer>
         </div>
 
