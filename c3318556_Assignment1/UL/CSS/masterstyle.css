@@ -3,6 +3,14 @@
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
+.carphoto {
+    display: block;
+    width: 30%;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .topnav {
 
 }
@@ -23,7 +31,6 @@
     .bottomnav a {
         float: left;
         color: black;
-        text-align: center;
         padding: 14px 16px;
         text-decoration: none;
         font-size: 100%;
@@ -49,6 +56,15 @@
     .bottomnav .searchbar button:hover {
         background: #ccc;
     }
+
+.registerTable {
+    width: 40%;
+    height: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: auto;
+    margin-top: auto;
+}
 
 .footerbar {
     overflow: hidden;
