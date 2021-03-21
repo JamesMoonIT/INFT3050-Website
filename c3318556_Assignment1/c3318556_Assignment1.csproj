@@ -71,7 +71,6 @@
     <Content Include="UL\cart.aspx" />
     <Content Include="UL\contact.aspx" />
     <Content Include="UL\CSS\masterstyle.css" />
-    <Content Include="UL\CSS\style.css" />
     <Content Include="UL\home.aspx" />
     <Content Include="UL\IMG\logo.png" />
     <Content Include="UL\login.aspx" />

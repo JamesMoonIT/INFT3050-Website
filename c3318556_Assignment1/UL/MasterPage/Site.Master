@@ -5,25 +5,30 @@
 <html lang="en">
 <head runat="server">
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="../CSS/style.css" />
+    <link rel="stylesheet" href="../CSS/masterstyle.css" />
     <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> -->
     <title>GarageBay</title>
 </head>
 <body>
     <form runat="server">
-        <ul class="nav">
-            <li><a href="about.aspx">About</a></li>
-            <li><a href="products.aspx">Products</a></li>
-            <li><a href="">Products</a></li>
-        </ul>
+        <div class="topnav"> <!-- First row (logo) -->
+            <img src="IMG/logo.png" alt="GarageBay"/>
+        </div>
+        <div class="bottomnav">
+            <a href="about.aspx">About</a>
+            <a href="products.aspx">Products</a>
+            <a href="products">Products</a>
+            <div class="searchbar">
+                <input type="text" placeholder="Search..">
+            </div>
+        </div>
         <div class="container body-content">
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
-            <footer>
+            <footer class="footerbar">
                 <p>&copy; <%: DateTime.Now.Year %> - GarageBay</p>
             </footer>
         </div>
-
     </form>
 </body>
 </html>
