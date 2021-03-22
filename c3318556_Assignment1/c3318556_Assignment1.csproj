@@ -73,9 +73,11 @@
     <Content Include="UL\CSS\masterstyle.css" />
     <Content Include="UL\home.aspx" />
     <Content Include="UL\IMG\logo.png" />
+    <Content Include="UL\IMG\oldcar.jpg" />
     <Content Include="UL\login.aspx" />
     <Content Include="UL\products.aspx" />
     <Content Include="UL\register.aspx" />
+    <Content Include="UL\search.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -135,6 +137,13 @@
     </Compile>
     <Compile Include="UL\register.aspx.designer.cs">
       <DependentUpon>register.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UL\search.aspx.cs">
+      <DependentUpon>search.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UL\search.aspx.designer.cs">
+      <DependentUpon>search.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

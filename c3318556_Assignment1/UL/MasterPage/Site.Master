@@ -5,20 +5,24 @@
 <html lang="en">
 <head runat="server">
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="../CSS/masterstyle.css" />
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="~/UL/CSS/masterstyle.css" rel="stylesheet" type="text/css" media="screen" runat="server"/>
     <title>GarageBay</title>
 </head>
 <body>
     <form runat="server">
         <div class="topnav"> <!-- First row (logo) -->
-            <img src="IMG/logo.png" alt="GarageBay"/>
+            <a href="home.aspx"><img border="0" src="IMG/logo.png" alt="GarageBay"></a>
         </div>
-        <div class="bottomnav">
+        <div class="bottomnav"> <!-- Second row (navigation, search, shopping cart, login/register) -->
+            <a href="home.aspx">Home</a>
             <a href="about.aspx">About</a>
             <a href="products.aspx">Products</a>
-            <a href="products">Products</a>
+            <a href="contact.aspx">Contact Us</a>
             <div class="searchbar">
+                <a href="cart.aspx">Shopping Cart</a>
+                <a href="login.aspx">Login</a>
+                <a href="register.aspx">Register</a>
                 <input type="text" placeholder="Search..">
             </div>
         </div>

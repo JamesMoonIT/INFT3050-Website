@@ -1,6 +1,6 @@
 ﻿body {
     font-size: 20px;
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 .carphoto {
@@ -9,10 +9,6 @@
     height: auto;
     margin-left: auto;
     margin-right: auto;
-}
-
-.topnav {
-
 }
 
 .topnav img {
@@ -36,10 +32,10 @@
         font-size: 100%;
     }
 
-    .bottomnav a:hover {
-        background-color: darkgray;
-        color: honeydew;
-    }
+        .bottomnav a:hover {
+            background-color: darkgray;
+            color: honeydew;
+        }
 
     .bottomnav .searchbar {
         float: right;
@@ -58,13 +54,18 @@
     }
 
 .registerTable {
-    width: 40%;
-    height: 50%;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: auto;
-    margin-top: auto;
+    border: 1px solid black;
+    width: 20%;
+    margin-left: 40%;
+    margin-right: 40%;
+    margin-top: 10%;
+    margin-bottom: 10%;
 }
+
+    .registerTable .tabletop {
+        background-color: black;
+        color: white;
+    }
 
 .footerbar {
     overflow: hidden;
