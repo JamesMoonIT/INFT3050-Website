@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/UL/MasterPage/Site.Master" AutoEventWireup="true" CodeBehind="register.aspx.cs" Inherits="c3318556_Assignment1.UL.register" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <div>
+    <div class="centerLogin">
         <table class="registerTable">
             <tr>
                 <td colspan="2" class="tabletop">Register
@@ -38,9 +38,10 @@
                     <asp:TextBox ID="postalAddress" runat="server" /></td>
             </tr>
             <tr>
-                <td><asp:Button ID="existingUser" Text="Already a User? Log In" runat="server" /></td>
-                <td><asp:Button ID="registerNow" Text="Register" runat="server" /></td>
+                <td><asp:Button ID="existingUser" Text="Already a User? Log In" runat="server" OnClick="existingUser_Click" /></td>
+                <td><asp:Button ID="registerNow" Text="Register" runat="server" OnClick="registerNow_Click" /></td>
             </tr>
         </table>
+        <asp:Label ID="lblFeedback" runat="server" />
     </div>
 </asp:Content>

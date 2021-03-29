@@ -11,7 +11,10 @@ namespace c3318556_Assignment1.UL
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Session["UID"] != null)
+            {
+                // hide login and password, replace with "Welcome" 
+            }
         }
     }
 }

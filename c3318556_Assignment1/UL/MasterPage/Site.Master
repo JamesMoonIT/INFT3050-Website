@@ -6,33 +6,43 @@
 <head runat="server">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="~/UL/CSS/masterstyle.css" rel="stylesheet" type="text/css" media="screen" runat="server"/>
+    <link href="~/UL/CSS/masterstyle.css" rel="stylesheet" type="text/css" media="screen" runat="server" />
     <title>GarageBay</title>
 </head>
 <body>
     <form runat="server">
-        <div class="topnav"> <!-- First row (logo) -->
-            <a href="home.aspx"><img border="0" src="IMG/logo.png" alt="GarageBay"></a>
+        <div class="topnav">
+            <!-- First row (logo) -->
+            <a href="home.aspx">
+                <img border="0" src="IMG/logo.png" alt="GarageBay"></a>
         </div>
-        <div class="bottomnav"> <!-- Second row (navigation, search, shopping cart, login/register) -->
+        <div class="bottomnav">
+            <!-- Second row (navigation, search, shopping cart, login/register) -->
             <a href="home.aspx">Home</a>
             <a href="about.aspx">About</a>
             <a href="products.aspx">Products</a>
             <a href="contact.aspx">Contact Us</a>
             <div class="searchbar">
                 <a href="cart.aspx">Shopping Cart</a>
-                <a href="login.aspx">Login</a>
+                <!-- <a href="login.aspx">Login</a> -->
+                <a><asp:Button runat="server" Text="Cart" /></a>
                 <a href="register.aspx">Register</a>
                 <input type="text" placeholder="Search..">
             </div>
         </div>
-        <div class="container body-content">
-            <asp:ContentPlaceHolder ID="MainContent" runat="server">
-            </asp:ContentPlaceHolder>
-            <footer class="footerbar">
-                <p>&copy; <%: DateTime.Now.Year %> - GarageBay</p>
-            </footer>
-        </div>
+            <!-- <asp:Menu ID="NavigationMenu" runat="server" CssClass="bottomnav" EnableViewState="false" IncludeStyleBlock="false" Orientation="Horizontal">
+                <Items>
+                    <asp:MenuItem NavigateUrl="~/UL/home.aspx" Text="Home" />
+                    <asp:MenuItem NavigateUrl="~/about.aspx" Text="About" />
+                </Items>
+            </asp:Menu> -->
+            <div class="container body-content">
+                <asp:ContentPlaceHolder ID="MainContent" runat="server">
+                </asp:ContentPlaceHolder>
+                <footer class="footerbar">
+                    <p>&copy; <%: DateTime.Now.Year %> - GarageBay</p>
+                </footer>
+            </div>
     </form>
 </body>
 </html>

@@ -1,6 +1,9 @@
 ﻿body {
     font-size: 20px;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    left: 10%;
+    right: 10%;
+    overflow: auto;
 }
 
 .carphoto {
@@ -53,13 +56,13 @@
         background: #ccc;
     }
 
+.centerLogin {
+    position: relative;
+    display: block;
+}
+
 .registerTable {
     border: 1px solid black;
-    width: 20%;
-    margin-left: 40%;
-    margin-right: 40%;
-    margin-top: 10%;
-    margin-bottom: 10%;
 }
 
     .registerTable .tabletop {
@@ -68,7 +71,31 @@
     }
 
 .footerbar {
+    position: fixed sticky;
+    left: 0;
+    bottom: 0;
+    width: 100%;
     overflow: hidden;
     background-color: darkgrey;
     text-align: center;
 }
+
+.shoppingCart {
+    color: #ffffff;
+    /text color/ background-color: transparent;
+    height: 40px;
+    width: 110px;
+    border: transparent;
+    font-size: 20px;
+    /font-weight: lighter;
+    / font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+    .shoppingCart:hover {
+        background-color: #4CAF50;
+        color: black;
+        cursor: pointer;
+    }
+
+    .shoppingCart:focus {
+    }

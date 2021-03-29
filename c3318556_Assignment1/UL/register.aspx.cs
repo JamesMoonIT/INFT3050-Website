@@ -13,5 +13,30 @@ namespace c3318556_Assignment1.UL
         {
 
         }
+
+        protected void registerNow_Click(object sender, EventArgs e)
+        {
+            string strFirstName = Convert.ToString(firstName.Text);
+            string strLastName = Convert.ToString(lastName.Text);
+            string strEmailStore = Convert.ToString(emailAddress.Text);
+            string strPasswordStore = Convert.ToString(userPassword.Text);
+            string intPhoneNo = Convert.ToString(mobile.Text);
+            string strAddress = Convert.ToString(postalAddress.Text);
+
+            if (strFirstName == "" || strLastName == "" || strEmailStore == "" || strPasswordStore == "" || strPasswordStore == "" || intPhoneNo == "" || strAddress == "")
+            {
+                lblFeedback.Text = "Please make sure to fill all fields";
+            }
+            else
+            {
+                Session["UID"] = 100000;
+                Response.Redirect("home.aspx?UID=100000");
+            }
+        }
+
+        protected void existingUser_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("login.aspx");
+        }
     }
 }
