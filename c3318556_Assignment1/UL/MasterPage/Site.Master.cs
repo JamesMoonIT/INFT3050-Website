@@ -14,24 +14,9 @@ namespace c3318556_Assignment1.UL.MasterPage
 
         }
 
-        protected void login_Click(object sender, EventArgs e)
+        protected void btnCart_Click(object sender, EventArgs e)
         {
-            Response.Redirect("login.aspx");
-        }
-
-        protected void btnAbout_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void btnContact_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void btnProducts_Click(object sender, EventArgs e)
-        {
-
+            Response.Redirect("cart.aspx");
         }
     }
 }

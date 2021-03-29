@@ -56,6 +56,19 @@
         background: #ccc;
     }
 
+    .bottomnav .shoppingCart {
+        border: transparent;
+    }
+
+        .bottomnav .shoppingCart:hover {
+            background-color: #4CAF50;
+            color: black;
+            cursor: pointer;
+        }
+
+        .bottomnav .shoppingCart:focus {
+        }
+
 .centerLogin {
     position: relative;
     display: block;
@@ -79,23 +92,3 @@
     background-color: darkgrey;
     text-align: center;
 }
-
-.shoppingCart {
-    color: #ffffff;
-    /text color/ background-color: transparent;
-    height: 40px;
-    width: 110px;
-    border: transparent;
-    font-size: 20px;
-    /font-weight: lighter;
-    / font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-}
-
-    .shoppingCart:hover {
-        background-color: #4CAF50;
-        color: black;
-        cursor: pointer;
-    }
-
-    .shoppingCart:focus {
-    }

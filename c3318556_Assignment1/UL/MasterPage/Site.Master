@@ -23,9 +23,9 @@
             <a href="products.aspx">Products</a>
             <a href="contact.aspx">Contact Us</a>
             <div class="searchbar">
-                <a href="cart.aspx">Shopping Cart</a>
-                <!-- <a href="login.aspx">Login</a> -->
-                <a><asp:Button runat="server" Text="Cart" /></a>
+                <asp:Button ID="btnCart" runat="server" Text="Cart" CssClass="shoppingCart" OnClick="btnCart_Click"/>
+                <!-- <a href="cart.aspx">Shopping Cart</a> -->
+                <a href="login.aspx">Login</a>
                 <a href="register.aspx">Register</a>
                 <input type="text" placeholder="Search..">
             </div>
