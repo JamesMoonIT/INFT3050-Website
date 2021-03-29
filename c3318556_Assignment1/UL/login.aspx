@@ -14,7 +14,7 @@
             <tr>
                 <td>Password:</td>
                 <td>
-                    <asp:TextBox ID="userPassword" runat="server" /></td>
+                    <asp:TextBox ID="userPassword" runat="server" TextMode="Password"/></td>
             </tr>
             <tr>
                 <td>
@@ -23,6 +23,7 @@
                     <asp:Button ID="registerButton" Text="Login" runat="server" OnClientClick="register.aspx" OnClick="registerButton_Click" /></td>
             </tr>
         </table>
+        <asp:Button ID="btnForgotPassword" Text="Forgot password?" runat="server" CssClass="transparentButton" OnClick="btnForgotPassword_Click" />
         <asp:Label ID="lblFeedback" runat="server" />
     </div>
 </asp:Content>

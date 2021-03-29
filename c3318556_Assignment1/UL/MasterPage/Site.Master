@@ -23,26 +23,20 @@
             <a href="products.aspx">Products</a>
             <a href="contact.aspx">Contact Us</a>
             <div class="searchbar">
-                <asp:Button ID="btnCart" runat="server" Text="Cart" CssClass="shoppingCart" OnClick="btnCart_Click"/>
-                <!-- <a href="cart.aspx">Shopping Cart</a> -->
+                <a>
+                    <asp:Button ID="btnCart" runat="server" Text="Cart" CssClass="shoppingCart" OnClick="btnCart_Click" /></a>
                 <a href="login.aspx">Login</a>
                 <a href="register.aspx">Register</a>
                 <input type="text" placeholder="Search..">
             </div>
         </div>
-            <!-- <asp:Menu ID="NavigationMenu" runat="server" CssClass="bottomnav" EnableViewState="false" IncludeStyleBlock="false" Orientation="Horizontal">
-                <Items>
-                    <asp:MenuItem NavigateUrl="~/UL/home.aspx" Text="Home" />
-                    <asp:MenuItem NavigateUrl="~/about.aspx" Text="About" />
-                </Items>
-            </asp:Menu> -->
-            <div class="container body-content">
-                <asp:ContentPlaceHolder ID="MainContent" runat="server">
-                </asp:ContentPlaceHolder>
-                <footer class="footerbar">
-                    <p>&copy; <%: DateTime.Now.Year %> - GarageBay</p>
-                </footer>
-            </div>
+        <div class="mainbody">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+        <footer class="footerbar">
+            <p>&copy; <%: DateTime.Now.Year %> - GarageBay</p>
+        </footer>
     </form>
 </body>
 </html>
