@@ -41,7 +41,7 @@ namespace c3318556_Assignment1.UL
             else if (strEmailStore == strEmail2 && strPasswordStore == strPassword2)
             {
                 Session["UserName"] = "Admin";
-                Response.Write(Session["Name"]);
+                Response.Write(Session["UserName"]);
                 Session["UID"] = "100000";
                 Response.Redirect("home.aspx");
             }

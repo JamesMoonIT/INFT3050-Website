@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/UL/MasterPage/Site.Master" AutoEventWireup="true" CodeBehind="products.aspx.cs" Inherits="c3318556_Assignment1.UL.products" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    <p><asp:Label ID="UID" Text="No user Logged in" runat="server">No user logged in</asp:Label></p>
     <h1>Products</h1>
     <p>We have a small range of motor vehicles to choose from, with mroe to hopefulyl be added to GarageBay. Stay tuned to see what new stock will have to offer!</p>
     <table class="product">

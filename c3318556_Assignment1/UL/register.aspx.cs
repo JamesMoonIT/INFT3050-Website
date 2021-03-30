@@ -29,7 +29,13 @@ namespace c3318556_Assignment1.UL
             }
             else
             {
-                Session["UID"] = 100000;
+                Session["UID"] = 100002;
+                Session["UserName"] = strFirstName;
+                Session["FirstName"] = strFirstName;
+                Session["LastName"] = strLastName;
+                Session["Email"] = strEmailStore;
+                Session["Phone"] = intPhoneNo;
+                Session["Address"] = strAddress;
                 Response.Redirect("home.aspx?UID=100000");
             }
         }

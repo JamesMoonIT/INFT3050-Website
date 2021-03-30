@@ -11,7 +11,10 @@ namespace c3318556_Assignment1.UL
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Session["UID"] != null)
+            {
+                UID.Text = Session["UID"].ToString();
+            }
         }
 
         protected void cartProduct4_Click(object sender, EventArgs e)

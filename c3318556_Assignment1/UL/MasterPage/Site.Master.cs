@@ -11,13 +11,28 @@ namespace c3318556_Assignment1.UL.MasterPage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["UID"] == "100001")
+            if (Session["UID"] == "100000")
             {
-                lblUser.Text = "Admin";
+                btnLogin.Visible = false;
+                btnRegister.Visible = false;
+                btnUser.Visible = true;
+                btnLogout.Visible = true;
+                btnUser.Text = "Welcome back, " + Session["UserName"].ToString();
             }
             if (Session["UID"] == "100001")
             {
-                lblUser.Text = "User";
+                btnLogin.Visible = false;
+                btnRegister.Visible = false;
+                btnUser.Visible = true;
+                btnLogout.Visible = true;
+                btnUser.Text = "Welcome back, " + Session["UserName"].ToString();
+            }
+            if (Session["UID"] == null)
+            {
+                btnUser.Visible = false;
+                btnLogin.Visible = true;
+                btnLogout.Visible = false;
+                btnRegister.Visible = true;
             }
         }
 
@@ -34,6 +49,17 @@ namespace c3318556_Assignment1.UL.MasterPage
         protected void btnRegister_Click(object sender, EventArgs e)
         {
             Response.Redirect("register.aspx");
+        }
+
+        protected void btnLogout_Click(object sender, EventArgs e)
+        {
+            Session["UID"] = null;
+            Response.Redirect(Request.RawUrl);
+        }
+
+        protected void btnUser_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("user.aspx");
         }
     }
 }

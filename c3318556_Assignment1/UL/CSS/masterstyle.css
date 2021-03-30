@@ -160,6 +160,23 @@
     padding-left: 10%;
     padding-right: 10%;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: white;
+}
+
+.tableCart {
+    float: left;
+    width: 75%;
+}
+
+.aspRow {
+    width: 25%;
+}
+
+.rightCart {
+    border: 1px solid black;
+    float: right;
+    width: 24%;
+    font-size: 15px;
 }
 
 .footerbar {

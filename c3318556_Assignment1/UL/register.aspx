@@ -1,6 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/UL/MasterPage/Site.Master" AutoEventWireup="true" CodeBehind="register.aspx.cs" Inherits="c3318556_Assignment1.UL.register" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    <h1>Registration Page</h1>
+    <p>Each field is required in order to be registered with this site. Please make sure very field is filled before proceeding (You will be prompted if a field is unfilled).</p>
     <div class="centerLogin">
         <table class="registerTable">
             <tr>
