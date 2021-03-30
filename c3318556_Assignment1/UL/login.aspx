@@ -14,7 +14,7 @@
             <tr>
                 <td>Password:</td>
                 <td>
-                    <asp:TextBox ID="userPassword" runat="server" TextMode="Password"/></td>
+                    <asp:TextBox ID="userPassword" runat="server" TextMode="Password" /></td>
             </tr>
             <tr>
                 <td>
@@ -24,6 +24,7 @@
             </tr>
         </table>
         <asp:Button ID="btnForgotPassword" Text="Forgot password?" runat="server" CssClass="transparentButton" OnClick="btnForgotPassword_Click" />
+        <p></p>
         <asp:Label ID="lblFeedback" runat="server" />
     </div>
 </asp:Content>

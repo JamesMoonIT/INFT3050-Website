@@ -96,18 +96,70 @@
     border: transparent;
 }
 
-.product .pImage {
-    float: left;
+.product {
+    width: 100%;
+    padding-bottom: 30px;
+    border-collapse: collapse;
 }
 
-.product .pInfo {
-    float: right;
-}
+    .product tr {
+        border-top: 1px solid black;
+        border-bottom: 1px solid black;
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+
+    .product tr:last-child {
+        border-bottom: none;
+    }
+
+    .product h1 {
+        font-size: 25px;
+    }
+
+    .product h2 {
+        font-size: 20px;
+    }
+
+    .product h3 {
+        font-size: 15px;
+    }
+
+    .product p {
+        font-size: 12px;
+    }
+
+    .product .pImage {
+        max-width: 200px;
+        height: auto;
+        padding-left: 20%;
+        padding-right: 20%;
+        padding-top: 20%;
+        padding-bottom: 20%;
+        float: left;
+    }
+
+    .product .pInfo {
+        max-width: 40%;
+        padding-left: 5%;
+        padding-right: 5%;
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+
+    .product .addToCart {
+        border: transparent;
+        font-size: 20px;
+        background-color: greenyellow;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        text-decoration: none;
+        font-size: 100%;
+    }
 
 .mainbody {
     padding-left: 10%;
     padding-right: 10%;
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .footerbar {

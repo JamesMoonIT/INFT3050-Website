@@ -13,5 +13,30 @@ namespace c3318556_Assignment1.UL
         {
 
         }
+
+        protected void cartProduct4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void cartProduct5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void cartProduct1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void cartProduct2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void cartProduct3_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

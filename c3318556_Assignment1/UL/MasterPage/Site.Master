@@ -23,10 +23,13 @@
             <a href="products.aspx">Products</a>
             <a href="contact.aspx">Contact Us</a>
             <div class="searchbar">
+                <a><asp:Label ID="lblUser" runat="server"></asp:Label></a>
                 <a>
                     <asp:Button ID="btnCart" runat="server" Text="Cart" CssClass="shoppingCart" OnClick="btnCart_Click" /></a>
-                <a href="login.aspx">Login</a>
-                <a href="register.aspx">Register</a>
+                <a>
+                    <asp:Button ID="btnLogin" runat="server" Text="Login" CssClass="shoppingCart" OnClick="btnLogin_Click" /></a>
+                <a>
+                    <asp:Button ID="btnRegister" runat="server" Text="Register" CssClass="shoppingCart" OnClick="btnRegister_Click" /></a>
                 <input type="text" placeholder="Search..">
             </div>
         </div>
