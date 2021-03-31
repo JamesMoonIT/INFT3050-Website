@@ -11,7 +11,7 @@ namespace c3318556_Assignment1.UL
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            
         }
 
         protected void registerButton_Click(object sender, EventArgs e)
@@ -62,7 +62,7 @@ namespace c3318556_Assignment1.UL
 
         protected void btnForgotPassword_Click(object sender, EventArgs e)
         {
-
+            Response.Redirect("forgotpassword.aspx");
         }
     }
 }

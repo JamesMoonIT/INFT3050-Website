@@ -71,6 +71,7 @@
     <Content Include="UL\cart.aspx" />
     <Content Include="UL\contact.aspx" />
     <Content Include="UL\CSS\masterstyle.css" />
+    <Content Include="UL\forgotpassword.aspx" />
     <Content Include="UL\home.aspx" />
     <Content Include="UL\IMG\logo.png" />
     <Content Include="UL\IMG\oldcar.jpg" />
@@ -109,6 +110,13 @@
     </Compile>
     <Compile Include="UL\contact.aspx.designer.cs">
       <DependentUpon>contact.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UL\forgotpassword.aspx.cs">
+      <DependentUpon>forgotpassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UL\forgotpassword.aspx.designer.cs">
+      <DependentUpon>forgotpassword.aspx</DependentUpon>
     </Compile>
     <Compile Include="UL\home.aspx.cs">
       <DependentUpon>home.aspx</DependentUpon>
@@ -163,6 +171,7 @@
   <ItemGroup>
     <None Include="packages.config" />
     <Content Include="UL\MasterPage\Site.Master" />
+    <Content Include="UL\.editorconfig" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

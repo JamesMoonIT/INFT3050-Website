@@ -24,7 +24,7 @@
             </tr>
         </table>
         <div>
-            <p></p>
+            <br />
             <asp:Button ID="btnForgotPassword" Text="Forgot password?" runat="server" CssClass="transparentButton" OnClick="btnForgotPassword_Click" />
             <p></p>
             <asp:Label ID="lblFeedback" runat="server" />
