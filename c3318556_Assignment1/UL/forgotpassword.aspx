@@ -6,5 +6,6 @@
         <p>Please enter your email to verify you are the owner of the account:</p>
         <asp:TextBox ID="txbxEmail" runat="server" placeholder="Email"/>
         <asp:Button ID="btnRecover" runat="server" Text="Recover" OnClick="btnRecover_Click" />
+        <br />
     </div>
 </asp:Content>

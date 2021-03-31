@@ -1,6 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/UL/MasterPage/Site.Master" AutoEventWireup="true" CodeBehind="login.aspx.cs" Inherits="c3318556_Assignment1.UL.login" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    <h1>Login Page</h1>
+    <p>You can log onto your account by entering your email and password in the sections below.</p>
     <div class="centerLogin">
         <table class="registerTable">
             <tr>

@@ -9,29 +9,29 @@
             <asp:TableHeaderCell>Price</asp:TableHeaderCell>
         </asp:TableRow>
         <asp:TableRow CssClass="aspRow">
-            <asp:TableCell>Product 1</asp:TableCell>
-            <asp:TableCell>Product 1 Quantity</asp:TableCell>
-            <asp:TableCell>Product 1 Price</asp:TableCell>
+            <asp:TableCell>1921 Hudson Phantom</asp:TableCell>
+            <asp:TableCell><asp:Button ID="p1Subtract" runat="server" Text="-" OnClick="p1Subtract_Click" /><asp:Label ID="p1Quantity" runat="server" Text="0" /> <asp:Button ID="p1Add" runat="server" Text="+" OnClick="p1Add_Click" /></asp:TableCell>
+            <asp:TableCell>$25,000</asp:TableCell>
         </asp:TableRow>
         <asp:TableRow CssClass="aspRow">
-            <asp:TableCell>Product 2</asp:TableCell>
-            <asp:TableCell>Product 2 Quantity</asp:TableCell>
-            <asp:TableCell>Product 2 Price</asp:TableCell>
+            <asp:TableCell>1956 Ford Thunderbird</asp:TableCell>
+            <asp:TableCell><asp:Button ID="p2Subtract" runat="server" Text="-" OnClick="p2Subtract_Click" /><asp:Label ID="p2Quantity" runat="server" Text="0" /> <asp:Button ID="p2Add" runat="server" Text="+" OnClick="p2Add_Click" /></asp:TableCell>
+            <asp:TableCell>$46,000</asp:TableCell>
         </asp:TableRow>
         <asp:TableRow CssClass="aspRow">
-            <asp:TableCell>Product 3</asp:TableCell>
-            <asp:TableCell>Product 3 Quantity</asp:TableCell>
-            <asp:TableCell>Product 3 Price</asp:TableCell>
+            <asp:TableCell>1949 Holden FX 48-215</asp:TableCell>
+            <asp:TableCell><asp:Button ID="p3Subtract" runat="server" Text="-" OnClick="p3Subtract_Click" /><asp:Label ID="p3Quantity" runat="server" Text="0" /> <asp:Button ID="p3Add" runat="server" Text="+" OnClick="p3Add_Click" /></asp:TableCell>
+            <asp:TableCell>$23,000</asp:TableCell>
         </asp:TableRow>
         <asp:TableRow CssClass="aspRow">
-            <asp:TableCell>Product 4</asp:TableCell>
-            <asp:TableCell>Product 4 Quantity</asp:TableCell>
-            <asp:TableCell>Product 4 Price</asp:TableCell>
+            <asp:TableCell>1968 Holden Monaro</asp:TableCell>
+            <asp:TableCell><asp:Button ID="p4Subtract" runat="server" Text="-" OnClick="p4Subtract_Click" /><asp:Label ID="p4Quantity" runat="server" Text="0" /> <asp:Button ID="p4Add" runat="server" Text="+" OnClick="p4Add_Click" /></asp:TableCell>
+            <asp:TableCell>$34,000</asp:TableCell>
         </asp:TableRow>
         <asp:TableRow CssClass="aspRow">
-            <asp:TableCell>Product 5</asp:TableCell>
-            <asp:TableCell>Product 5 Quantity</asp:TableCell>
-            <asp:TableCell>Product 5 Price</asp:TableCell>
+            <asp:TableCell>1940 Chevrolet Master Deluxe</asp:TableCell>
+            <asp:TableCell><asp:Button ID="p5Subtract" runat="server" Text="-" OnClick="p5Subtract_Click" /><asp:Label ID="p5Quantity" runat="server" Text="0" /> <asp:Button ID="p5Add" runat="server" Text="+" OnClick="p5Add_Click" /></asp:TableCell>
+            <asp:TableCell>$43,000</asp:TableCell>
         </asp:TableRow>
     </asp:Table>
         </div>

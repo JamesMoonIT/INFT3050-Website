@@ -74,8 +74,8 @@
 .centerLogin {
     margin: auto;
     width: 35%;
-    border: 3px solid Black;
     padding: 10px;
+    text-align: center;
 }
 
 .registerTable {
@@ -175,6 +175,10 @@
 }
 
 .contactPage {
+    width: 100%;
+}
+
+.largeTextBox {
     width: 100%;
 }
 
