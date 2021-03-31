@@ -11,7 +11,7 @@ namespace c3318556_Assignment1.UL
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            UID.Text = Session["FirstName"].ToString();
         }
     }
 }

@@ -23,8 +23,11 @@
                     <asp:Button ID="registerButton" Text="Login" runat="server" OnClientClick="register.aspx" OnClick="registerButton_Click" /></td>
             </tr>
         </table>
-        <asp:Button ID="btnForgotPassword" Text="Forgot password?" runat="server" CssClass="transparentButton" OnClick="btnForgotPassword_Click" />
-        <p></p>
-        <asp:Label ID="lblFeedback" runat="server" />
+        <div>
+            <p></p>
+            <asp:Button ID="btnForgotPassword" Text="Forgot password?" runat="server" CssClass="transparentButton" OnClick="btnForgotPassword_Click" />
+            <p></p>
+            <asp:Label ID="lblFeedback" runat="server" />
+        </div>
     </div>
 </asp:Content>

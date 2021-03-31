@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/UL/MasterPage/Site.Master" AutoEventWireup="true" CodeBehind="user.aspx.cs" Inherits="c3318556_Assignment1.UL.user" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <h1>Your user details:</h1>
-    <p>User ID: </p>
+    <p>User ID: <asp:Label ID="UID" runat="server" Text="(NAME NOT FOUND)" /></p>
     <p>First Name: </p>
     <p>Last Name: </p>
     <p>Email: </p>

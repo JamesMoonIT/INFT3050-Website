@@ -23,7 +23,8 @@
             <a href="products.aspx">Products</a>
             <a href="contact.aspx">Contact Us</a>
             <div class="searchbar">
-                <a><asp:Button ID="btnUser" runat="server" Text="" CssClass="shoppingCart" OnClick="btnUser_Click" /></a>
+                <a>
+                    <asp:Button ID="btnUser" runat="server" Text="" CssClass="shoppingCart" OnClick="btnUser_Click" /></a>
                 <a>
                     <asp:Button ID="btnLogout" runat="server" Text="Logout" CssClass="shoppingCart" OnClick="btnLogout_Click" /></a>
                 <a>
