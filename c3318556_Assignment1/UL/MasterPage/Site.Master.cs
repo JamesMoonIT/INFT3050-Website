@@ -17,22 +17,30 @@ namespace c3318556_Assignment1.UL.MasterPage
                 btnRegister.Visible = false;
                 btnUser.Visible = true;
                 btnLogout.Visible = true;
-                btnUser.Text = "Welcome back, " + Session["UserName"].ToString();
+                btnUser.Text = "Welcome back, " + Session["FirstName"].ToString();
             }
-            if (Session["UID"] == "100001")
+            else if (Session["UID"] == "100001")
             {
                 btnLogin.Visible = false;
                 btnRegister.Visible = false;
                 btnUser.Visible = true;
                 btnLogout.Visible = true;
-                btnUser.Text = "Welcome back, " + Session["UserName"].ToString();
+                btnUser.Text = "Welcome back, " + Session["FirstName"].ToString();
             }
-            if (Session["UID"] == null)
+            else if (Session["UID"] == null)
             {
                 btnUser.Visible = false;
                 btnLogin.Visible = true;
                 btnLogout.Visible = false;
                 btnRegister.Visible = true;
+            }
+            else
+            {
+                btnUser.Visible = false;
+                btnLogin.Visible = true;
+                btnLogout.Visible = false;
+                btnRegister.Visible = true;
+                
             }
         }
 
@@ -54,7 +62,7 @@ namespace c3318556_Assignment1.UL.MasterPage
         protected void btnLogout_Click(object sender, EventArgs e)
         {
             Session["UID"] = null;
-            Response.Redirect(Request.RawUrl);
+            Response.Redirect("home.aspx");
         }
 
         protected void btnUser_Click(object sender, EventArgs e)

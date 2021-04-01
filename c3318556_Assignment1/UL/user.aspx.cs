@@ -11,7 +11,11 @@ namespace c3318556_Assignment1.UL
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            UID.Text = Session["FirstName"].ToString();
+            lblFirstName.Text = Session["FirstName"].ToString();
+            lblLastName.Text = Session["LastName"].ToString();
+            lblEmail.Text = Session["Email"].ToString();
+            lblMobile.Text = Session["Phone"].ToString();
+            lblAddress.Text = Session["Address"].ToString();
         }
     }
 }

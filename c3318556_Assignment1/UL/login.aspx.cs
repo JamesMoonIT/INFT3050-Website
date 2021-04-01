@@ -33,15 +33,21 @@ namespace c3318556_Assignment1.UL
             }
             else if (strEmailStore == strEmail1 && strPasswordStore == strPassword1)
             {
-                Session["UserName"] = "User";
-                Response.Write(Session["UserName"]);
+                Session["FirstName"] = "Bob";
+                Session["LastName"] = "Parr";
+                Session["Email"] = "user@yopmail.com";
+                Session["Phone"] = "1800 DONT CARE";
+                Session["Address"] = "123 Fake St, Fakevile NSW 1234";
                 Session["UID"] = "100001";
                 Response.Redirect("home.aspx");
             }
             else if (strEmailStore == strEmail2 && strPasswordStore == strPassword2)
             {
-                Session["UserName"] = "Admin";
-                Response.Write(Session["UserName"]);
+                Session["FirstName"] = "Helen";
+                Session["LastName"] = "Parr";
+                Session["Email"] = "admin@yopmail.com";
+                Session["Phone"] = "1800 NOT REAL";
+                Session["Address"] = "123 Fake St, Fakevile NSW 1234";
                 Session["UID"] = "100000";
                 Response.Redirect("home.aspx");
             }

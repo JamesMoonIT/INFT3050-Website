@@ -182,6 +182,11 @@
     width: 100%;
 }
 
+.purchaseHistory {
+    width: 100%;
+    border-collapse: collapse;
+}
+
 .footerbar {
     position: fixed sticky;
     left: 0;

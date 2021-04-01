@@ -82,6 +82,7 @@
     <Content Include="UL\IMG\product5.jpg" />
     <Content Include="UL\login.aspx" />
     <Content Include="UL\products.aspx" />
+    <Content Include="UL\purchase.aspx" />
     <Content Include="UL\register.aspx" />
     <Content Include="UL\Scripts\navscript.js" />
     <Content Include="UL\search.aspx" />
@@ -145,6 +146,13 @@
     </Compile>
     <Compile Include="UL\products.aspx.designer.cs">
       <DependentUpon>products.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UL\purchase.aspx.cs">
+      <DependentUpon>purchase.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UL\purchase.aspx.designer.cs">
+      <DependentUpon>purchase.aspx</DependentUpon>
     </Compile>
     <Compile Include="UL\register.aspx.cs">
       <DependentUpon>register.aspx</DependentUpon>

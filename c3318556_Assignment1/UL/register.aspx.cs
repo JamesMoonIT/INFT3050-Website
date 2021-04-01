@@ -20,23 +20,23 @@ namespace c3318556_Assignment1.UL
             string strLastName = Convert.ToString(lastName.Text);
             string strEmailStore = Convert.ToString(emailAddress.Text);
             string strPasswordStore = Convert.ToString(userPassword.Text);
-            string intPhoneNo = Convert.ToString(mobile.Text);
+            string strPhoneNo = Convert.ToString(mobile.Text);
             string strAddress = Convert.ToString(postalAddress.Text);
 
-            if (strFirstName == "" || strLastName == "" || strEmailStore == "" || strPasswordStore == "" || strPasswordStore == "" || intPhoneNo == "" || strAddress == "")
+            if (strFirstName == "" || strLastName == "" || strEmailStore == "" || strPasswordStore == "" || strPasswordStore == "" || strPhoneNo == "" || strAddress == "")
             {
                 lblFeedback.Text = "Please make sure to fill all fields";
             }
             else
             {
-                Session["UID"] = 100002;
+                Session["UID"] = "100000";
                 Session["UserName"] = strFirstName;
                 Session["FirstName"] = strFirstName;
                 Session["LastName"] = strLastName;
                 Session["Email"] = strEmailStore;
-                Session["Phone"] = intPhoneNo;
+                Session["Phone"] = strPhoneNo;
                 Session["Address"] = strAddress;
-                Response.Redirect("home.aspx?UID=100000");
+                Response.Redirect("home.aspx");
             }
         }
 
