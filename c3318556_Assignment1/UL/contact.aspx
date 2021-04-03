@@ -1,6 +1,12 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/UL/MasterPage/Site.Master" AutoEventWireup="true" CodeBehind="contact.aspx.cs" Inherits="c3318556_Assignment1.UL.contact" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+<!--  
+    Author: James Moon
+    Last Updated: 3:04pm 3/4/2021
+    Description: The Contact page was my first try at getting emails working (which it does). You are able to enter all your
+        and it will actually send you an email to your inbox (from the email myuser1245@gmail.com).
+-->
     <div class="centerLogin" style="width: 100%">
         <h1>Contact Us</h1>
         <p>Should any issues arise, you can leave us your feedback and we will get back to you in the next 24 hours with any assistance or infromation you may need or desire. Any feedback greatly assists with the development of this website. Thank you!</p>

@@ -1,4 +1,11 @@
-﻿using System;
+﻿/*
+    Author: James Moon
+    Last Updated: 3:04pm 3/4/2021
+    Description: The Contact page was my first try at getting emails working (which it does). You are able to enter all your
+        and it will actually send you an email to your inbox (from the email myuser1245@gmail.com).
+*/
+
+using System;
 using System.Net.Mail;
 using System.Text;
 
@@ -11,7 +18,7 @@ namespace c3318556_Assignment1.UL
 
         }
 
-        protected void btnSubmit_Click(object sender, EventArgs e)
+        protected void btnSubmit_Click(object sender, EventArgs e)          // Source: https://www.c-sharpcorner.com/UploadFile/2a6dc5/how-to-send-a-email-using-Asp-Net-C-Sharp/
         {
             string to = "myuser1245@gmail.com"; //To address    
             string from = "myuser1245@gmail.com"; //From address    

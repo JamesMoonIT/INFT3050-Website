@@ -68,6 +68,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="UL\about.aspx" />
+    <Content Include="UL\admin.aspx" />
     <Content Include="UL\cart.aspx" />
     <Content Include="UL\contact.aspx" />
     <Content Include="UL\CSS\masterstyle.css" />
@@ -80,11 +81,13 @@
     <Content Include="UL\IMG\product3.jpg" />
     <Content Include="UL\IMG\product4.jpg" />
     <Content Include="UL\IMG\product5.jpg" />
+    <Content Include="UL\invoice.aspx" />
     <Content Include="UL\login.aspx" />
+    <Content Include="UL\logout.aspx" />
+    <Content Include="UL\manageusers.aspx" />
     <Content Include="UL\products.aspx" />
     <Content Include="UL\purchase.aspx" />
     <Content Include="UL\register.aspx" />
-    <Content Include="UL\Scripts\navscript.js" />
     <Content Include="UL\search.aspx" />
     <Content Include="UL\user.aspx" />
     <Content Include="Web.config" />
@@ -97,6 +100,13 @@
     </Compile>
     <Compile Include="UL\about.aspx.designer.cs">
       <DependentUpon>about.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UL\admin.aspx.cs">
+      <DependentUpon>admin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UL\admin.aspx.designer.cs">
+      <DependentUpon>admin.aspx</DependentUpon>
     </Compile>
     <Compile Include="UL\cart.aspx.cs">
       <DependentUpon>cart.aspx</DependentUpon>
@@ -126,12 +136,33 @@
     <Compile Include="UL\home.aspx.designer.cs">
       <DependentUpon>home.aspx</DependentUpon>
     </Compile>
+    <Compile Include="UL\invoice.aspx.cs">
+      <DependentUpon>invoice.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UL\invoice.aspx.designer.cs">
+      <DependentUpon>invoice.aspx</DependentUpon>
+    </Compile>
     <Compile Include="UL\login.aspx.cs">
       <DependentUpon>login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="UL\login.aspx.designer.cs">
       <DependentUpon>login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UL\logout.aspx.cs">
+      <DependentUpon>logout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UL\logout.aspx.designer.cs">
+      <DependentUpon>logout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UL\manageusers.aspx.cs">
+      <DependentUpon>manageusers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UL\manageusers.aspx.designer.cs">
+      <DependentUpon>manageusers.aspx</DependentUpon>
     </Compile>
     <Compile Include="UL\MasterPage\Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>

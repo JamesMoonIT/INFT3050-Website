@@ -1,4 +1,12 @@
-﻿using System;
+﻿/*
+    Author: James Moon
+    Last Updated: 3:09pm 3 / 4 / 2021
+    Description: This is the default home page of the website, called home of course. Most redirects go here including logging
+        out, non-admin user kicks, invocie redirects and logins. I added an image simply for testing purposes and the text
+        is there for fun. Hope you enjoy the reading.
+*/
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,10 +19,7 @@ namespace c3318556_Assignment1.UL
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["UID"] != null)
-            {
-                // hide login and password, replace with "Welcome" 
-            }
+            // no required code (handled by master)
         }
     }
 }

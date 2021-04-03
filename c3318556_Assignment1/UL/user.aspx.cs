@@ -1,4 +1,11 @@
-﻿using System;
+﻿/*
+    Author: James Moon
+    Last Updated: 3:40pm 3 / 4 / 2021
+    Description: This page acts as a stand in for when search works.It currently mentions it shows 5 results, and it redirects to the
+        products page with a session variable "search" and the entered text(for later implementation).
+*/
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,11 +18,10 @@ namespace c3318556_Assignment1.UL
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            lblFirstName.Text = Session["FirstName"].ToString();
-            lblLastName.Text = Session["LastName"].ToString();
-            lblEmail.Text = Session["Email"].ToString();
-            lblMobile.Text = Session["Phone"].ToString();
-            lblAddress.Text = Session["Address"].ToString();
+            lblFirstName.Text = Session["FirstName"].ToString();            // grabs First Name from session
+            lblLastName.Text = Session["LastName"].ToString();              // grabs Last Name from session
+            lblEmail.Text = Session["Email"].ToString();                    // grabs email from session
+            lblMobile.Text = Session["Phone"].ToString();                   // grabs mobile from session
         }
     }
 }

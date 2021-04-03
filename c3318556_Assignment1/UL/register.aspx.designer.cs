@@ -15,6 +15,15 @@ namespace c3318556_Assignment1.UL
     {
 
         /// <summary>
+        /// lblAdminMaker control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblAdminMaker;
+
+        /// <summary>
         /// firstName control.
         /// </summary>
         /// <remarks>
@@ -69,6 +78,24 @@ namespace c3318556_Assignment1.UL
         protected global::System.Web.UI.WebControls.TextBox postalAddress;
 
         /// <summary>
+        /// lblVerification control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblVerification;
+
+        /// <summary>
+        /// txbxVerificationKey control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txbxVerificationKey;
+
+        /// <summary>
         /// existingUser control.
         /// </summary>
         /// <remarks>
@@ -85,6 +112,15 @@ namespace c3318556_Assignment1.UL
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button registerNow;
+
+        /// <summary>
+        /// btnVerify control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnVerify;
 
         /// <summary>
         /// lblFeedback control.

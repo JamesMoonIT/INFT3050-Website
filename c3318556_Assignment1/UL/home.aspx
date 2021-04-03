@@ -1,6 +1,13 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/UL/MasterPage/Site.Master" AutoEventWireup="true" CodeBehind="home.aspx.cs" Inherits="c3318556_Assignment1.UL.home" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+<!--  
+    Author: James Moon
+    Last Updated: 3:09pm 3/4/2021
+    Description: This is the default home page of the website, called home of course. Most redirects go here including logging
+        out, non-admin user kicks, invocie redirects and logins. I added an image simply for testing purposes and the text
+        is there for fun. Hope you enjoy the reading.
+-->
     <h1>GarageBay</h1>
     <p>GarageBay is a free car sales website built for car enthusiast by car and bike enthusiasts. We intend on making this website usable by all memebrs by having functionality the fundamental goal.</p>
     <p>

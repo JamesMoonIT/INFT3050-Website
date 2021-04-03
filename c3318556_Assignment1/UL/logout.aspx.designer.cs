@@ -11,34 +11,25 @@ namespace c3318556_Assignment1.UL
 {
 
 
-    public partial class forgotpassword
+    public partial class logout
     {
 
         /// <summary>
-        /// txbxEmail control.
+        /// btnYes control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txbxEmail;
+        protected global::System.Web.UI.WebControls.Button btnYes;
 
         /// <summary>
-        /// btnRecover control.
+        /// btnNo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnRecover;
-
-        /// <summary>
-        /// lblFeedback control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblFeedback;
+        protected global::System.Web.UI.WebControls.Button btnNo;
     }
 }

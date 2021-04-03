@@ -1,10 +1,18 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/UL/MasterPage/Site.Master" AutoEventWireup="true" CodeBehind="products.aspx.cs" Inherits="c3318556_Assignment1.UL.products" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+<!--  
+    Author: James Moon
+    Last Updated: 3:22pm 3/4/2021
+    Description: This is the products page where all current cars are listed for sale. You can buy as many as you
+        want (apparently..) so there you go. The items are in a table that can be expanded with more products. kept it
+        at 5 for coding purposes and lack of time.
+-->
     <h1>Products</h1>
     <p>We have a small range of motor vehicles to choose from, with mroe to hopefulyl be added to GarageBay. Stay tuned to see what new stock will have to offer!</p>
     <table class="product">
         <tr>
+            <td><asp:Button ID="btnP1Admin" Text="-" runat="server" OnClick="btnP1Admin_Click" /></td>
             <td>
                 <img src="IMG/product5.jpg" class="pImage" /></td>
             <td class="pInfo">
@@ -16,6 +24,7 @@
             </td>
         </tr>
         <tr>
+            <td><asp:Button ID="btnP2Admin" Text="-" runat="server" OnClick="btnP2Admin_Click" /></td>
             <td>
                 <img src="IMG/product4.jpg" class="pImage" />
             </td>
@@ -28,6 +37,7 @@
             </td>
         </tr>
         <tr>
+            <td><asp:Button ID="btnP3Admin" Text="-" runat="server" OnClick="btnP3Admin_Click" /></td>
             <td>
                 <img src="IMG/product3.jpg" class="pImage" />
             </td>
@@ -40,6 +50,7 @@
             </td>
         </tr>
         <tr>
+            <td><asp:Button ID="btnP4Admin" Text="-" runat="server" OnClick="btnP4Admin_Click" /></td>
             <td>
                 <img src="IMG/product2.jpg" class="pImage" />
             </td>
@@ -52,6 +63,7 @@
             </td>
         </tr>
         <tr>
+            <td><asp:Button ID="btnP5Admin" Text="-" runat="server" OnClick="btnP5Admin_Click" /></td>
             <td>
                 <img src="IMG/product1.jpg" class="pImage" />
             </td>

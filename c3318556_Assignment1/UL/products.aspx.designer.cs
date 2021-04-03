@@ -15,6 +15,15 @@ namespace c3318556_Assignment1.UL
     {
 
         /// <summary>
+        /// btnP1Admin control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnP1Admin;
+
+        /// <summary>
         /// cartProduct1 control.
         /// </summary>
         /// <remarks>
@@ -22,6 +31,15 @@ namespace c3318556_Assignment1.UL
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button cartProduct1;
+
+        /// <summary>
+        /// btnP2Admin control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnP2Admin;
 
         /// <summary>
         /// cartProduct2 control.
@@ -33,6 +51,15 @@ namespace c3318556_Assignment1.UL
         protected global::System.Web.UI.WebControls.Button cartProduct2;
 
         /// <summary>
+        /// btnP3Admin control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnP3Admin;
+
+        /// <summary>
         /// cartProduct3 control.
         /// </summary>
         /// <remarks>
@@ -42,6 +69,15 @@ namespace c3318556_Assignment1.UL
         protected global::System.Web.UI.WebControls.Button cartProduct3;
 
         /// <summary>
+        /// btnP4Admin control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnP4Admin;
+
+        /// <summary>
         /// cartProduct4 control.
         /// </summary>
         /// <remarks>
@@ -49,6 +85,15 @@ namespace c3318556_Assignment1.UL
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button cartProduct4;
+
+        /// <summary>
+        /// btnP5Admin control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnP5Admin;
 
         /// <summary>
         /// cartProduct5 control.

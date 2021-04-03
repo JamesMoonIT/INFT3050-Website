@@ -1,12 +1,22 @@
-﻿body {
+﻿/*
+    Name:           James Moon
+    Last Updated:   2:41pm 3/4/2021
+    Description:    This stylesheet was created by James Moon with style types sourced from online sources. No class was ripped 
+                        directly from the internet, only built in css style types were sourced. PErsonally, I would almost call
+                        this a bootstrap, but I made too many custom classes that are very specific, plus its not quite the 
+                        5000+ lines most bootstraps are.
+*/
+
+body {                    /* overall style type */
     font-size: 20px;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     padding-left: 5%;
     padding-right: 5%;
+    min-width: 50%;
     overflow: auto;
 }
 
-.carphoto {
+.carphoto {             /* car photo style on home page */
     display: block;
     width: 30%;
     height: auto;
@@ -14,7 +24,7 @@
     margin-right: auto;
 }
 
-.topnav img {
+.topnav img {           /* logo of website */
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -22,7 +32,7 @@
     max-width: 50%;
 }
 
-.bottomnav {
+.bottomnav {            /* navigation below logo */
     overflow: hidden;
     background-color: darkgrey;
 }
@@ -40,16 +50,9 @@
             color: honeydew;
         }
 
-    .bottomnav .searchbar {
+    .bottomnav .searchbar {             /* right aligned navigation */
         float: right;
         margin-right: 8px;
-    }
-
-    .bottomnav input[type=text] {
-        padding: 6px;
-        margin-top: 8px;
-        font-size: 17px;
-        border: none;
     }
 
     .bottomnav .searchbar button:hover {
@@ -71,14 +74,15 @@
             cursor: pointer;
         }
 
-.centerLogin {
+.centerLogin {                      /* table css for login screen */
     margin: auto;
     width: 35%;
     padding: 10px;
+    align-content: center;
     text-align: center;
 }
 
-.registerTable {
+.registerTable {                    /* register table for user and admin (shares classes with login) */
     border: 1px solid black;
 }
 
@@ -87,11 +91,12 @@
         color: white;
     }
 
-.transparentButton {
+.transparentButton {                /* used for transparent button (forgotten password) */
     border: transparent;
+    background-color: none;
 }
 
-.product {
+.product {                          /* style of products */
     width: 100%;
     padding-bottom: 30px;
     border-collapse: collapse;
@@ -151,43 +156,97 @@
         font-size: 100%;
     }
 
-.mainbody {
+.mainbody {                             /* style of all content between nav and footer */
+    padding-bottom: 5%;
     padding-left: 10%;
     padding-right: 10%;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: white;
 }
 
-.tableCart {
+.tableCart {                            /* style of cart table (bound to left) */
     float: left;
     width: 75%;
 }
 
-.aspRow {
+.aspRow {                               /* width of set table rows */
     width: 25%;
 }
 
-.rightCart {
+.rightCart {                            /* designated area right of cart */
     border: 1px solid black;
     float: right;
     width: 24%;
     font-size: 15px;
 }
 
-.contactPage {
+.contactPage {                          /* fix to contact page size */
     width: 100%;
 }
 
-.largeTextBox {
+.largeTextBox {                         /* used for any textbox needed to be 100% */
     width: 100%;
 }
 
-.purchaseHistory {
+.purchaseHistory {                      /* purchase history table style */
     width: 100%;
     border-collapse: collapse;
 }
 
-.footerbar {
+.aligncenter {                          /* used for text align to center */
+    margin: auto;
+    padding: 10px;
+    text-align: center;
+}
+
+.centerTextButton {                     /* used for button align to center */
+    padding: 10px;  
+    text-align: center;
+    align-content: center;
+}
+
+.monthyear {                            /* used for mont/year text box resize */
+    max-width: 100%;
+}
+
+.left {                                 /* align items to left */
+    left: 0;
+}
+
+.right {                                /* align items to right */
+    right: 0;
+}
+
+.purchaseTable {                        /* pruchase table design */
+    padding-block: 2px;
+    align-content: center;
+    width: 50%;
+}
+
+.tableBorder {                          /* creates a border around a table */
+    border: 1px solid black;
+}
+
+.adminButtons {                         /* custom size adin buttons */
+    font-size: 40px;
+    padding: 14px 16px;
+    width: 100%;
+    height: 100%;
+}
+
+.adminUserTable {                       /* table design for Admin User Table */
+    width: 100%;
+    border-color: black;
+    border-width: 2px;
+    border-block: solid;
+}
+
+.centerLabel {
+    width: 100%;
+    text-align: center;
+}
+        
+.footerbar {                            /* footer style */
     position: fixed sticky;
     left: 0;
     bottom: 0;
