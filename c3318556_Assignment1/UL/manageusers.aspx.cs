@@ -18,7 +18,7 @@ namespace c3318556_Assignment1.UL
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["UID"] != "100001")                                 // if user is not admin
+            if (Convert.ToInt32(Session["UID"]) != 100001)                                 // if user is not admin
             {
                 Response.Redirect("home.aspx");                             // yeet them back home
             }

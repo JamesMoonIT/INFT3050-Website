@@ -9,14 +9,15 @@
 
             Admin:
                 Email: admin@yopmail.com
-                Password: password
+                Password: Pas5word
 
             User: 
                 Email: user@yopmail.com
-                Password: password
+                Password: Pas5word
 
             Deactivated:
-                Email: deactivated@yopmail.com (no password as it will detect the email)
+                Email: deactivated@yopmail.com
+                Password: Pas5word
 
 -->
     <h1>Login Page</h1>
@@ -40,7 +41,7 @@
                 <td>
                     <asp:Button ID="newUser" Text="Not a User? Register Here!" runat="server" OnClick="newUser_Click" /></td>
                 <td>
-                    <asp:Button ID="registerButton" Text="Login" runat="server" OnClientClick="register.aspx" OnClick="registerButton_Click" /></td>
+                    <asp:Button ID="btnLogin" Text="Login" runat="server" OnClientClick="register.aspx" OnClick="btnLogin_Click" /></td>
             </tr>
         </table>
         <div>

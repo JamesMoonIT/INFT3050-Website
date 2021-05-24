@@ -42,13 +42,13 @@ namespace c3318556_Assignment1.UL
         protected global::System.Web.UI.WebControls.Button newUser;
 
         /// <summary>
-        /// registerButton control.
+        /// btnLogin control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button registerButton;
+        protected global::System.Web.UI.WebControls.Button btnLogin;
 
         /// <summary>
         /// btnForgotPassword control.

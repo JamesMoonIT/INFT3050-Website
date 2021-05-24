@@ -9,14 +9,13 @@
 
 using System;
 using System.IO;
-using System.Net;
-using System.Net.Mail;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Text;
+using c3318556_Assignment1.BL;
 
 namespace c3318556_Assignment1.UL
 {
@@ -25,7 +24,7 @@ namespace c3318556_Assignment1.UL
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["UID"] == "100001")                             // checks if current user is admin (allows creation of admin)
+            if (Convert.ToInt32(Session["UID"]) >= 100 || Convert.ToInt32(Session["UID"]) < 1000)                            // checks if current user is admin (allows creation of admin)
             {
                 lblAdminMaker.Visible = true;
             }
@@ -36,6 +35,7 @@ namespace c3318556_Assignment1.UL
 
         protected void registerNow_Click(object sender, EventArgs e)
         {
+            RegisterBL regBL = new RegisterBL();
             string strFirstName = Convert.ToString(firstName.Text);
             string strLastName = Convert.ToString(lastName.Text);
             string strEmailStore = Convert.ToString(emailAddress.Text);
@@ -47,20 +47,27 @@ namespace c3318556_Assignment1.UL
             {                                                                                   // ^ makes sure no areas are empty
                 lblFeedback.Text = "Please make sure to fill all fields";
             }
-            else if (!IsValidEmail(strEmailStore))                                              // validates if email is in bad format
+            else if (regBL.IsValidEmail(strEmailStore))                                              // validates if email is in bad format
             {
                 lblFeedback.Text = "Please enter a valid email address";
             }
             else
             {
-                string validationKeyGen = makeKey();                                            // call to make a verification key
-                sendConfirmation(validationKeyGen);                                             // sends email with verification key
-                lblVerification.Visible = true;                                                 // updates table with verification options
-                txbxVerificationKey.Visible = true;                                             //              "
-                btnVerify.Visible = true;                                                       //              "
-                registerNow.Visible = false;                                                    //              "
-                lblFeedback.Text = "Email has been sent, please check your inbox for the confirmation code.";
-                Session["Key"] = validationKeyGen;                                              // stores key in Session
+                string validationKeyGen = regBL.makeKey();                                      // call to make a verification key
+                try
+                {
+                    regBL.sendConfirmation(validationKeyGen, strEmailStore);
+                    lblVerification.Visible = true;                                                 // updates table with verification options
+                    txbxVerificationKey.Visible = true;                                             //              "
+                    btnVerify.Visible = true;                                                       //              "
+                    registerNow.Visible = false;                                                    //              "
+                    lblFeedback.Text = "Email has been sent, please check your inbox for the confirmation code.";
+                    Session["Key"] = validationKeyGen;                                              // stores key in Session
+                }
+                catch
+                {
+                    lblFeedback.Text = "We could not send a confirmation email. Please use the Contact Us page and let us know";
+                }
             }
         }
 
@@ -78,49 +85,30 @@ namespace c3318556_Assignment1.UL
             return false;
         }
 
-        private void sendConfirmation(string key)                                               // sends confirmation email with session key
-        {
-            string to = emailAddress.Text; //To address    
-            string from = "myuser1245@gmail.com"; //From address    
-            MailMessage message = new MailMessage(from, to);
-
-            string mailbody = "Thank you for registering with GarageBay. In order to complete the Registration, please use this key to complete your sign up with our website" + "<br /><br />" + "Verification Key: " + key + "<br /><br />" + "Be sure to use our contact us page if there are any issues" + "<br /><br />" + "From, " + "<br /><br />" + "GarageBay Support Team";
-            message.Subject = "GarageBay | Verification Key: " + key;
-            message.Body = mailbody;
-            message.BodyEncoding = Encoding.UTF8;
-            message.IsBodyHtml = true;
-            SmtpClient client = new SmtpClient("smtp.gmail.com", 587); //Gmail smtp    
-            System.Net.NetworkCredential basicCredential1 = new
-            System.Net.NetworkCredential("myuser1245@gmail.com", "Pas5word");
-            client.EnableSsl = true;
-            client.UseDefaultCredentials = false;
-            client.Credentials = basicCredential1;
-            try
-            {
-                client.Send(message);
-
-            }
-
-            catch
-            {
-                lblFeedback.Text = "We could not verify your email, please use the correct format. E.g. xx@xx.xx";
-            }
-        }
-
         protected void btnVerify_Click(object sender, EventArgs e)
         {
             string key = Session["Key"].ToString();                             // stores session key
+            string strFirstName = Convert.ToString(firstName.Text);
+            string strLastName = Convert.ToString(lastName.Text);
+            string strEmailStore = Convert.ToString(emailAddress.Text);
+            string strPasswordStore = Convert.ToString(userPassword.Text);
+            string strPhoneNo = Convert.ToString(mobile.Text);
+            RegisterBL regBL = new RegisterBL();
             if (validateKey(key))                                               // checks key is valid
-            {   
-                Session["UserName"] = Convert.ToString(firstName.Text);         // stores Username in session
-                Session["FirstName"] = Convert.ToString(firstName.Text);        // stores First Name in session
-                Session["LastName"] = Convert.ToString(lastName.Text);          // stores Last Name in session
-                Session["Email"] = Convert.ToString(emailAddress.Text);         // stores Email in session
-                Session["Phone"] = Convert.ToString(mobile.Text);               // stores phone in session
-                Session["Key"] = null;                                          // key is wiped as its not needed anymore
-                if (Session["UID"] == "100001")                                 // if the existing user is an admin
+            {
+                try
                 {
-                    Session["UID"] = "100001";                                  // new registered user becomes admin
+                    regBL.AddLogin(strEmailStore, strPasswordStore);
+                    regBL.AddUser(strFirstName, strLastName, strEmailStore, strPhoneNo);
+                }
+                catch
+                {
+                    lblFeedback.Text = "There was an issue registering you. Please let us know under the Contact Us page";
+                }
+                Session["Key"] = null;                                          // key is wiped as its not needed anymore
+                if (Convert.ToInt32(Session["UID"]) >= 100 || Convert.ToInt32(Session["UID"]) < 1000)                                 // if the existing user is an admin
+                {
+                    // enable admin
                 }
                 else                                                            // if existing user is also user or guest
                 {
@@ -134,26 +122,6 @@ namespace c3318556_Assignment1.UL
                 btnVerify.Visible = true;                                       // user is given another chance to enter key
                 txbxVerificationKey.Visible = true;                             //                  "
                 lblVerification.Visible = true;                                 //                  "
-            }
-        }
-
-        private string makeKey()                                                // creates a randomly generated key
-        {
-            var rand = new Random();                                            // declare random class
-            string key = Convert.ToString(rand.Next(10000, 99999));             // generates a random number between 10000 and 99999
-            return key;                                                         // returns randomly generated key
-        }
-
-        bool IsValidEmail(string email)                                         // validates key
-        {
-            try
-            {
-                var addr = new System.Net.Mail.MailAddress(email);              // checks format of email
-                return addr.Address == email;
-            }
-            catch
-            {
-                return false;
             }
         }
     }

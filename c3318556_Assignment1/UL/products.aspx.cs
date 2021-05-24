@@ -19,7 +19,7 @@ namespace c3318556_Assignment1.UL
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["UID"] == "100000" || Session["UID"] == null)           // checks if user is admin
+            if (Convert.ToInt32(Session["UID"]) == 100000 || Session["UID"] == null)           // checks if user is admin
             {
                 btnP1Admin.Visible = false;                                     // enables admin "remove product"
                 btnP2Admin.Visible = false;                                     //          "

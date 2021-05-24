@@ -11,17 +11,17 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using c3318556_Assignment1.BL;
 
 namespace c3318556_Assignment1.UL
 {
     public partial class user : System.Web.UI.Page
     {
+
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            lblFirstName.Text = Session["FirstName"].ToString();            // grabs First Name from session
-            lblLastName.Text = Session["LastName"].ToString();              // grabs Last Name from session
-            lblEmail.Text = Session["Email"].ToString();                    // grabs email from session
-            lblMobile.Text = Session["Phone"].ToString();                   // grabs mobile from session
+            //lblFirstName.Text = GetName(lblEmail.Text);
         }
     }
 }

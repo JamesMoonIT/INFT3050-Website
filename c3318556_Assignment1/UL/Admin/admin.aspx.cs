@@ -19,25 +19,25 @@ namespace c3318556_Assignment1.UL
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["UID"] != "100001")                                 // checks to see if the user is not an admin
+            if (Convert.ToInt32(Session["UID"]) != 100)                                 // checks to see if the user is not an admin
             {
-                Response.Redirect("home.aspx");                             // bounce the non-admin back home
+                Response.Redirect("~/UL/home.aspx");                             // bounce the non-admin back home
             }
         }
 
         protected void btnEditProducts_Click(object sender, EventArgs e)    
         {
-            Response.Redirect("products.aspx");                             // redirect the admin to Products
+            Response.Redirect("~/UL/products.aspx");                             // redirect the admin to Products
         }
 
         protected void btnAddAdmin_Click(object sender, EventArgs e)
         {
-            Response.Redirect("register.aspx");                             // redirect the admin to register
+            Response.Redirect("~/UL/register.aspx");                             // redirect the admin to register
         }
 
         protected void btnManageUsers_Click(object sender, EventArgs e)
         {
-            Response.Redirect("manageusers.aspx");                          // redirect the admin to manage users
+            Response.Redirect("~/UL/manageusers.aspx");                          // redirect the admin to manage users
         }
     }
 }

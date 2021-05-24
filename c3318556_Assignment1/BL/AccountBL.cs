@@ -5,7 +5,11 @@ using System.Web;
 
 namespace c3318556_Assignment1.BL
 {
-    public class PersonBL
+    public class AccountBL
     {
+        //public string GetName(string email)
+        //{
+        //    //return GrabName(email);
+        //}
     }
 }

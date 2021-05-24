@@ -21,17 +21,17 @@
         <div class="topnav">
             <!-- First row (logo) -->
             <a href="home.aspx">
-                <img border="0" src="IMG/logo.png" alt="GarageBay"></a>
+                <img border="0" src="~/UL/IMG/logo.png" alt="GarageBay" runat="server"></a>
         </div>
         <div class="bottomnav">
             <!-- Second row (navigation, search, shopping cart, login/register) -->
-            <a href="home.aspx">Home</a>
-            <a href="about.aspx">About</a>
-            <a href="products.aspx">Products</a>
-            <a href="contact.aspx">Contact Us</a>
-            <a href="search.aspx">Search</a>
+            <a><asp:Button ID="btnHome" runat="server" Text="Home" CssClass="shoppingCart" OnClick="btnHome_Click"/></a>
+            <a><asp:Button ID="btnAbout" runat="server" Text="About" CssClass="shoppingCart"  OnClick="btnAbout_Click"/></a>
+            <a><asp:Button ID="btnProducts" runat="server" Text="Products" CssClass="shoppingCart" OnClick="btnProducts_Click"/></a>
+            <a><asp:Button ID="btnContactUs" runat="server" Text="Contact Us" CssClass="shoppingCart" OnClick="btnContactUs_Click"/></a>
+            <a><asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="shoppingCart" OnClick="btnSearch_Click"/></a>
             <div class="searchbar">
-                <a><asp:Button ID="btnAdmin" runat="server" Text="Admin" Visible="false" CssClass="shoppingCart" OnClick="btnAdmin_Click" /></a>
+                <a><asp:Button ID="btnAdmin" runat="server" Text="Admin" Visible="false" CssClass="shoppingCart" OnClick="btnAdmin_Click"/></a>
                 <a>
                     <asp:Button ID="btnUser" runat="server" Text="" CssClass="shoppingCart" OnClick="btnUser_Click" /></a>
                 <a>
