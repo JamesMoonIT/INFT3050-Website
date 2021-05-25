@@ -43,11 +43,6 @@
                     <asp:TextBox ID="mobile" runat="server" /></td>
             </tr>
             <tr>
-                <td>Home Address:</td>
-                <td>
-                    <asp:TextBox ID="postalAddress" runat="server" /></td>
-            </tr>
-            <tr>
                 <td><asp:Label ID="lblVerification" Text="Verification Key" runat="server" /></td>
                 <td><asp:TextBox ID="txbxVerificationKey" runat="server" /></td>
             </tr>

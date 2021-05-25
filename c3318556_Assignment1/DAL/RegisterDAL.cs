@@ -109,6 +109,34 @@ namespace c3318556_Assignment1.DAL
             return true;
         }
 
+        public bool CheckAdminPriv(string userID)
+        {
+            OpenConnection();
+            SqlCommand cmd = new SqlCommand("SELECT adminPrivlages FROM Account WHERE userID = @userID");
+            try
+            {
+                cmd.Parameters.AddWithValue("@userID", userID);
+                cmd.Connection = con;
+                SqlDataReader rd = cmd.ExecuteReader();
+                if (rd.HasRows)
+                {
+                    bool result;
+                    rd.Read();
+                    result = rd.GetBoolean(0);
+                    con.Close();
+                    if (result)
+                    {
+                        return true;
+                    }
+                }
+                return false;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
         private void OpenConnection()
         {
             con.ConnectionString = conString;

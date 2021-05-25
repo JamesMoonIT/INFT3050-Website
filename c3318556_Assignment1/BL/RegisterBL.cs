@@ -102,6 +102,20 @@ namespace c3318556_Assignment1.BL
             return true;
         }
 
+        public bool CheckUserAdmin(string userID)
+        {
+            RegisterDAL regDL = new RegisterDAL();
+            try
+            {
+                regDL.CheckAdminPriv(userID);
+            }
+            catch
+            {
+                return false;
+            }
+            return true;
+        }
+
         // sourced from https://www.godo.dev/tutorials/csharp-md5/ 24/5/2021 10:20am
         public static string MD5Hash(string text)
         {

@@ -28,10 +28,6 @@ namespace c3318556_Assignment1.UL
             {
                 lblAdminMaker.Visible = true;
             }
-            else
-            {
-                lblAdminMaker.Visible = false;
-            }
             lblVerification.Visible = false;
             txbxVerificationKey.Visible = false;
             btnVerify.Visible = false;
@@ -131,7 +127,8 @@ namespace c3318556_Assignment1.UL
 
         private bool IsUserAdmin()
         {
-            return Convert.ToInt32(Session["UID"]) >= 100 || Convert.ToInt32(Session["UID"]) < 1000;
+            RegisterBL regBL = new RegisterBL();
+            return regBL.CheckUserAdmin(Convert.ToString(Session["UID"]));
         }
     }
 }

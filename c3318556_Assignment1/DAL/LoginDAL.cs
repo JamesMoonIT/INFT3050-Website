@@ -96,23 +96,19 @@ namespace c3318556_Assignment1.DAL
                     bool approval;
                     rd.Read();
                     approval = rd.GetBoolean(0);
+                    con.Close();
                     if (approval == true)
                     {
-                        con.Close();
                         return true;
                     }
-                    else
-                    {
-                        con.Close();
-                        return false;
-                    }
+                    
                 }
+                return false;
             }
             catch
             {
                 return false;
             }
-            return false;
         }
 
         public string PullName(string email)
