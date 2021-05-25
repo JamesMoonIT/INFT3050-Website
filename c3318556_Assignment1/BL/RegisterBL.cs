@@ -59,7 +59,7 @@ namespace c3318556_Assignment1.BL
             }
         }
 
-        public void AddUser(string firstName, string lastName, string email, string phone)
+        public bool AddUser(string firstName, string lastName, string email, string phone)
         {
             RegisterDAL regDAL = new RegisterDAL();
             try
@@ -68,11 +68,12 @@ namespace c3318556_Assignment1.BL
             }
             catch 
             {
-
+                return false;
             }
+            return true;
         }
 
-        public void AddLogin(string email, string password)
+        public bool AddLogin(string email, string password)
         {
             RegisterDAL regDAL = new RegisterDAL();
             password = MD5Hash(password);
@@ -82,8 +83,23 @@ namespace c3318556_Assignment1.BL
             }
             catch 
             {
-
+                return false;
             }
+            return true;
+        }
+
+        public bool MakeAdmin(string email)
+        {
+            RegisterDAL regDL = new RegisterDAL();
+            try
+            {
+                regDL.GiveAdminPriv(email);
+            }
+            catch
+            {
+                return false;
+            }
+            return true;
         }
 
         // sourced from https://www.godo.dev/tutorials/csharp-md5/ 24/5/2021 10:20am

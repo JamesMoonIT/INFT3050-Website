@@ -24,9 +24,13 @@ namespace c3318556_Assignment1.UL
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Convert.ToInt32(Session["UID"]) >= 100 || Convert.ToInt32(Session["UID"]) < 1000)                            // checks if current user is admin (allows creation of admin)
+            if (IsUserAdmin())                            // checks if current user is admin (allows creation of admin)
             {
                 lblAdminMaker.Visible = true;
+            }
+            else
+            {
+                lblAdminMaker.Visible = false;
             }
             lblVerification.Visible = false;
             txbxVerificationKey.Visible = false;
@@ -41,13 +45,13 @@ namespace c3318556_Assignment1.UL
             string strEmailStore = Convert.ToString(emailAddress.Text);
             string strPasswordStore = Convert.ToString(userPassword.Text);
             string strPhoneNo = Convert.ToString(mobile.Text);
-            string strAddress = Convert.ToString(postalAddress.Text);
+            //string strAddress = Convert.ToString(postalAddress.Text);
 
-            if (strFirstName == "" || strLastName == "" || strEmailStore == "" || strPasswordStore == "" || strPasswordStore == "" || strPhoneNo == "" || strAddress == "")
+            if (strFirstName == "" || strLastName == "" || strEmailStore == "" || strPasswordStore == "" || strPasswordStore == "" || strPhoneNo == "")
             {                                                                                   // ^ makes sure no areas are empty
                 lblFeedback.Text = "Please make sure to fill all fields";
             }
-            else if (regBL.IsValidEmail(strEmailStore))                                              // validates if email is in bad format
+            else if (!regBL.IsValidEmail(strEmailStore))                                              // validates if email is in bad format
             {
                 lblFeedback.Text = "Please enter a valid email address";
             }
@@ -106,13 +110,13 @@ namespace c3318556_Assignment1.UL
                     lblFeedback.Text = "There was an issue registering you. Please let us know under the Contact Us page";
                 }
                 Session["Key"] = null;                                          // key is wiped as its not needed anymore
-                if (Convert.ToInt32(Session["UID"]) >= 100 || Convert.ToInt32(Session["UID"]) < 1000)                                 // if the existing user is an admin
+                if (IsUserAdmin())                                 // if the existing user is an admin
                 {
-                    // enable admin
+                    regBL.MakeAdmin(strEmailStore);
                 }
                 else                                                            // if existing user is also user or guest
                 {
-                    Session["UID"] = "100000";                                  // new registered user becomes user
+                    // enable user                                 // new registered user becomes user
                 }
                 Response.Redirect("home.aspx");                                 // redirect user to home
             }
@@ -123,6 +127,11 @@ namespace c3318556_Assignment1.UL
                 txbxVerificationKey.Visible = true;                             //                  "
                 lblVerification.Visible = true;                                 //                  "
             }
+        }
+
+        private bool IsUserAdmin()
+        {
+            return Convert.ToInt32(Session["UID"]) >= 100 || Convert.ToInt32(Session["UID"]) < 1000;
         }
     }
 }

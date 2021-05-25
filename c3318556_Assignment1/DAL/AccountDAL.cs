@@ -5,7 +5,6 @@ using System.Web;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using c3318556_Assignment1.DL;
 
 namespace c3318556_Assignment1.DAL
 {
