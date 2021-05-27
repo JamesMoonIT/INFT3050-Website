@@ -35,12 +35,36 @@
             <tr>
                 <td>Password:</td>
                 <td>
-                    <asp:TextBox ID="userPassword" runat="server" /></td>
+                    <asp:TextBox ID="userPassword" TextMode="Password" runat="server" /></td>
             </tr>
             <tr>
                 <td>Mobile Number:</td>
                 <td>
                     <asp:TextBox ID="mobile" runat="server" /></td>
+            </tr>
+            <tr>
+                <td> </td>
+                <td> </td>
+            </tr>
+            <tr>
+                <td>Street Number:</td>
+                <td><asp:TextBox ID="streetNumber" runat="server" /></td>
+            </tr>
+            <tr>
+                <td>Street Name:</td>
+                <td><asp:TextBox ID="streetName" runat="server" /></td>
+            </tr>
+            <tr>
+                <td>Suburb/Town:</td>
+                <td><asp:TextBox ID="suburb" runat="server" /></td>
+            </tr>
+            <tr>
+                <td>State:</td>
+                <td><asp:TextBox ID="state" runat="server" /></td>
+            </tr>
+            <tr>
+                <td>Postcode:</td>
+                <td><asp:TextBox ID="postcode" runat="server" /></td>
             </tr>
             <tr>
                 <td><asp:Label ID="lblVerification" Text="Verification Key" runat="server" /></td>

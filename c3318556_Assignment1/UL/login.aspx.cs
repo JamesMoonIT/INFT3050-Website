@@ -68,7 +68,7 @@ namespace c3318556_Assignment1.UL
                 if (accBAL.IsAdmin(strEmailStore))
                 {
                     Session["UserName"] = accBAL.GetName(strEmailStore);
-                    Session["UID"] = "100";
+                    Session["UID"] = accBAL.GetSessionID(strEmailStore);
                 }
                 else
                 {

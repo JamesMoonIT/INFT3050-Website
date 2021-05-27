@@ -21,9 +21,11 @@ namespace c3318556_Assignment1.UL
 {
     public partial class register : System.Web.UI.Page
     {
+        RegisterBL regBL = new RegisterBL();
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            lblAdminMaker.Visible = false;
             if (IsUserAdmin())                            // checks if current user is admin (allows creation of admin)
             {
                 lblAdminMaker.Visible = true;
@@ -35,7 +37,6 @@ namespace c3318556_Assignment1.UL
 
         protected void registerNow_Click(object sender, EventArgs e)
         {
-            RegisterBL regBL = new RegisterBL();
             string strFirstName = Convert.ToString(firstName.Text);
             string strLastName = Convert.ToString(lastName.Text);
             string strEmailStore = Convert.ToString(emailAddress.Text);
@@ -93,7 +94,6 @@ namespace c3318556_Assignment1.UL
             string strEmailStore = Convert.ToString(emailAddress.Text);
             string strPasswordStore = Convert.ToString(userPassword.Text);
             string strPhoneNo = Convert.ToString(mobile.Text);
-            RegisterBL regBL = new RegisterBL();
             if (validateKey(key))                                               // checks key is valid
             {
                 try
@@ -127,7 +127,6 @@ namespace c3318556_Assignment1.UL
 
         private bool IsUserAdmin()
         {
-            RegisterBL regBL = new RegisterBL();
             return regBL.CheckUserAdmin(Convert.ToString(Session["UID"]));
         }
     }

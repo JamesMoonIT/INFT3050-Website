@@ -13,6 +13,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using c3318556_Assignment1.BL;
 
 namespace c3318556_Assignment1.UL.MasterPage
 {
@@ -20,7 +21,8 @@ namespace c3318556_Assignment1.UL.MasterPage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["UID"] == null)                                                        // if uid does not exist
+            MasterBL masBL = new MasterBL();
+            if (Session["UID"] == null || Convert.ToInt32(Session["UID"]) == 0)                                                        // if uid does not exist
             {
                 Session["Name"] = "Guest";
                 btnUser.Visible = false;
@@ -29,16 +31,7 @@ namespace c3318556_Assignment1.UL.MasterPage
                 btnRegister.Visible = true;
                 btnAdmin.Visible = false;
             }
-            else if (Convert.ToInt32(Session["UID"]) >= 100000 || Convert.ToInt32(Session["UID"]) < 1000000)                                                         // if uid is a user id
-            {
-                btnLogin.Visible = false;
-                btnRegister.Visible = false;
-                btnUser.Visible = true;
-                btnLogout.Visible = true;
-                btnAdmin.Visible = false;
-                btnUser.Text = "Welcome back, " + Session["UserName"].ToString();
-            }
-            else if (Convert.ToInt32(Session["UID"]) >= 100 || Convert.ToInt32(Session["UID"]) < 1000)                                                    // if uid is an admin id
+            else if (masBL.IsCurrentAdmin(Convert.ToInt32(Session["UID"])))                                                    // if uid is an admin id
             {
                 btnLogin.Visible = false;
                 btnRegister.Visible = false;
@@ -46,6 +39,15 @@ namespace c3318556_Assignment1.UL.MasterPage
                 btnLogout.Visible = true;
                 btnAdmin.Visible = true;
                 btnUser.Text = "Welcome back, " + Session["UserName"].ToString() + " (Admin)";
+            }
+            else if (Convert.ToInt32(Session["UID"]) >= 1)                                                         // if uid is a user id
+            {
+                btnLogin.Visible = false;
+                btnRegister.Visible = false;
+                btnUser.Visible = true;
+                btnLogout.Visible = true;
+                btnAdmin.Visible = false;
+                btnUser.Text = "Welcome back, " + Session["UserName"].ToString();
             }
             else                                                                                    // if anything else happens
             {

@@ -10,9 +10,9 @@ namespace c3318556_Assignment1.BL
 {
     public class LoginBL
     {
+        LoginDAL accDAL = new LoginDAL();
         public int CheckUserLogin(string email, string password)
         {
-            LoginDAL accDAL = new LoginDAL();
             try
             {
                 if (!IsEmailValid(email))
@@ -34,7 +34,6 @@ namespace c3318556_Assignment1.BL
 
         public bool IsAdmin(string email)
         {
-            LoginDAL accDAL = new LoginDAL();
             try
             {
                 return accDAL.CheckPriviliges(email);
@@ -47,7 +46,6 @@ namespace c3318556_Assignment1.BL
 
         public string GetName(string email)
         {
-            LoginDAL accDAL = new LoginDAL();
             string name = "";
             try
             {
@@ -89,6 +87,22 @@ namespace c3318556_Assignment1.BL
                 return false;
             }
             return true;
+        }
+
+        public int GetSessionID(string email)
+        {
+            CreateSession(GetUserID(email));
+            GrabSessionID()
+        }
+
+        public int GetUserID(string email)
+        {
+            return accDAL.GrabUserID(email);
+        }
+        
+        public void CreateSession(int userID)
+        {
+            accDAL.BuildUserSession(userID);
         }
 
         // sourced from https://www.godo.dev/tutorials/csharp-md5/ 24/5/2021 10:20am

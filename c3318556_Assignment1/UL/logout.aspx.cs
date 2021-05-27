@@ -25,6 +25,7 @@ namespace c3318556_Assignment1.UL
         protected void btnYes_Click(object sender, EventArgs e)         // if useris sure they want to log out
         {
             Session["UID"] = null;
+            Session["UserName"] = null;
             Response.Redirect("home.aspx");
         }
 

@@ -84,6 +84,7 @@ namespace c3318556_Assignment1.DAL
 
         public bool CheckPriviliges(string email)
         {
+            bool approval = false;
             OpenConnection();
             SqlCommand cmd = new SqlCommand("SELECT adminPrivlages FROM Account WHERE emailaddress = @emailAddress", con);
             try
@@ -93,22 +94,16 @@ namespace c3318556_Assignment1.DAL
                 SqlDataReader rd = cmd.ExecuteReader();
                 if (rd.HasRows)
                 {
-                    bool approval;
                     rd.Read();
                     approval = rd.GetBoolean(0);
                     con.Close();
-                    if (approval == true)
-                    {
-                        return true;
-                    }
-                    
                 }
-                return false;
             }
             catch
             {
-                return false;
+                con.Close();
             }
+            return approval;
         }
 
         public string PullName(string email)
@@ -125,15 +120,61 @@ namespace c3318556_Assignment1.DAL
                 {
                     rd.Read();
                     name = rd.GetString(0);
-                    return name;
                 }
             }
             catch
             {
                 name = "NONAMEFOUND";
             }
-            con.Close();
+            finally
+            {
+                con.Close();
+            }
             return name;
+        }
+
+        public int GrabUserID(string email)
+        {
+            int result = 0;
+            OpenConnection();
+            SqlCommand cmd = new SqlCommand("SELECT userID FROM Account WHERE emailAddress = @emailAddress", con);
+            try
+            {
+                cmd.Parameters.AddWithValue("@emailAddress", email);
+                cmd.Connection = con;
+                SqlDataReader rd = cmd.ExecuteReader();
+                if (rd.HasRows)
+                {
+                    rd.Read();
+                    result = rd.GetInt32(0);
+                }
+            }
+            catch
+            {
+                result = 0;
+            }
+            finally
+            {
+                con.Close();
+            }
+            return result;
+        }
+
+        public void BuildUserSession(int userID)
+        {
+            OpenConnection();
+            SqlCommand cmd = new SqlCommand("INSERT INTO Session (userID) VALUES ('@userID')");
+            try
+            {
+                cmd.Parameters.AddWithValue("@userID", userID);
+                cmd.Connection = con;
+                cmd.ExecuteNonQuery();
+                con.Close();
+            }
+            catch
+            {
+                con.Close();
+            }
         }
 
         private void OpenConnection()

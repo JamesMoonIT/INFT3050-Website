@@ -107,7 +107,10 @@ namespace c3318556_Assignment1.BL
             RegisterDAL regDL = new RegisterDAL();
             try
             {
-                regDL.CheckAdminPriv(userID);
+                if(!regDL.CheckAdminPriv(userID))
+                {
+                    return false;
+                }
             }
             catch
             {
