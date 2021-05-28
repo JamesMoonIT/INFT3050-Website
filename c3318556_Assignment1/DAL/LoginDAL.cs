@@ -106,14 +106,14 @@ namespace c3318556_Assignment1.DAL
             return approval;
         }
 
-        public string PullName(string email)
+        public string PullName(int sessionID)
         {
             string name = "";
             OpenConnection();
-            SqlCommand cmd = new SqlCommand("SELECT firstName FROM Account WHERE emailaddress = @emailAddress", con);
+            SqlCommand cmd = new SqlCommand("SELECT firstName FROM Session WHERE sessionID = @sessionID", con);
             try
             {
-                cmd.Parameters.AddWithValue("@emailAddress", email);
+                cmd.Parameters.AddWithValue("@sessionID", sessionID);
                 cmd.Connection = con;
                 SqlDataReader rd = cmd.ExecuteReader();
                 if (rd.HasRows)
@@ -160,21 +160,32 @@ namespace c3318556_Assignment1.DAL
             return result;
         }
 
-        public void BuildUserSession(int userID)
+        public int BuildUserSession(int userID)
         {
+            int result = 0;
             OpenConnection();
-            SqlCommand cmd = new SqlCommand("INSERT INTO Session (userID) VALUES ('@userID')");
+            SqlCommand cmd1 = new SqlCommand("INSERT INTO Session (userID) VALUES ('@userID')");
+            SqlCommand cmd2 = new SqlCommand("SELECT sessionID FROM Session WHERE userID = @userID");
             try
             {
-                cmd.Parameters.AddWithValue("@userID", userID);
-                cmd.Connection = con;
-                cmd.ExecuteNonQuery();
+                cmd1.Parameters.AddWithValue("@userID", userID);
+                cmd1.Connection = con;
+                cmd1.ExecuteScalar();
+                cmd2.Parameters.AddWithValue("@userID", userID);
+                cmd2.Connection = con;
+                SqlDataReader rd = cmd2.ExecuteReader();
+                if (rd.HasRows)
+                {
+                    rd.Read();
+                    result = rd.GetInt32(0);
+                }
                 con.Close();
             }
             catch
             {
                 con.Close();
             }
+            return result;
         }
 
         private void OpenConnection()

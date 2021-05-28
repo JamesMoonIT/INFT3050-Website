@@ -100,6 +100,7 @@ namespace c3318556_Assignment1.UL
                 {
                     regBL.AddLogin(strEmailStore, strPasswordStore);
                     regBL.AddUser(strFirstName, strLastName, strEmailStore, strPhoneNo);
+                    regBL.CreateSession(strEmailStore);
                 }
                 catch
                 {

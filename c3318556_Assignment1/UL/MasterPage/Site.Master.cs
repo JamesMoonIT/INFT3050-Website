@@ -22,16 +22,7 @@ namespace c3318556_Assignment1.UL.MasterPage
         protected void Page_Load(object sender, EventArgs e)
         {
             MasterBL masBL = new MasterBL();
-            if (Session["UID"] == null || Convert.ToInt32(Session["UID"]) == 0)                                                        // if uid does not exist
-            {
-                Session["Name"] = "Guest";
-                btnUser.Visible = false;
-                btnLogin.Visible = true;
-                btnLogout.Visible = false;
-                btnRegister.Visible = true;
-                btnAdmin.Visible = false;
-            }
-            else if (masBL.IsCurrentAdmin(Convert.ToInt32(Session["UID"])))                                                    // if uid is an admin id
+            if (masBL.IsCurrentAdmin(Convert.ToInt32(Session["UID"])))                                         // if uid is an admin id
             {
                 btnLogin.Visible = false;
                 btnRegister.Visible = false;

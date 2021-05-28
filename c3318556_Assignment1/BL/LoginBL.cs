@@ -44,12 +44,12 @@ namespace c3318556_Assignment1.BL
             }
         }
 
-        public string GetName(string email)
+        public string GetName(int sessionID)
         {
             string name = "";
             try
             {
-                name = accDAL.PullName(email);
+                name = accDAL.PullName(sessionID);
                 return name;
             }
             catch
@@ -89,20 +89,14 @@ namespace c3318556_Assignment1.BL
             return true;
         }
 
-        public int GetSessionID(string email)
-        {
-            CreateSession(GetUserID(email));
-            GrabSessionID()
-        }
-
         public int GetUserID(string email)
         {
             return accDAL.GrabUserID(email);
         }
         
-        public void CreateSession(int userID)
+        public int CreateSession(int userID)
         {
-            accDAL.BuildUserSession(userID);
+            return accDAL.BuildUserSession(userID);
         }
 
         // sourced from https://www.godo.dev/tutorials/csharp-md5/ 24/5/2021 10:20am
