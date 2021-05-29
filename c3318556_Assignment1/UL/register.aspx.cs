@@ -98,9 +98,10 @@ namespace c3318556_Assignment1.UL
             {
                 try
                 {
-                    regBL.AddLogin(strEmailStore, strPasswordStore);
-                    regBL.AddUser(strFirstName, strLastName, strEmailStore, strPhoneNo);
-                    regBL.CreateSession(strEmailStore);
+                    // add address
+                    int userID = regBL.AddUser(strFirstName, strLastName, strEmailStore, strPhoneNo); // add addressID at end
+                    regBL.AddLogin(strEmailStore, strPasswordStore);            // IMPORTANT add userID to login
+                    regBL.CreateSession(userID);
                 }
                 catch
                 {

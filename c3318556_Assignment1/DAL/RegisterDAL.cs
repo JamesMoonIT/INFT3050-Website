@@ -13,29 +13,38 @@ namespace c3318556_Assignment1.DAL
         private string conString = ConfigurationManager.ConnectionStrings["c3318556_SQLDatabaseConnectionString"].ToString();
         SqlConnection con = new SqlConnection();
 
-        public bool InsertUser(string firstName, string lastName, string email, string phone)
+        public int InsertUser(string firstName, string lastName, string email, string phone)
         {
             OpenConnection();
-            SqlCommand cmd = new SqlCommand("INSERT INTO Account (email, firstName, lastName, phone) VALUES ('@email', '@firstName', '@lastName', '@email', '@phone')");
+            int userID = 0;
+            SqlCommand cmd1 = new SqlCommand("INSERT INTO Account (email, firstName, lastName, phone) VALUES ('@email', '@firstName', '@lastName', '@email', '@phone')");
+            SqlCommand cmd2 = new SqlCommand("SELECT userID FROM Account where email = @email");
             try
             {
-                cmd.Parameters.AddWithValue("@email", email);
-                cmd.Parameters.AddWithValue("@firstName", firstName);
-                cmd.Parameters.AddWithValue("@lastName", lastName);
-                cmd.Parameters.AddWithValue("@phone", phone);
-                cmd.Connection = con;
-                cmd.ExecuteScalar();
+                cmd1.Parameters.AddWithValue("@email", email);
+                cmd1.Parameters.AddWithValue("@firstName", firstName);
+                cmd1.Parameters.AddWithValue("@lastName", lastName);
+                cmd1.Parameters.AddWithValue("@phone", phone);
+                cmd1.Connection = con;
+                cmd1.ExecuteScalar();
+                cmd2.Parameters.AddWithValue("@email", email);
+                cmd2.Connection = con;
+                SqlDataReader rd = cmd2.ExecuteReader();
+                if (rd.HasRows)
+                {
+                    userID = rd.GetInt32(0);
+                }
             }
             catch
             {
                 con.Close();
-                return false;
+                return userID;
             }
             finally
             {
                 con.Close();
             }
-            return true;
+            return userID;
         }
 
         public bool InsertLogin(string email, string password)
