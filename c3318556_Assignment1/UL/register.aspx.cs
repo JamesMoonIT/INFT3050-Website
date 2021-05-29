@@ -42,8 +42,13 @@ namespace c3318556_Assignment1.UL
             string strEmailStore = Convert.ToString(emailAddress.Text);
             string strPasswordStore = Convert.ToString(userPassword.Text);
             string strPhoneNo = Convert.ToString(mobile.Text);
+            string strStreetNo = Convert.ToString(streetNumber.Text);
+            string strStreetName = Convert.ToString(streetName.Text);
+            string strSuburb = Convert.ToString(suburb.Text);
+            string strState = Convert.ToString(suburb.Text);
+            string strPostcode = Convert.ToString(postcode.Text);
 
-            if (strFirstName == "" || strLastName == "" || strEmailStore == "" || strPasswordStore == "" || strPasswordStore == "" || strPhoneNo == "")
+            if (strFirstName == "" || strLastName == "" || strEmailStore == "" || strPasswordStore == "" || strPasswordStore == "" || strPhoneNo == "" || strStreetNo == "" || strStreetName == "" || strSuburb == "" || strState == "" || strPostcode == "")
             {                                                                     // ^ makes sure no areas are empty
                 lblFeedback.Text = "Please make sure to fill all fields";
             }
@@ -93,12 +98,18 @@ namespace c3318556_Assignment1.UL
             string strEmailStore = Convert.ToString(emailAddress.Text);
             string strPasswordStore = Convert.ToString(userPassword.Text);
             string strPhoneNo = Convert.ToString(mobile.Text);
+            int intStreetNo = Convert.ToInt32(streetNumber.Text);
+            string strStreetName = Convert.ToString(streetName.Text);
+            string strSuburb = Convert.ToString(suburb.Text);
+            string strState = Convert.ToString(state.Text);
+            int intPostcode = Convert.ToInt32(postcode.Text);
             if (validateKey(key))                                               // checks key is valid
             {
                 try
                 {
+                    int addressID = regBL.AddAddress(intStreetNo, strStreetName, strSuburb, strState, intPostcode);
                     string email = regBL.AddLogin(strEmailStore, strPasswordStore);
-                    int userID = regBL.AddUser(strFirstName, strLastName, email, strPhoneNo);
+                    int userID = regBL.AddUser(strFirstName, strLastName, email, strPhoneNo, addressID);
                     int sessionID = regBL.CreateSession(userID);
                 }
                 catch

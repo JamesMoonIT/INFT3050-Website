@@ -12,6 +12,8 @@ namespace c3318556_Assignment1.BL
 {
     public class RegisterBL
     {
+        RegisterDAL regDAL = new RegisterDAL();
+
         public bool IsValidEmail(string email)                                         // validates key
         {
             try
@@ -59,15 +61,14 @@ namespace c3318556_Assignment1.BL
             }
         }
 
-        public int AddUser(string firstName, string lastName, string email, string phone)
+        public int AddUser(string firstName, string lastName, string email, string phone, int addressID)
         {
             int result = 0;
-            RegisterDAL regDAL = new RegisterDAL();
             try
             {
-                result = regDAL.InsertUser(firstName, lastName, email, phone);
+                result = regDAL.InsertUser(firstName, lastName, email, phone, addressID);
             }
-            catch 
+            catch
             {
                 return result;
             }
@@ -77,13 +78,12 @@ namespace c3318556_Assignment1.BL
         public string AddLogin(string email, string password)
         {
             string result = "";
-            RegisterDAL regDAL = new RegisterDAL();
             password = MD5Hash(password);
             try
             {
                 result = regDAL.InsertLogin(email, password);
             }
-            catch 
+            catch
             {
                 return result;
             }
@@ -92,10 +92,9 @@ namespace c3318556_Assignment1.BL
 
         public bool MakeAdmin(string email)
         {
-            RegisterDAL regDL = new RegisterDAL();
             try
             {
-                regDL.GiveAdminPriv(email);
+                regDAL.GiveAdminPriv(email);
             }
             catch
             {
@@ -106,10 +105,9 @@ namespace c3318556_Assignment1.BL
 
         public bool CheckUserAdmin(string userID)
         {
-            RegisterDAL regDL = new RegisterDAL();
             try
             {
-                if(!regDL.CheckAdminPriv(userID))
+                if (!regDAL.CheckAdminPriv(userID))
                 {
                     return false;
                 }
@@ -123,7 +121,19 @@ namespace c3318556_Assignment1.BL
 
         public int CreateSession(int userID)
         {
-            return accDAL.BuildUserSession(userID);
+            return regDAL.BuildUserSession(userID);
+        }
+
+        public int AddAddress(int streetNo, string streetName, string suburb, string state, int postcode)
+        {
+            try
+            {
+                return regDAL.CreateAddress(streetNo, streetName, suburb, state, postcode);
+            }
+            catch
+            {
+                return 0;
+            }
         }
 
         // sourced from https://www.godo.dev/tutorials/csharp-md5/ 24/5/2021 10:20am
