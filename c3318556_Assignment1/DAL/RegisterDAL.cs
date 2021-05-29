@@ -13,52 +13,67 @@ namespace c3318556_Assignment1.DAL
         private string conString = ConfigurationManager.ConnectionStrings["c3318556_SQLDatabaseConnectionString"].ToString();
         SqlConnection con = new SqlConnection();
 
-        public bool InsertUser(string firstName, string lastName, string email, string phone)
+        public int InsertUser(string firstName, string lastName, string email, string phone)
         {
+            int result = 0;
             OpenConnection();
-            SqlCommand cmd = new SqlCommand("INSERT INTO Account (email, firstName, lastName, phone) VALUES ('@email', '@firstName', '@lastName', '@email', '@phone')");
+            SqlCommand cmd1 = new SqlCommand("INSERT INTO Account (emailAddress, firstName, lastName, phone) VALUES ('@email', '@firstName', '@lastName', '@email', '@phone')");
+            SqlCommand cmd2 = new SqlCommand("SELECT userID FROM Account WHERE emailAddress = @email");
             try
             {
-                cmd.Parameters.AddWithValue("@email", email);
-                cmd.Parameters.AddWithValue("@firstName", firstName);
-                cmd.Parameters.AddWithValue("@lastName", lastName);
-                cmd.Parameters.AddWithValue("@phone", phone);
-                cmd.Connection = con;
-                cmd.ExecuteScalar();
+                cmd1.Parameters.AddWithValue("@email", email);
+                cmd1.Parameters.AddWithValue("@firstName", firstName);
+                cmd1.Parameters.AddWithValue("@lastName", lastName);
+                cmd1.Parameters.AddWithValue("@phone", phone);
+                cmd1.Connection = con;
+                cmd1.ExecuteScalar();
+                cmd2.Parameters.AddWithValue("@email", email);
+                cmd2.Connection = con;
+                SqlDataReader rd = cmd2.ExecuteReader();
+                rd.Read();
+                result = rd.GetInt32(0);
+
             }
             catch
             {
                 con.Close();
-                return false;
+                return result;
             }
             finally
             {
                 con.Close();
             }
-            return true;
+            return result;
         }
 
-        public bool InsertLogin(string email, string password)
+        public string InsertLogin(string email, string password)
         {
+            string result = "";
             OpenConnection();
-            SqlCommand cmd = new SqlCommand("INSERT INTO Login (emailAddress, password) VALUES ('@email', '@password')");
+            SqlCommand cmd1 = new SqlCommand("INSERT INTO Login (emailAddress, password) VALUES ('@email', '@password')");
+            SqlCommand cmd2 = new SqlCommand("SELECT emailAddress FROM Login WHERE emailAddress = @emailAddress");
             try
             {
-                cmd.Parameters.AddWithValue("@email", email);
-                cmd.Parameters.AddWithValue("@password", password);
-                cmd.Connection = con;
-                cmd.ExecuteScalar();
+                cmd1.Parameters.AddWithValue("@email", email);
+                cmd1.Parameters.AddWithValue("@password", password);
+                cmd1.Connection = con;
+                cmd1.ExecuteScalar();
+                cmd2.Parameters.AddWithValue("@emailAddress", email);
+                cmd2.Connection = con;
+                SqlDataReader rd = cmd2.ExecuteReader();
+                rd.Read();
+                result = rd.GetString(0);
             }
             catch
             {
                 con.Close();
-                return false;
+                return result;
             }
             finally
             {
                 con.Close();
             }
-            return true;
+            return result;
         }
 
         public bool InsertAddress(string streetNumber, string streetName, string suburb, string state, string postcode)

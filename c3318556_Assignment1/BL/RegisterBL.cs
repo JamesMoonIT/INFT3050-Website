@@ -59,33 +59,35 @@ namespace c3318556_Assignment1.BL
             }
         }
 
-        public bool AddUser(string firstName, string lastName, string email, string phone)
+        public int AddUser(string firstName, string lastName, string email, string phone)
         {
+            int result = 0;
             RegisterDAL regDAL = new RegisterDAL();
             try
             {
-                regDAL.InsertUser(firstName, lastName, email, phone);
+                result = regDAL.InsertUser(firstName, lastName, email, phone);
             }
             catch 
             {
-                return false;
+                return result;
             }
-            return true;
+            return result;
         }
 
-        public bool AddLogin(string email, string password)
+        public string AddLogin(string email, string password)
         {
+            string result = "";
             RegisterDAL regDAL = new RegisterDAL();
             password = MD5Hash(password);
             try
             {
-                regDAL.InsertLogin(email, password);
+                result = regDAL.InsertLogin(email, password);
             }
             catch 
             {
-                return false;
+                return result;
             }
-            return true;
+            return result;
         }
 
         public bool MakeAdmin(string email)

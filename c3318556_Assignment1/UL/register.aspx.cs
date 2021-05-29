@@ -42,28 +42,27 @@ namespace c3318556_Assignment1.UL
             string strEmailStore = Convert.ToString(emailAddress.Text);
             string strPasswordStore = Convert.ToString(userPassword.Text);
             string strPhoneNo = Convert.ToString(mobile.Text);
-            //string strAddress = Convert.ToString(postalAddress.Text);
 
             if (strFirstName == "" || strLastName == "" || strEmailStore == "" || strPasswordStore == "" || strPasswordStore == "" || strPhoneNo == "")
-            {                                                                                   // ^ makes sure no areas are empty
+            {                                                                     // ^ makes sure no areas are empty
                 lblFeedback.Text = "Please make sure to fill all fields";
             }
-            else if (!regBL.IsValidEmail(strEmailStore))                                              // validates if email is in bad format
+            else if (!regBL.IsValidEmail(strEmailStore))                          // validates if email is in bad format
             {
                 lblFeedback.Text = "Please enter a valid email address";
             }
             else
             {
-                string validationKeyGen = regBL.makeKey();                                      // call to make a verification key
+                string validationKeyGen = regBL.makeKey();                        // call to make a verification key
                 try
                 {
                     regBL.sendConfirmation(validationKeyGen, strEmailStore);
-                    lblVerification.Visible = true;                                                 // updates table with verification options
-                    txbxVerificationKey.Visible = true;                                             //              "
-                    btnVerify.Visible = true;                                                       //              "
-                    registerNow.Visible = false;                                                    //              "
+                    lblVerification.Visible = true;                               // updates table with verification options
+                    txbxVerificationKey.Visible = true;                           //              "
+                    btnVerify.Visible = true;                                     //              "
+                    registerNow.Visible = false;                                  //              "
                     lblFeedback.Text = "Email has been sent, please check your inbox for the confirmation code.";
-                    Session["Key"] = validationKeyGen;                                              // stores key in Session
+                    Session["Key"] = validationKeyGen;                            // stores key in Session
                 }
                 catch
                 {
@@ -74,12 +73,12 @@ namespace c3318556_Assignment1.UL
 
         protected void existingUser_Click(object sender, EventArgs e)
         {
-            Response.Redirect("login.aspx");                                                    // redirects to login
+            Response.Redirect("login.aspx");                                     // redirects to login
         }
 
         private bool validateKey(string key)
         {
-            if (key == txbxVerificationKey.Text)                                                // checks if key emailed matches session
+            if (key == txbxVerificationKey.Text)                                 // checks if key emailed matches session
             {
                 return true;
             }
@@ -98,22 +97,22 @@ namespace c3318556_Assignment1.UL
             {
                 try
                 {
-                    regBL.AddLogin(strEmailStore, strPasswordStore);
-                    regBL.AddUser(strFirstName, strLastName, strEmailStore, strPhoneNo);
-                    regBL.CreateSession(strEmailStore);
+                    string email = regBL.AddLogin(strEmailStore, strPasswordStore);
+                    int userID = regBL.AddUser(strFirstName, strLastName, email, strPhoneNo);
+                    int sessionID = regBL.CreateSession(userID);
                 }
                 catch
                 {
-                    lblFeedback.Text = "There was an issue registering you. Please let us know under the Contact Us page";
+                    lblFeedback.Text = "There was an issue registering you. Please check your details and try again, or use our Contact Us page and let us know about the issue";
                 }
                 Session["Key"] = null;                                          // key is wiped as its not needed anymore
-                if (IsUserAdmin())                                 // if the existing user is an admin
+                if (IsUserAdmin())                                              // if the existing user is an admin
                 {
                     regBL.MakeAdmin(strEmailStore);
                 }
                 else                                                            // if existing user is also user or guest
                 {
-                    // enable user                                 // new registered user becomes user
+                    // enable user                                              // new registered user becomes user
                 }
                 Response.Redirect("home.aspx");                                 // redirect user to home
             }
