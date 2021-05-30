@@ -157,6 +157,18 @@ namespace c3318556_Assignment1.BL
             return false;
         }
 
+        public bool IsAddressValid(string streetNo, string streetName, string suburb, string state, string postcode)
+        {
+            try
+            {
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
         // sourced from https://www.godo.dev/tutorials/csharp-md5/ 24/5/2021 10:20am
         public static string MD5Hash(string text)
         {
