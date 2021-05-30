@@ -69,6 +69,7 @@
   <ItemGroup>
     <Content Include="UL\about.aspx" />
     <Content Include="UL\Admin\admin.aspx" />
+    <Content Include="UL\Admin\adminregister.aspx" />
     <Content Include="UL\cart.aspx" />
     <Content Include="UL\contact.aspx" />
     <Content Include="UL\CSS\masterstyle.css" />
@@ -94,10 +95,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BL\AccountBL.cs" />
+    <Compile Include="BL\AdminBL.cs" />
     <Compile Include="BL\LoginBL.cs" />
     <Compile Include="BL\MasterBL.cs" />
     <Compile Include="BL\RegisterBL.cs" />
     <Compile Include="DAL\AccountDAL.cs" />
+    <Compile Include="DAL\AdminDAL.cs" />
     <Compile Include="DAL\LoginDAL.cs" />
     <Compile Include="DAL\MasterDAL.cs" />
     <Compile Include="DAL\RegisterDAL.cs" />
@@ -115,6 +118,13 @@
     </Compile>
     <Compile Include="UL\Admin\admin.aspx.designer.cs">
       <DependentUpon>admin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UL\Admin\adminregister.aspx.cs">
+      <DependentUpon>adminregister.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UL\Admin\adminregister.aspx.designer.cs">
+      <DependentUpon>adminregister.aspx</DependentUpon>
     </Compile>
     <Compile Include="UL\cart.aspx.cs">
       <DependentUpon>cart.aspx</DependentUpon>

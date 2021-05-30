@@ -90,11 +90,11 @@ namespace c3318556_Assignment1.BL
             return result;
         }
 
-        public bool MakeAdmin(string email)
+        public bool MakeAdmin(int sessionID)
         {
             try
             {
-                regDAL.GiveAdminPriv(email);
+                regDAL.GiveAdminPriv(sessionID);
             }
             catch
             {
@@ -103,11 +103,11 @@ namespace c3318556_Assignment1.BL
             return true;
         }
 
-        public bool CheckUserAdmin(string userID)
+        public bool CheckUserAdmin(int sessionID)
         {
             try
             {
-                if (!regDAL.CheckAdminPriv(userID))
+                if (!regDAL.CheckAdminPriv(sessionID))
                 {
                     return false;
                 }
@@ -134,6 +134,27 @@ namespace c3318556_Assignment1.BL
             {
                 return 0;
             }
+        }
+
+        public bool DoesEmailExist(string email)
+        {
+            try
+            {
+                return regDAL.CheckEmailAddress(email);
+            }
+            catch
+            {
+                return true;
+            }
+        }
+
+        public bool ValidateKey(int storedKey, int enteredKey)
+        {
+            if (enteredKey == storedKey)                                 // checks if key emailed matches session
+            {
+                return true;
+            }
+            return false;
         }
 
         // sourced from https://www.godo.dev/tutorials/csharp-md5/ 24/5/2021 10:20am

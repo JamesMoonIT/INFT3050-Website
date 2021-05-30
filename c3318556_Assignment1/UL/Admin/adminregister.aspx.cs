@@ -19,16 +19,16 @@ using c3318556_Assignment1.BL;
 
 namespace c3318556_Assignment1.UL
 {
-    public partial class register : System.Web.UI.Page
+    public partial class adminregister : System.Web.UI.Page
     {
         RegisterBL regBL = new RegisterBL();
+        AdminBL admBL = new AdminBL();
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            lblAdminMaker.Visible = false;
-            if (IsUserAdmin(Convert.ToInt32(Session["UID"])))                            // checks if current user is admin (allows creation of admin)
+            if (!admBL.IsCurrentAdmin(Convert.ToInt32(Session["UID"])))                                 // checks to see if the user is not an admin
             {
-                lblAdminMaker.Visible = true;
+                Response.Redirect("~/UL/home.aspx");                             // bounce the non-admin back home
             }
             lblVerification.Visible = false;
             txbxVerificationKey.Visible = false;

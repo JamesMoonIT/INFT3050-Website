@@ -27,7 +27,7 @@ namespace c3318556_Assignment1.DAL
                 cmd1.Parameters.AddWithValue("@phone", phone);
                 cmd1.Parameters.AddWithValue("@addressID", addressID);
                 cmd1.Connection = con;
-                cmd1.ExecuteScalar();
+                cmd1.ExecuteNonQuery();
                 cmd2.Parameters.AddWithValue("@email", email);
                 cmd2.Connection = con;
                 SqlDataReader rd = cmd2.ExecuteReader();
@@ -61,7 +61,7 @@ namespace c3318556_Assignment1.DAL
                 cmd1.Parameters.AddWithValue("@email", email);
                 cmd1.Parameters.AddWithValue("@password", password);
                 cmd1.Connection = con;
-                cmd1.ExecuteScalar();
+                cmd1.ExecuteNonQuery();
                 cmd2.Parameters.AddWithValue("@emailAddress", email);
                 cmd2.Connection = con;
                 SqlDataReader rd = cmd2.ExecuteReader();
@@ -92,7 +92,7 @@ namespace c3318556_Assignment1.DAL
                 cmd.Parameters.AddWithValue("@state", state);
                 cmd.Parameters.AddWithValue("@postcode", postcode);
                 cmd.Connection = con;
-                cmd.ExecuteScalar();
+                cmd.ExecuteNonQuery();
             }
             catch
             {
@@ -106,15 +106,16 @@ namespace c3318556_Assignment1.DAL
             return true;
         }
 
-        public bool GiveAdminPriv(string email)
+        public bool GiveAdminPriv(int sessionID)
         {
             OpenConnection();
-            SqlCommand cmd = new SqlCommand("UPDATE Account SET adminPrivlages = true WHERE email = @email");
+            int userID = GrabUserID(sessionID);
+            SqlCommand cmd = new SqlCommand("UPDATE Account SET adminPrivlages = true WHERE userID = @userID");
             try
             {
-                cmd.Parameters.AddWithValue("@email", email);
+                cmd.Parameters.AddWithValue("@userID", userID);
                 cmd.Connection = con;
-                cmd.ExecuteScalar();
+                cmd.ExecuteNonQuery();
             }
             catch
             {
@@ -128,25 +129,47 @@ namespace c3318556_Assignment1.DAL
             return true;
         }
 
-        public bool CheckAdminPriv(string userID)
+        public int GrabUserID(int sessionID)
+        {
+            int userID = 0;
+            OpenConnection();
+            SqlCommand cmd = new SqlCommand("SELECT userID FROM Session WHERE sessionID = @sessionID");
+            try
+            {
+                cmd.Parameters.AddWithValue("@sessionID", sessionID);
+                cmd.Connection = con;
+                SqlDataReader rd = cmd.ExecuteReader();
+                rd.Read();
+                userID = rd.GetInt32(0);
+            }
+            catch
+            {
+                con.Close();
+            }
+            finally
+            {
+                con.Close();
+            }
+            return userID;
+        }
+
+        public bool CheckAdminPriv(int sessionID)
         {
             OpenConnection();
+            int userID = GrabUserID(sessionID);
             SqlCommand cmd = new SqlCommand("SELECT adminPrivlages FROM Account WHERE userID = @userID");
             try
             {
                 cmd.Parameters.AddWithValue("@userID", userID);
                 cmd.Connection = con;
                 SqlDataReader rd = cmd.ExecuteReader();
-                if (rd.HasRows)
+                bool result;
+                rd.Read();
+                result = rd.GetBoolean(0);
+                con.Close();
+                if (result)
                 {
-                    bool result;
-                    rd.Read();
-                    result = rd.GetBoolean(0);
-                    con.Close();
-                    if (result)
-                    {
-                        return true;
-                    }
+                    return true;
                 }
                 return false;
             }
@@ -170,7 +193,7 @@ namespace c3318556_Assignment1.DAL
                 cmd1.Parameters.AddWithValue("@state", state);
                 cmd1.Parameters.AddWithValue("@postcode", postcode);
                 cmd1.Connection = con;
-                cmd1.ExecuteScalar();
+                cmd1.ExecuteNonQuery();
                 cmd2.Parameters.AddWithValue("@streetNo", streetNo);
                 cmd2.Parameters.AddWithValue("@streetName", streetName);
                 cmd2.Parameters.AddWithValue("@suburb", suburb);
@@ -206,7 +229,7 @@ namespace c3318556_Assignment1.DAL
             {
                 cmd1.Parameters.AddWithValue("@userID", userID);
                 cmd1.Connection = con;
-                cmd1.ExecuteScalar();
+                cmd1.ExecuteNonQuery();
                 cmd2.Parameters.AddWithValue("@userID", userID);
                 cmd2.Connection = con;
                 SqlDataReader rd = cmd2.ExecuteReader();
@@ -226,6 +249,33 @@ namespace c3318556_Assignment1.DAL
                 con.Close();
             }
             return result;
+        }
+
+        public bool CheckEmailAddress(string email)
+        {
+            OpenConnection();
+            SqlCommand cmd = new SqlCommand("SELECT emailAddress FROM Account WHERE emailAddress = @email");
+            try
+            {
+                cmd.Parameters.AddWithValue("@email", email);
+                cmd.Connection = con;
+                SqlDataReader rd = cmd.ExecuteReader();
+                if (rd.HasRows)
+                {
+                    con.Close();
+                    return true;
+                }
+            }
+            catch
+            {
+                con.Close();
+                return false;
+            }
+            finally
+            {
+                con.Close();
+            }
+            return false;
         }
 
         private void OpenConnection()

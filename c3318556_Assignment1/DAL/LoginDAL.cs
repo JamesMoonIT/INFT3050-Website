@@ -108,12 +108,13 @@ namespace c3318556_Assignment1.DAL
 
         public string PullName(int sessionID)
         {
+            int userID = GrabUserID(sessionID);
             string name = "";
             OpenConnection();
-            SqlCommand cmd = new SqlCommand("SELECT firstName FROM Session WHERE sessionID = @sessionID", con);
+            SqlCommand cmd = new SqlCommand("SELECT firstName FROM Account WHERE userID = @userID", con);
             try
             {
-                cmd.Parameters.AddWithValue("@sessionID", sessionID);
+                cmd.Parameters.AddWithValue("@userID", userID);
                 cmd.Connection = con;
                 SqlDataReader rd = cmd.ExecuteReader();
                 if (rd.HasRows)
@@ -160,17 +161,41 @@ namespace c3318556_Assignment1.DAL
             return result;
         }
 
+        public int GrabUserID(int sessionID)
+        {
+            int userID = 0;
+            OpenConnection();
+            SqlCommand cmd = new SqlCommand("SELECT userID FROM Session WHERE sessionID = @sessionID");
+            try
+            {
+                cmd.Parameters.AddWithValue("@sessionID", sessionID);
+                cmd.Connection = con;
+                SqlDataReader rd = cmd.ExecuteReader();
+                rd.Read();
+                userID = rd.GetInt32(0);
+            }
+            catch
+            {
+                con.Close();
+            }
+            finally
+            {
+                con.Close();
+            }
+            return userID;
+        }
+
         public int BuildUserSession(int userID)
         {
             int result = 0;
             OpenConnection();
-            SqlCommand cmd1 = new SqlCommand("INSERT INTO Session (userID) VALUES ('@userID')");
+            SqlCommand cmd1 = new SqlCommand("INSERT INTO Session (userID) VALUES (@userID)");
             SqlCommand cmd2 = new SqlCommand("SELECT sessionID FROM Session WHERE userID = @userID");
             try
             {
                 cmd1.Parameters.AddWithValue("@userID", userID);
                 cmd1.Connection = con;
-                cmd1.ExecuteScalar();
+                cmd1.ExecuteNonQuery();
                 cmd2.Parameters.AddWithValue("@userID", userID);
                 cmd2.Connection = con;
                 SqlDataReader rd = cmd2.ExecuteReader();

@@ -12,14 +12,17 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using c3318556_Assignment1.BL;
 
 namespace c3318556_Assignment1.UL
 {
     public partial class admin : System.Web.UI.Page
     {
+        AdminBL admBL = new AdminBL();
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Convert.ToInt32(Session["UID"]) != 100)                                 // checks to see if the user is not an admin
+            if (!admBL.IsCurrentAdmin(Convert.ToInt32(Session["UID"])))                                 // checks to see if the user is not an admin
             {
                 Response.Redirect("~/UL/home.aspx");                             // bounce the non-admin back home
             }
@@ -32,7 +35,7 @@ namespace c3318556_Assignment1.UL
 
         protected void btnAddAdmin_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/UL/register.aspx");                             // redirect the admin to register
+            Response.Redirect("~/UL/Admin/adminregister.aspx");                             // redirect the admin to register
         }
 
         protected void btnManageUsers_Click(object sender, EventArgs e)

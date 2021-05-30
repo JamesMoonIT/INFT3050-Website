@@ -6,15 +6,15 @@ using c3318556_Assignment1.DAL;
 
 namespace c3318556_Assignment1.BL
 {
-    public class MasterBL
+    public class AdminBL
     {
-        MasterDAL masDAL = new MasterDAL();
+        AdminDAL admDAL = new AdminDAL();
 
         public bool IsCurrentAdmin(int sessionID)
         {
             try
             {
-                return masDAL.CheckPrivlages(sessionID);
+                return admDAL.CheckPrivlages(sessionID);
             }
             catch
             {

@@ -8,7 +8,7 @@ using System.Data.SqlClient;
 
 namespace c3318556_Assignment1.DAL
 {
-    public class MasterDAL
+    public class AdminDAL
     {
         private string conString = ConfigurationManager.ConnectionStrings["c3318556_SQLDatabaseConnectionString"].ToString();
         SqlConnection con = new SqlConnection();
