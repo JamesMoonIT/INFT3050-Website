@@ -41,8 +41,8 @@ namespace c3318556_Assignment1.UL
             string strEmailStore = Convert.ToString(emailAddress.Text);                 // stores email
             string strPasswordStore = Convert.ToString(userPassword.Text);              // stores password
 
-            LoginBL accBAL = new LoginBL();
-            result = accBAL.CheckUserLogin(strEmailStore, strPasswordStore);
+            LoginBL accBL = new LoginBL();
+            result = accBL.CheckUserLogin(strEmailStore, strPasswordStore);
             if (result == 1)
             {
                 lblFeedback.Text = "Email is not valid. Please check the format of your email address";
@@ -66,8 +66,8 @@ namespace c3318556_Assignment1.UL
             if (result == 6)
             {
                 lblFeedback.Text = "Success, logging you in now...";
-                Session["UID"] = accBAL.CreateSession(accBAL.GetUserID(strEmailStore)); // IMPORTANT add UserName to Session table
-                Session["UserName"] = accBAL.GetName(Convert.ToInt32(Session["UID"]));
+                Session["UID"] = accBL.CreateSession(accBL.GetUserID(strEmailStore)); // IMPORTANT add UserName to Session table
+                Session["UserName"] = accBL.GetName(Convert.ToInt32(Session["UID"]));
                 Response.Redirect("home.aspx");
             }
         }

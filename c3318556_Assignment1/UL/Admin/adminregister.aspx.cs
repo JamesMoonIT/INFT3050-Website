@@ -19,6 +19,9 @@ namespace c3318556_Assignment1.UL.Admin
             {
                 Response.Redirect("~/UL/home.aspx");                                                    // bounce the non-admin back home
             }
+            lblVerification.Visible = false;
+            txbxVerificationKey.Visible = false;
+            btnVerify.Visible = false;
         }
 
         protected void existingUser_Click(object sender, EventArgs e)
@@ -46,12 +49,9 @@ namespace c3318556_Assignment1.UL.Admin
                 {
                     int addressID = regBL.AddAddress(intStreetNo, strStreetName, strSuburb, strState, intPostcode);
                     string email = regBL.AddLogin(strEmailStore, strPasswordStore);
-                    int userID = regBL.AddUser(strFirstName, strLastName, email, strPhoneNo, addressID);
+                    int userID = regBL.AddUser(strFirstName, strLastName, email, strPhoneNo, true, addressID);
                     sessionID = regBL.CreateSession(userID);
-                    if (IsUserAdmin(Convert.ToInt32(Session["UID"])))                                              // if the existing user is an admin
-                    {
-                        regBL.MakeAdmin(sessionID);
-                    }
+                    regBL.MakeAdmin(sessionID);
                     Session["UID"] = sessionID;
                     Session["Key"] = null;
                     Response.Redirect("home.aspx");                                 // redirect user to home
@@ -97,7 +97,7 @@ namespace c3318556_Assignment1.UL.Admin
             }
             else if (regBL.IsAddressValid(strStreetNo, strStreetName, strSuburb, strState, strPostcode))
             {
-
+                lblFeedback.Text = "Address is not formatted correctly. Please check your address and try again";
             }
             else
             {

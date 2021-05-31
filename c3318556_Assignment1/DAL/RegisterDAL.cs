@@ -13,11 +13,11 @@ namespace c3318556_Assignment1.DAL
         private string conString = ConfigurationManager.ConnectionStrings["c3318556_SQLDatabaseConnectionString"].ToString();
         SqlConnection con = new SqlConnection();
 
-        public int InsertUser(string firstName, string lastName, string email, string phone, int addressID)
+        public int InsertUser(string firstName, string lastName, string email, string phone, bool adminPriv, int addressID)
         {
             int result = 0;
             OpenConnection();
-            SqlCommand cmd1 = new SqlCommand("INSERT INTO Account (emailAddress, firstName, lastName, phone, addressID) VALUES ('@email', '@firstName', '@lastName', '@email', '@phone', '@addressID')");
+            SqlCommand cmd1 = new SqlCommand("INSERT INTO Account (emailAddress, firstName, lastName, mobile, adminPrivlages, isActive, addressID) VALUES (@email, @firstName, @lastName, @phone, @adminPriv, @isActive, @addressID)");
             SqlCommand cmd2 = new SqlCommand("SELECT userID FROM Account WHERE emailAddress = @email");
             try
             {
@@ -25,6 +25,8 @@ namespace c3318556_Assignment1.DAL
                 cmd1.Parameters.AddWithValue("@firstName", firstName);
                 cmd1.Parameters.AddWithValue("@lastName", lastName);
                 cmd1.Parameters.AddWithValue("@phone", phone);
+                cmd1.Parameters.AddWithValue("@adminPriv", adminPriv);
+                cmd1.Parameters.AddWithValue("@isActive", true);
                 cmd1.Parameters.AddWithValue("@addressID", addressID);
                 cmd1.Connection = con;
                 cmd1.ExecuteNonQuery();
@@ -54,7 +56,7 @@ namespace c3318556_Assignment1.DAL
         {
             string result = "";
             OpenConnection();
-            SqlCommand cmd1 = new SqlCommand("INSERT INTO Login (emailAddress, password) VALUES ('@email', '@password')");
+            SqlCommand cmd1 = new SqlCommand("INSERT INTO Login (emailAddress, password) VALUES (@email, @password)");
             SqlCommand cmd2 = new SqlCommand("SELECT emailAddress FROM Login WHERE emailAddress = @emailAddress");
             try
             {
@@ -70,40 +72,13 @@ namespace c3318556_Assignment1.DAL
             }
             catch
             {
-                con.Close();
-                return result;
+                throw;
             }
             finally
             {
                 con.Close();
             }
             return result;
-        }
-
-        public bool InsertAddress(string streetNumber, string streetName, string suburb, string state, string postcode)
-        {
-            OpenConnection();
-            SqlCommand cmd = new SqlCommand("INSERT INTO Address (streetNumber, streetName, suburb, state, postcode) VALUES ('@streetnumber','@streetName','@suburb','@state','@postcode')");
-            try
-            {
-                cmd.Parameters.AddWithValue("@streetNumber", streetNumber);
-                cmd.Parameters.AddWithValue("@streetName", streetName);
-                cmd.Parameters.AddWithValue("@suburb", suburb);
-                cmd.Parameters.AddWithValue("@state", state);
-                cmd.Parameters.AddWithValue("@postcode", postcode);
-                cmd.Connection = con;
-                cmd.ExecuteNonQuery();
-            }
-            catch
-            {
-                con.Close();
-                return false;
-            }
-            finally
-            {
-                con.Close();
-            }
-            return true;
         }
 
         public bool GiveAdminPriv(int sessionID)
@@ -119,8 +94,7 @@ namespace c3318556_Assignment1.DAL
             }
             catch
             {
-                con.Close();
-                return false;
+                throw;
             }
             finally
             {
@@ -144,7 +118,7 @@ namespace c3318556_Assignment1.DAL
             }
             catch
             {
-                con.Close();
+                throw;
             }
             finally
             {
@@ -175,7 +149,11 @@ namespace c3318556_Assignment1.DAL
             }
             catch
             {
-                return false;
+                throw;
+            }
+            finally
+            {
+                con.Close();
             }
         }
 
@@ -183,7 +161,7 @@ namespace c3318556_Assignment1.DAL
         {
             int result = 0;
             OpenConnection();
-            SqlCommand cmd1 = new SqlCommand("INSERT INTO Address (streetNumber, streetName, suburb, state, postcode) VALUES ('@streetNo','@streetName','@suburb','@state','@postcode'");
+            SqlCommand cmd1 = new SqlCommand("INSERT INTO Address (streetNumber, streetName, suburb, state, postcode) VALUES (@streetNo, @streetName, @suburb, @state, @postcode)");
             SqlCommand cmd2 = new SqlCommand("SELECT addressID FROM Address WHERE streetNumber = @streetNo AND streetName = @streetName AND suburb = @suburb AND state = @state AND postcode = @postcode");
             try
             {
@@ -209,8 +187,7 @@ namespace c3318556_Assignment1.DAL
             }
             catch
             {
-                con.Close();
-                return result;
+                throw;
             }
             finally
             {
@@ -223,7 +200,7 @@ namespace c3318556_Assignment1.DAL
         {
             int result = 0;
             OpenConnection();
-            SqlCommand cmd1 = new SqlCommand("INSERT INTO Session (userID) VALUES @userID");
+            SqlCommand cmd1 = new SqlCommand("INSERT INTO Session (userID) VALUES (@userID)");
             SqlCommand cmd2 = new SqlCommand("SELECT sessionID FROM Session WHERE userID = @userID");
             try
             {
@@ -241,8 +218,7 @@ namespace c3318556_Assignment1.DAL
             }
             catch
             {
-                con.Close();
-                return result;
+                throw;
             }
             finally
             {
@@ -254,7 +230,7 @@ namespace c3318556_Assignment1.DAL
         public bool CheckEmailAddress(string email)
         {
             OpenConnection();
-            SqlCommand cmd = new SqlCommand("SELECT emailAddress FROM Account WHERE emailAddress = @email");
+            SqlCommand cmd = new SqlCommand("SELECT emailAddress FROM Account WHERE emailAddress = '@email'");
             try
             {
                 cmd.Parameters.AddWithValue("@email", email);
@@ -268,14 +244,41 @@ namespace c3318556_Assignment1.DAL
             }
             catch
             {
-                con.Close();
-                return false;
+                throw;
             }
             finally
             {
                 con.Close();
             }
             return false;
+        }
+
+        public string PullName(int sessionID)
+        {
+            int userID = GrabUserID(sessionID);
+            string name = "";
+            OpenConnection();
+            SqlCommand cmd = new SqlCommand("SELECT firstName FROM Account WHERE userID = @userID", con);
+            try
+            {
+                cmd.Parameters.AddWithValue("@userID", userID);
+                cmd.Connection = con;
+                SqlDataReader rd = cmd.ExecuteReader();
+                if (rd.HasRows)
+                {
+                    rd.Read();
+                    name = rd.GetString(0);
+                }
+            }
+            catch
+            {
+                name = "NONAMEFOUND";
+            }
+            finally
+            {
+                con.Close();
+            }
+            return name;
         }
 
         private void OpenConnection()

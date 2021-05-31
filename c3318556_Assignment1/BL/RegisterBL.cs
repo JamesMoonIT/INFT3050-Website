@@ -57,20 +57,20 @@ namespace c3318556_Assignment1.BL
             }
             catch
             {
-                // return broken, caught by catch in register.aspx
+                throw;
             }
         }
 
-        public int AddUser(string firstName, string lastName, string email, string phone, int addressID)
+        public int AddUser(string firstName, string lastName, string email, string phone, bool adminPriv, int addressID)
         {
             int result = 0;
             try
             {
-                result = regDAL.InsertUser(firstName, lastName, email, phone, addressID);
+                result = regDAL.InsertUser(firstName, lastName, email, phone, adminPriv, addressID);
             }
             catch
             {
-                return result;
+                throw;
             }
             return result;
         }
@@ -85,7 +85,7 @@ namespace c3318556_Assignment1.BL
             }
             catch
             {
-                return result;
+                throw;
             }
             return result;
         }
@@ -98,7 +98,7 @@ namespace c3318556_Assignment1.BL
             }
             catch
             {
-                return false;
+                throw;
             }
             return true;
         }
@@ -114,7 +114,7 @@ namespace c3318556_Assignment1.BL
             }
             catch
             {
-                return false;
+                throw;
             }
             return true;
         }
@@ -132,7 +132,7 @@ namespace c3318556_Assignment1.BL
             }
             catch
             {
-                return 0;
+                throw;
             }
         }
 
@@ -159,13 +159,59 @@ namespace c3318556_Assignment1.BL
 
         public bool IsAddressValid(string streetNo, string streetName, string suburb, string state, string postcode)
         {
-            try
+            if (!IsAllDigits(streetNo))
+            {
+                return false;
+            }
+            else if (!IsAllLetters(suburb))
+            {
+                return false;
+            }
+            else if (!IsAllLetters(state))
+            {
+                return false;
+            }
+            else if (!IsAllDigits(postcode))
+            {
+                return false;
+            }
+            else
             {
                 return true;
             }
+        }
+
+        private static bool IsAllLetters(string s)
+        {
+            foreach (char c in s)
+            {
+                if (!Char.IsLetter(c))
+                    return false;
+            }
+            return true;
+        }
+
+        public static bool IsAllDigits(string s)
+        {
+            foreach (char c in s)
+            {
+                if (!Char.IsDigit(c))
+                    return false;
+            }
+            return true;
+        }
+
+        public string GetUserName(int sessionID)
+        {
+            string name = "";
+            try
+            {
+                name = regDAL.PullName(sessionID);
+                return name;
+            }
             catch
             {
-                return false;
+                return "NameNotFound";
             }
         }
 

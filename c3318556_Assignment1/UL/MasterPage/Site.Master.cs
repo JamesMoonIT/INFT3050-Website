@@ -93,7 +93,7 @@ namespace c3318556_Assignment1.UL.MasterPage
 
         protected void btnProducts_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/UL/products.aspx");
+            Response.Redirect("~/UL/productspage.aspx");
         }
 
         protected void btnContactUs_Click(object sender, EventArgs e)

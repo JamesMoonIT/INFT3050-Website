@@ -25,11 +25,6 @@ namespace c3318556_Assignment1.UL
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            lblAdminMaker.Visible = false;
-            if (IsUserAdmin(Convert.ToInt32(Session["UID"])))                            // checks if current user is admin (allows creation of admin)
-            {
-                lblAdminMaker.Visible = true;
-            }
             lblVerification.Visible = false;
             txbxVerificationKey.Visible = false;
             btnVerify.Visible = false;
@@ -60,6 +55,11 @@ namespace c3318556_Assignment1.UL
             {
                 lblFeedback.Text = "Email already exists. Please register with a new email address or login";
             }
+            else if (!regBL.IsAddressValid(strStreetNo, strStreetName, strSuburb, strState, strPostcode))
+            {
+                lblFeedback.Text = "Address is not formatted correctly. Please check your address and try again";
+            }
+
             else
             {
                 string validationKeyGen = regBL.makeKey();                        // call to make a verification key
@@ -105,13 +105,10 @@ namespace c3318556_Assignment1.UL
                 {
                     int addressID = regBL.AddAddress(intStreetNo, strStreetName, strSuburb, strState, intPostcode);
                     string email = regBL.AddLogin(strEmailStore, strPasswordStore);
-                    int userID = regBL.AddUser(strFirstName, strLastName, email, strPhoneNo, addressID);
+                    int userID = regBL.AddUser(strFirstName, strLastName, email, strPhoneNo, false, addressID);
                     sessionID = regBL.CreateSession(userID);
-                    if (IsUserAdmin(Convert.ToInt32(Session["UID"])))                                              // if the existing user is an admin
-                    {
-                        regBL.MakeAdmin(sessionID);
-                    }
                     Session["UID"] = sessionID;
+                    Session["UserName"] = regBL.GetUserName(Convert.ToInt32(Session["UID"]));
                     Session["Key"] = null;
                     Response.Redirect("home.aspx");                                 // redirect user to home
                 }
@@ -127,11 +124,6 @@ namespace c3318556_Assignment1.UL
                 txbxVerificationKey.Visible = true;                             //                  "
                 lblVerification.Visible = true;                                 //                  "
             }
-        }
-
-        private bool IsUserAdmin(int sessionID)
-        {
-            return regBL.CheckUserAdmin(sessionID);
         }
     }
 }

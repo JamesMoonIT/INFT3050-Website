@@ -12,20 +12,19 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using c3318556_Assignment1.BL;
 
 namespace c3318556_Assignment1.UL
 {
     public partial class products : System.Web.UI.Page
     {
+        AdminBL admBL = new AdminBL();
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Convert.ToInt32(Session["UID"]) == 100000 || Session["UID"] == null)           // checks if user is admin
+            if (!admBL.IsCurrentAdmin(Convert.ToInt32(Session["UID"])))           // checks if user is admin
             {
-                btnP1Admin.Visible = false;                                     // enables admin "remove product"
-                btnP2Admin.Visible = false;                                     //          "
-                btnP3Admin.Visible = false;                                     //          "
-                btnP4Admin.Visible = false;                                     //          "
-                btnP5Admin.Visible = false;                                     //          "
+
             }
         }
 
@@ -57,31 +56,6 @@ namespace c3318556_Assignment1.UL
         {
             Session["p5Send"] = "1";                                            // p5Send updated to 1 (used for cart)
             Response.Redirect("cart.aspx");                                     // redirect to cart
-        }
-
-        protected void btnP1Admin_Click(object sender, EventArgs e)             // unused admin button
-        {
-
-        }
-
-        protected void btnP2Admin_Click(object sender, EventArgs e)             // unused admin button
-        {
-
-        }
-
-        protected void btnP3Admin_Click(object sender, EventArgs e)             // unused admin button
-        {
-
-        }
-
-        protected void btnP4Admin_Click(object sender, EventArgs e)             // unused admin button
-        {
-
-        }
-
-        protected void btnP5Admin_Click(object sender, EventArgs e)             // unused admin button
-        {
-
         }
     }
 }

@@ -30,7 +30,7 @@ namespace c3318556_Assignment1.UL
 
         protected void btnEditProducts_Click(object sender, EventArgs e)    
         {
-            Response.Redirect("~/UL/products.aspx");                             // redirect the admin to Products
+            Response.Redirect("~/UL/Admin/adminproducts.aspx");                             // redirect the admin to Products
         }
 
         protected void btnAddAdmin_Click(object sender, EventArgs e)
