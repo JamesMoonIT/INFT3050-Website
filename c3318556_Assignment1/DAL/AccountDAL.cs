@@ -13,11 +13,32 @@ namespace c3318556_Assignment1.DAL
         private string conString = ConfigurationManager.ConnectionStrings["c3318556_SQLDatabaseConnectionString"].ToString();
         SqlConnection con = new SqlConnection();
 
-        //public string GrabName(string email)
-        //{
-        //    OpenConnection();
-
-        //}
+        public bool CheckUserID(int userID)
+        {
+            bool result = true;
+            OpenConnection();
+            SqlCommand cmd = new SqlCommand("SELECT email FROM Account WHERE userID = @userID");
+            try
+            {
+                cmd.Parameters.AddWithValue("@userID", userID);
+                cmd.Connection = con;
+                SqlDataReader rd = cmd.ExecuteReader();
+                if (rd.HasRows)
+                {
+                    rd.Read();
+                    result = rd.GetBoolean(0);
+                }
+            }
+            catch
+            {
+                throw;
+            }
+            finally
+            {
+                con.Close();
+            }
+            return result;
+        }
 
         private void OpenConnection()
         {

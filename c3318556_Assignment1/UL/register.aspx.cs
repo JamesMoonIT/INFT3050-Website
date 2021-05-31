@@ -106,7 +106,7 @@ namespace c3318556_Assignment1.UL
                     int addressID = regBL.AddAddress(intStreetNo, strStreetName, strSuburb, strState, intPostcode);
                     string email = regBL.AddLogin(strEmailStore, strPasswordStore);
                     int userID = regBL.AddUser(strFirstName, strLastName, email, strPhoneNo, false, addressID);
-                    sessionID = regBL.CreateSession(userID);
+                    sessionID = regBL.CreateSession(userID, strFirstName);
                     Session["UID"] = sessionID;
                     Session["UserName"] = regBL.GetUserName(Convert.ToInt32(Session["UID"]));
                     Session["Key"] = null;

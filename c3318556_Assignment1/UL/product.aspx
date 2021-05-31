@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/UL/MasterPage/Site.Master" AutoEventWireup="true" CodeBehind="product.aspx.cs" Inherits="c3318556_Assignment1.UL.product" %>
+﻿<%@ Page Title="GB - Product" Language="C#" MasterPageFile="~/UL/MasterPage/Site.Master" AutoEventWireup="true" CodeBehind="product.aspx.cs" Inherits="c3318556_Assignment1.UL.product" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <h1>Product Name: <asp:Label ID="productName" runat="server" /></h1>
     <p>Product ID: <asp:Label ID="productID" runat="server" /></p>

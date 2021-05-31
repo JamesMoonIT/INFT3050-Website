@@ -10,7 +10,8 @@ namespace c3318556_Assignment1.BL
 {
     public class LoginBL
     {
-        LoginDAL accDAL = new LoginDAL();
+        LoginDAL logDAL = new LoginDAL();
+        AccountDAL accDAL = new AccountDAL();
         public int CheckUserLogin(string email, string password)
         {
             try
@@ -24,7 +25,7 @@ namespace c3318556_Assignment1.BL
                     return 2;
                 }
                 password = MD5Hash(password);
-                return accDAL.VerifyUserLogin(email, password);
+                return logDAL.VerifyUserLogin(email, password);
             }
             catch
             {
@@ -36,7 +37,7 @@ namespace c3318556_Assignment1.BL
         {
             try
             {
-                return accDAL.CheckPriviliges(email);
+                return logDAL.CheckPriviliges(email);
             }
             catch
             {
@@ -49,7 +50,21 @@ namespace c3318556_Assignment1.BL
             string name = "";
             try
             {
-                name = accDAL.PullName(sessionID);
+                name = logDAL.PullName(sessionID);
+                return name;
+            }
+            catch
+            {
+                return "NameNotFound";
+            }
+        }
+
+        public string GetName(string email)
+        {
+            string name = "";
+            try
+            {
+                name = logDAL.PullName(email);
                 return name;
             }
             catch
@@ -91,12 +106,24 @@ namespace c3318556_Assignment1.BL
 
         public int GetUserID(string email)
         {
-            return accDAL.GrabUserID(email);
+            return logDAL.GrabUserID(email);
         }
         
-        public int CreateSession(int userID)
+        public int CreateSession(int userID, string username)
         {
-            return accDAL.BuildUserSession(userID);
+            return logDAL.BuildUserSession(userID, username);
+        }
+        
+        public int GetSessionID(int userID)
+        {
+            try
+            {
+                return logDAL.GrabSessionID(userID);
+            }
+            catch
+            {
+                return 0;
+            }
         }
 
         // sourced from https://www.godo.dev/tutorials/csharp-md5/ 24/5/2021 10:20am

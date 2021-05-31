@@ -208,6 +208,7 @@
   <ItemGroup>
     <Content Include="UL\about.aspx" />
     <Content Include="UL\Admin\admin.aspx" />
+    <Content Include="UL\Admin\adminmanageusers.aspx" />
     <Content Include="UL\Admin\adminproducts.aspx" />
     <Content Include="UL\Admin\adminregister.aspx" />
     <Content Include="UL\cart.aspx" />
@@ -225,7 +226,6 @@
     <Content Include="UL\invoice.aspx" />
     <Content Include="UL\login.aspx" />
     <Content Include="UL\logout.aspx" />
-    <Content Include="UL\manageusers.aspx" />
     <Content Include="UL\product.aspx" />
     <Content Include="UL\productspage.aspx" />
     <Content Include="UL\purchase.aspx" />
@@ -261,6 +261,13 @@
     </Compile>
     <Compile Include="UL\Admin\admin.aspx.designer.cs">
       <DependentUpon>admin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UL\Admin\adminmanageusers.aspx.cs">
+      <DependentUpon>adminmanageusers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UL\Admin\adminmanageusers.aspx.designer.cs">
+      <DependentUpon>adminmanageusers.aspx</DependentUpon>
     </Compile>
     <Compile Include="UL\Admin\adminproducts.aspx.cs">
       <DependentUpon>adminproducts.aspx</DependentUpon>
@@ -324,13 +331,6 @@
     </Compile>
     <Compile Include="UL\logout.aspx.designer.cs">
       <DependentUpon>logout.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="UL\manageusers.aspx.cs">
-      <DependentUpon>manageusers.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="UL\manageusers.aspx.designer.cs">
-      <DependentUpon>manageusers.aspx</DependentUpon>
     </Compile>
     <Compile Include="UL\MasterPage\Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>

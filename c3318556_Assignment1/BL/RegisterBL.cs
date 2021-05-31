@@ -119,9 +119,9 @@ namespace c3318556_Assignment1.BL
             return true;
         }
 
-        public int CreateSession(int userID)
+        public int CreateSession(int userID, string firstname)
         {
-            return regDAL.BuildUserSession(userID);
+            return regDAL.BuildUserSession(userID, firstname);
         }
 
         public int AddAddress(int streetNo, string streetName, string suburb, string state, int postcode)

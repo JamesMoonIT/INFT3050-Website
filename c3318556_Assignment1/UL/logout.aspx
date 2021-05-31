@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/UL/MasterPage/Site.Master" AutoEventWireup="true" CodeBehind="logout.aspx.cs" Inherits="c3318556_Assignment1.UL.logout" %>
+﻿<%@ Page Title="GB - Logout" Language="C#" MasterPageFile="~/UL/MasterPage/Site.Master" AutoEventWireup="true" CodeBehind="logout.aspx.cs" Inherits="c3318556_Assignment1.UL.logout" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 <!--  
     Author: James Moon

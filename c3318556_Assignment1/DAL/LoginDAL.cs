@@ -134,6 +134,33 @@ namespace c3318556_Assignment1.DAL
             return name;
         }
 
+        public string PullName(string email)
+        {
+            string result = "";
+            OpenConnection();
+            SqlCommand cmd = new SqlCommand("SELECT firstName FROM Account WHERE emailAddress = @emailAddress");
+            try
+            {
+                cmd.Parameters.AddWithValue("@emailAddress", email);
+                cmd.Connection = con;
+                SqlDataReader rd = cmd.ExecuteReader();
+                if (rd.HasRows)
+                {
+                    rd.Read();
+                    result = rd.GetString(0);
+                }
+            }
+            catch
+            {
+                throw;
+            }
+            finally
+            {
+                con.Close();
+            }
+            return result;
+        }
+
         public int GrabUserID(string email)
         {
             int result = 0;
@@ -185,15 +212,16 @@ namespace c3318556_Assignment1.DAL
             return userID;
         }
 
-        public int BuildUserSession(int userID)
+        public int BuildUserSession(int userID, string username)
         {
             int result = 0;
             OpenConnection();
-            SqlCommand cmd1 = new SqlCommand("INSERT INTO Session (userID) VALUES (@userID)");
+            SqlCommand cmd1 = new SqlCommand("INSERT INTO Session (userID, username) VALUES (@userID, @username)");
             SqlCommand cmd2 = new SqlCommand("SELECT sessionID FROM Session WHERE userID = @userID");
             try
             {
                 cmd1.Parameters.AddWithValue("@userID", userID);
+                cmd1.Parameters.AddWithValue("@username", username);
                 cmd1.Connection = con;
                 cmd1.ExecuteNonQuery();
                 cmd2.Parameters.AddWithValue("@userID", userID);
@@ -207,6 +235,30 @@ namespace c3318556_Assignment1.DAL
                 con.Close();
             }
             catch
+            {
+                con.Close();
+            }
+            return result;
+        }
+
+        public int GrabSessionID(int userID)
+        {
+            int result = 0;
+            OpenConnection();
+            SqlCommand cmd = new SqlCommand("SELECT sessionID FROM Session WHERE userID = @userID");
+            try
+            {
+                cmd.Parameters.AddWithValue("@userID", userID);
+                cmd.Connection = con;
+                SqlDataReader rd = cmd.ExecuteReader();
+                rd.Read();
+                result = rd.GetInt32(0);
+            }
+            catch
+            {
+                throw;
+            }
+            finally
             {
                 con.Close();
             }

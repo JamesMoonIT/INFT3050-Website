@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/UL/MasterPage/Site.Master" AutoEventWireup="true" CodeBehind="adminregister.aspx.cs" Inherits="c3318556_Assignment1.UL.Admin.adminregister" %>
+﻿<%@ Page Title="GB - Register Admin" Language="C#" MasterPageFile="~/UL/MasterPage/Site.Master" AutoEventWireup="true" CodeBehind="adminregister.aspx.cs" Inherits="c3318556_Assignment1.UL.Admin.adminregister" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <h1>Register Page (Admin)</h1>
     <p>Each field is required in order to be registered with this site. Please make sure very field is filled before proceeding (You will be prompted if a field is unfilled).</p>

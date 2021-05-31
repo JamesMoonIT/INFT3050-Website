@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/UL/MasterPage/Site.Master" AutoEventWireup="true" CodeBehind="admin.aspx.cs" Inherits="c3318556_Assignment1.UL.admin" %>
+﻿<%@ Page Title="GB - Admin" Language="C#" MasterPageFile="~/UL/MasterPage/Site.Master" AutoEventWireup="true" CodeBehind="admin.aspx.cs" Inherits="c3318556_Assignment1.UL.admin" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 <!-- 
    Author: James Moon

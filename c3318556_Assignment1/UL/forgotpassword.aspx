@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/UL/MasterPage/Site.Master" AutoEventWireup="true" CodeBehind="forgotpassword.aspx.cs" Inherits="c3318556_Assignment1.UL.forgotpassword" %>
+﻿<%@ Page Title="GB - Forgot Password" Language="C#" MasterPageFile="~/UL/MasterPage/Site.Master" AutoEventWireup="true" CodeBehind="forgotpassword.aspx.cs" Inherits="c3318556_Assignment1.UL.forgotpassword" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 <!--  

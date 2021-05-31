@@ -40,7 +40,7 @@ namespace c3318556_Assignment1.UL
 
         protected void btnManageUsers_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/UL/manageusers.aspx");                          // redirect the admin to manage users
+            Response.Redirect("~/UL/Admin/adminmanageusers.aspx");                          // redirect the admin to manage users
         }
     }
 }

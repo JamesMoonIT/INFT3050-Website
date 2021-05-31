@@ -50,9 +50,10 @@ namespace c3318556_Assignment1.UL.Admin
                     int addressID = regBL.AddAddress(intStreetNo, strStreetName, strSuburb, strState, intPostcode);
                     string email = regBL.AddLogin(strEmailStore, strPasswordStore);
                     int userID = regBL.AddUser(strFirstName, strLastName, email, strPhoneNo, true, addressID);
-                    sessionID = regBL.CreateSession(userID);
+                    sessionID = regBL.CreateSession(userID, strFirstName);
                     regBL.MakeAdmin(sessionID);
                     Session["UID"] = sessionID;
+                    Session["UserName"] = regBL.GetUserName(Convert.ToInt32(Session["UID"]));
                     Session["Key"] = null;
                     Response.Redirect("home.aspx");                                 // redirect user to home
                 }
@@ -117,11 +118,6 @@ namespace c3318556_Assignment1.UL.Admin
                     lblFeedback.Text = "We could not send a confirmation email. Please use the Contact Us page and let us know";
                 }
             }
-        }
-
-        private bool IsUserAdmin(int sessionID)
-        {
-            return regBL.CheckUserAdmin(sessionID);
         }
     }
 }

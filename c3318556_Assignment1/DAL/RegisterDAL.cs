@@ -196,15 +196,16 @@ namespace c3318556_Assignment1.DAL
             return result;
         }
 
-        public int BuildUserSession(int userID)
+        public int BuildUserSession(int userID, string firstname)
         {
             int result = 0;
             OpenConnection();
-            SqlCommand cmd1 = new SqlCommand("INSERT INTO Session (userID) VALUES (@userID)");
+            SqlCommand cmd1 = new SqlCommand("INSERT INTO Session (userID, firstname) VALUES (@userID, @firstname)");
             SqlCommand cmd2 = new SqlCommand("SELECT sessionID FROM Session WHERE userID = @userID");
             try
             {
                 cmd1.Parameters.AddWithValue("@userID", userID);
+                cmd1.Parameters.AddWithValue("@firstname", firstname);
                 cmd1.Connection = con;
                 cmd1.ExecuteNonQuery();
                 cmd2.Parameters.AddWithValue("@userID", userID);
