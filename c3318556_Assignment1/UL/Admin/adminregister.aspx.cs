@@ -96,7 +96,7 @@ namespace c3318556_Assignment1.UL.Admin
             {
                 lblFeedback.Text = "Email already exists. Please register with a new email address or login";
             }
-            else if (regBL.IsAddressValid(strStreetNo, strStreetName, strSuburb, strState, strPostcode))
+            else if (!regBL.IsAddressValid(strStreetNo, strStreetName, strSuburb, strState, strPostcode))
             {
                 lblFeedback.Text = "Address is not formatted correctly. Please check your address and try again";
             }

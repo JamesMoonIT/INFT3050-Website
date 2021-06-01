@@ -32,7 +32,7 @@ namespace c3318556_Assignment1.UL
 
         protected void btnToProducts_Click(object sender, EventArgs e)
         {
-            Response.Redirect("products.aspx?search=" + searchBox.Text);            // redirects user to products with search key
+            Response.Redirect("productspage.aspx?search=" + searchBox.Text);            // redirects user to products with search key
         }
     }
 }

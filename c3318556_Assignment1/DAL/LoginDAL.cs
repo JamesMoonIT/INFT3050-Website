@@ -125,7 +125,7 @@ namespace c3318556_Assignment1.DAL
             }
             catch
             {
-                name = "NONAMEFOUND";
+                throw;
             }
             finally
             {
@@ -179,7 +179,7 @@ namespace c3318556_Assignment1.DAL
             }
             catch
             {
-                result = 0;
+                throw;
             }
             finally
             {
@@ -203,7 +203,7 @@ namespace c3318556_Assignment1.DAL
             }
             catch
             {
-                con.Close();
+                throw;
             }
             finally
             {
@@ -232,9 +232,12 @@ namespace c3318556_Assignment1.DAL
                     rd.Read();
                     result = rd.GetInt32(0);
                 }
-                con.Close();
             }
             catch
+            {
+                throw;
+            }
+            finally
             {
                 con.Close();
             }

@@ -18,7 +18,7 @@ namespace c3318556_Assignment1.BL
             }
             catch
             {
-                return true;
+                return false;
             }
         }
     }

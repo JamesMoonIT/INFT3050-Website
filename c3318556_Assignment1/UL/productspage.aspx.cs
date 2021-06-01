@@ -22,40 +22,31 @@ namespace c3318556_Assignment1.UL
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!admBL.IsCurrentAdmin(Convert.ToInt32(Session["UID"])))           // checks if user is admin
-            {
 
+            if (!IsPostBack)
+            {
+                //RepeterData();
             }
         }
 
-        protected void cartProduct1_Click(object sender, EventArgs e)           // if user adds item 1 to card
+        protected void Gridview1_RowEditing(object sender, GridViewEditEventArgs e)
         {
-            Session["p1Send"] = "1";                                            // p1Send updated to 1 (used for cart)
-            Response.Redirect("cart.aspx");                                     // redirect to cart
+
         }
 
-        protected void cartProduct2_Click(object sender, EventArgs e)           // if user adds item 2 to card
+        protected void Gridview1_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
-            Session["p2Send"] = "1";                                            // p2Send updated to 1 (used for cart)
-            Response.Redirect("cart.aspx");                                     // redirect to cart
+
         }
 
-        protected void cartProduct3_Click(object sender, EventArgs e)           // if user adds item 3 to card
+        protected void Gridview1_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-            Session["p3Send"] = "1";                                            // p3Send updated to 1 (used for cart)
-            Response.Redirect("cart.aspx");                                     // redirect to cart
+
         }
 
-        protected void cartProduct4_Click(object sender, EventArgs e)           // if user adds item 4 to card
+        protected void Gridview1_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
-            Session["p4Send"] = "1";                                            // p4Send updated to 1 (used for cart)
-            Response.Redirect("cart.aspx");                                     // redirect to cart
-        }
 
-        protected void cartProduct5_Click(object sender, EventArgs e)           // if user adds item 5 to card
-        {
-            Session["p5Send"] = "1";                                            // p5Send updated to 1 (used for cart)
-            Response.Redirect("cart.aspx");                                     // redirect to cart
         }
     }
 }

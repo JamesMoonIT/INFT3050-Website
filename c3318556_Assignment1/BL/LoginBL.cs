@@ -55,7 +55,7 @@ namespace c3318556_Assignment1.BL
             }
             catch
             {
-                return "NameNotFound";
+                throw;
             }
         }
 
@@ -69,7 +69,7 @@ namespace c3318556_Assignment1.BL
             }
             catch
             {
-                return "NameNotFound";
+                throw;
             }
         }
 
@@ -106,12 +106,26 @@ namespace c3318556_Assignment1.BL
 
         public int GetUserID(string email)
         {
-            return logDAL.GrabUserID(email);
+            try
+            {
+                return logDAL.GrabUserID(email);
+            }
+            catch
+            {
+                throw;
+            }
         }
         
         public int CreateSession(int userID, string username)
         {
-            return logDAL.BuildUserSession(userID, username);
+            try
+            {
+                return logDAL.BuildUserSession(userID, username);
+            }
+            catch
+            {
+                throw;
+            }
         }
         
         public int GetSessionID(int userID)
@@ -122,7 +136,7 @@ namespace c3318556_Assignment1.BL
             }
             catch
             {
-                return 0;
+                throw;
             }
         }
 

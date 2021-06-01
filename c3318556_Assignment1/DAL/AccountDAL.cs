@@ -15,9 +15,9 @@ namespace c3318556_Assignment1.DAL
 
         public bool CheckUserID(int userID)
         {
-            bool result = true;
+            bool result = false;
             OpenConnection();
-            SqlCommand cmd = new SqlCommand("SELECT email FROM Account WHERE userID = @userID");
+            SqlCommand cmd = new SqlCommand("SELECT sessionID FROM Session WHERE userID = @userID");
             try
             {
                 cmd.Parameters.AddWithValue("@userID", userID);
@@ -25,8 +25,8 @@ namespace c3318556_Assignment1.DAL
                 SqlDataReader rd = cmd.ExecuteReader();
                 if (rd.HasRows)
                 {
-                    rd.Read();
-                    result = rd.GetBoolean(0);
+                    con.Close();
+                    return true;
                 }
             }
             catch
