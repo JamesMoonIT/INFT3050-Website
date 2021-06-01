@@ -9,29 +9,35 @@
         at 5 for coding purposes and lack of time.
 -->
     <h1>Products</h1>
-    <p>We have a small range of motor vehicles to choose from, with mroe to hopefulyl be added to GarageBay. Stay tuned to see what new stock will have to offer!
-        <asp:GridView ID="GridView1" runat="server" CssClass="product" AutoGenerateColumns="False" DataSourceID="c3318556_SQLDatabase" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="4" ForeColor="Black" GridLines="Horizontal">
-        <Columns>
-            <asp:BoundField DataField="pName" SortExpression="pName" HeaderText="Name"/>
-            <asp:BoundField DataField="pBrand" SortExpression="pBrand" HeaderText="Brand" />
-            <asp:BoundField DataField="pType" SortExpression="pType" HeaderText="Type" />
-            <asp:BoundField DataField="pModel" SortExpression="pModel" HeaderText="Model" />
-            <asp:BoundField DataField="pDesc" SortExpression="pDesc" HeaderText="Description" />
-            <asp:BoundField DataField="pPrice" SortExpression="pPrice" HeaderText="Price" />
-            <asp:BoundField DataField="pImage" SortExpression="pImage" HeaderText="Image" />
-        </Columns>
-            <FooterStyle BackColor="#CCCC99" ForeColor="Black" />
-            <HeaderStyle BackColor="#333333" Font-Bold="True" ForeColor="White" />
-            <PagerStyle BackColor="White" ForeColor="Black" HorizontalAlign="Right" />
-            <SelectedRowStyle BackColor="#CC3333" Font-Bold="True" ForeColor="White" />
-            <SortedAscendingCellStyle BackColor="#F7F7F7" />
-            <SortedAscendingHeaderStyle BackColor="#4B4B4B" />
-            <SortedDescendingCellStyle BackColor="#E5E5E5" />
-            <SortedDescendingHeaderStyle BackColor="#242121" />
-        </asp:GridView>
-        <asp:SqlDataSource ID="c3318556_SQLDatabase" runat="server" ConnectionString="<%$ ConnectionStrings:c3318556_SQLDatabaseConnectionString %>" OldValuesParameterFormatString="original_{0}" SelectCommand="SELECT [pName], [pBrand], [pType], [pModel], [pDesc], [pPrice], [pImage] FROM [Product]">
-        </asp:SqlDataSource>
+    <p>
+        We have a small range of motor vehicles to choose from, with mroe to hopefulyl be added to GarageBay. Stay tuned to see what new stock will have to offer!   
     </p>
+    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:c3318556_SQLDatabaseConnectionString %>" OldValuesParameterFormatString="original_{0}" SelectCommand="SELECT * FROM [Product]"></asp:SqlDataSource>
+    <asp:GridView ID="GridView1" runat="server" CssClass="product" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" DataKeyNames="productID">
+        <Columns>
+            <asp:BoundField DataField="productID" SortExpression="productID" ReadOnly="true" HeaderText="ID" />
+            <asp:TemplateField>
+                <ItemTemplate>
+                    <div class="product">
+                        <h1>
+                            <asp:LinkButton ID="name" runat="server" OnClick="name_Click" Text='<%#Eval("pname") %>' /></h1>
+                        <h2>AUD$<asp:Label ID="price" runat="server" Text='<%#Eval("pprice") %>' /></h2>
+                        <h3>Manufacturer:<asp:Label ID="brand" runat="server" Text='<%#Eval("pbrand") %>' /></h3>
+                        <h3>Type:<asp:Label ID="type" runat="server" Text='<%#Eval("ptype") %>' /></h3>
+                        <h3>Model:<asp:Label ID="model" runat="server" Text='<%#Eval("pmodel") %>' /></h3>
+                        <p>
+                            <asp:Label ID="description" runat="server" Text='<%#Eval("pdesc") %>' />
+                        </p>
+                    </div>
+                </ItemTemplate>
+            </asp:TemplateField>
+            <asp:TemplateField>
+                <ItemTemplate>
+                    <asp:Image ID="pImage" runat="server" CssClass="pImage" ImageUrl='<%# Eval("pImage") %>' />
+                </ItemTemplate>
+            </asp:TemplateField>
+        </Columns>
+    </asp:GridView>
 
 
     <%--<asp:repeater id="productslist" runat="server">

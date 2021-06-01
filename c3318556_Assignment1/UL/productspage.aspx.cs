@@ -8,6 +8,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -29,24 +30,9 @@ namespace c3318556_Assignment1.UL
             }
         }
 
-        protected void Gridview1_RowEditing(object sender, GridViewEditEventArgs e)
+        protected void name_Click(object sender, EventArgs e)
         {
-
-        }
-
-        protected void Gridview1_RowUpdating(object sender, GridViewUpdateEventArgs e)
-        {
-
-        }
-
-        protected void Gridview1_PageIndexChanging(object sender, GridViewPageEventArgs e)
-        {
-
-        }
-
-        protected void Gridview1_RowDeleting(object sender, GridViewDeleteEventArgs e)
-        {
-
+            Response.Redirect("product.aspx");
         }
     }
 }

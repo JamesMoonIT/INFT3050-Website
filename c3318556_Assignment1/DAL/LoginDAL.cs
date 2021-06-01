@@ -45,16 +45,16 @@ namespace c3318556_Assignment1.DAL
                 SqlDataReader rd = cmd.ExecuteReader();
                 if (rd.HasRows)
                 {
-                    con.Close();
+                    CloseConnection();
                     return true;
                 }
             }
             catch
             {
-                con.Close();
+                CloseConnection();
                 return false;
             }
-            con.Close();
+            CloseConnection();
             return false;
         }
 
@@ -69,16 +69,16 @@ namespace c3318556_Assignment1.DAL
                 SqlDataReader rd = cmd.ExecuteReader();
                 if (rd.HasRows)
                 {
-                    con.Close();
+                    CloseConnection();
                     return true;
                 }
             }
             catch
             {
-                con.Close();
+                CloseConnection();
                 return false;
             }
-            con.Close();
+            CloseConnection();
             return false;
         }
 
@@ -101,7 +101,7 @@ namespace c3318556_Assignment1.DAL
             }
             catch
             {
-                con.Close();
+                CloseConnection();
             }
             return approval;
         }
@@ -129,7 +129,7 @@ namespace c3318556_Assignment1.DAL
             }
             finally
             {
-                con.Close();
+                CloseConnection();
             }
             return name;
         }
@@ -156,7 +156,7 @@ namespace c3318556_Assignment1.DAL
             }
             finally
             {
-                con.Close();
+                CloseConnection();
             }
             return result;
         }
@@ -183,7 +183,7 @@ namespace c3318556_Assignment1.DAL
             }
             finally
             {
-                con.Close();
+                CloseConnection();
             }
             return result;
         }
@@ -207,7 +207,7 @@ namespace c3318556_Assignment1.DAL
             }
             finally
             {
-                con.Close();
+                CloseConnection();
             }
             return userID;
         }
@@ -239,7 +239,7 @@ namespace c3318556_Assignment1.DAL
             }
             finally
             {
-                con.Close();
+                CloseConnection();
             }
             return result;
         }
@@ -263,7 +263,7 @@ namespace c3318556_Assignment1.DAL
             }
             finally
             {
-                con.Close();
+                CloseConnection();
             }
             return result;
         }
@@ -273,6 +273,12 @@ namespace c3318556_Assignment1.DAL
             con.ConnectionString = conString;
             if (ConnectionState.Closed == con.State)
                 con.Open();
+        }
+
+        private void CloseConnection()
+        {
+            if (ConnectionState.Open == con.State)
+                con.Close();
         }
     }
 }

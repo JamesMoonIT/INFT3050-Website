@@ -132,11 +132,10 @@ body {                    /* overall style type */
     .product .pImage {
         max-width: 200px;
         height: auto;
-        padding-left: 20%;
-        padding-right: 20%;
-        padding-top: 20%;
-        padding-bottom: 20%;
-        float: left;
+        padding-left: 10%;
+        padding-right: 10%;
+        padding-top: 10%;
+        padding-bottom: 10%;
     }
 
     .product .pInfo {
