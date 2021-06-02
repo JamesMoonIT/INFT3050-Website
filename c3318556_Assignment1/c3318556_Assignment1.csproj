@@ -243,13 +243,19 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="BL\AccountBL.cs" />
     <Compile Include="BL\AdminBL.cs" />
+    <Compile Include="BL\CartBL.cs" />
     <Compile Include="BL\LoginBL.cs" />
     <Compile Include="BL\MasterBL.cs" />
+    <Compile Include="BL\ProductBL.cs" />
+    <Compile Include="BL\PurchaseBL.cs" />
     <Compile Include="BL\RegisterBL.cs" />
     <Compile Include="DAL\AccountDAL.cs" />
     <Compile Include="DAL\AdminDAL.cs" />
+    <Compile Include="DAL\CartDAL.cs" />
     <Compile Include="DAL\LoginDAL.cs" />
     <Compile Include="DAL\MasterDAL.cs" />
+    <Compile Include="DAL\ProductDAL.cs" />
+    <Compile Include="DAL\PurchaseDAL.cs" />
     <Compile Include="DAL\RegisterDAL.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

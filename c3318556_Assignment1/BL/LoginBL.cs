@@ -20,12 +20,15 @@ namespace c3318556_Assignment1.BL
                 {
                     return 1;
                 }
-                if (!IsPasswordSafe(password))
+                else if (!IsPasswordSafe(password))
                 {
                     return 2;
                 }
-                password = MD5Hash(password);
-                return logDAL.VerifyUserLogin(email, password);
+                else
+                {
+                    password = MD5Hash(password);
+                    return logDAL.VerifyUserLogin(email, password);
+                }
             }
             catch
             {

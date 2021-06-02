@@ -14,25 +14,38 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using c3318556_Assignment1.BL;
+using Microsoft.AspNet.FriendlyUrls;
 
 namespace c3318556_Assignment1.UL
 {
     public partial class products : System.Web.UI.Page
     {
-        AdminBL admBL = new AdminBL();
+        CartBL cartBL = new CartBL();
 
         protected void Page_Load(object sender, EventArgs e)
         {
 
-            if (!IsPostBack)
-            {
-                //RepeterData();
-            }
         }
 
-        protected void name_Click(object sender, EventArgs e)
+        protected void name_Command(object sender, CommandEventArgs e)
         {
-            Response.Redirect("product.aspx");
+            string productID = Convert.ToString(e.CommandArgument);
+            var url = FriendlyUrl.Href("~/UL/product", productID);
+            Response.Redirect(url);
+        }
+
+        protected void addtocart_Command(object sender, CommandEventArgs e)
+        {
+            if (Session["UID"] != null)
+            {
+                int productID = Convert.ToInt32(e.CommandArgument);
+                int userID = cartBL.GetUserID(Convert.ToInt32(Session["UID"]));
+                cartBL.CreateCart(userID, productID);
+            }
+            else
+            {
+                // lblFeedback.Text = "Please login before adding items to cart";
+            }
         }
     }
 }

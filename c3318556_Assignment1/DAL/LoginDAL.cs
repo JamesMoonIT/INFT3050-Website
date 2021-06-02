@@ -268,6 +268,32 @@ namespace c3318556_Assignment1.DAL
             return result;
         }
 
+        public bool DoesEmailExist(string email)
+        {
+            OpenConnection();
+            SqlCommand cmd = new SqlCommand("SELECT emailAddress from Login where emailAddress = @emailAddress");
+            try
+            {
+                cmd.Parameters.AddWithValue("@emailAddress", email);
+                cmd.Connection = con;
+                SqlDataReader rd = cmd.ExecuteReader();
+                rd.Read();
+                if (!rd.HasRows)
+                {
+                    return false;
+                }
+            }
+            catch
+            {
+                return true;
+            }
+            finally
+            {
+                CloseConnection();
+            }
+            return true;
+        }
+
         private void OpenConnection()
         {
             con.ConnectionString = conString;

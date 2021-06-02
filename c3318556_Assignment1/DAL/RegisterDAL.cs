@@ -231,7 +231,7 @@ namespace c3318556_Assignment1.DAL
         public bool CheckEmailAddress(string email)
         {
             OpenConnection();
-            SqlCommand cmd = new SqlCommand("SELECT emailAddress FROM Account WHERE emailAddress = '@email'");
+            SqlCommand cmd = new SqlCommand("SELECT emailAddress FROM Account WHERE emailAddress = @email");
             try
             {
                 cmd.Parameters.AddWithValue("@email", email);
