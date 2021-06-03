@@ -1,13 +1,12 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/UL/MasterPage/Site.Master" AutoEventWireup="true" CodeBehind="register.aspx.cs" Inherits="c3318556_Assignment1.UL.register" %>
+﻿<%@ Page Title="GB - Register" Language="C#" MasterPageFile="~/UL/MasterPage/Site.Master" AutoEventWireup="true" CodeBehind="register.aspx.cs" Inherits="c3318556_Assignment1.UL.register" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 <!--  
     Author: James Moon
-    Last Updated: 3:25pm 3/4/2021
-    Description: This page is used for registering a new user. It doubles as an admin register if the current user is also an
-        admin. User's enter their details and upon submitting, are sent an email with a randomly generated verification number.
-        Upon successfully entering the correct verification number, they are redirected home. Admins are redirected home with
-        the admin privileges and navigation differences to users.
+    Last Updated: 3/6/2021
+    Description: This page is used for registering a new user. User's enter their details and upon submitting, are sent an
+        email with a randomly generated verification number. Upon successfully entering the correct verification number,
+        they are redirected home. Admins are redirected home with the admin privileges and navigation differences to users.
 -->
     <h1>Registration Page<asp:Label ID="lblAdminMaker" runat="server" Text="(Admin)" Visible="false" /></h1>
     <p>Each field is required in order to be registered with this site. Please make sure very field is filled before proceeding (You will be prompted if a field is unfilled).</p>

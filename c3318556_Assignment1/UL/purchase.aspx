@@ -1,9 +1,9 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/UL/MasterPage/Site.Master" AutoEventWireup="true" CodeBehind="purchase.aspx.cs" Inherits="c3318556_Assignment1.UL.purchase" %>
+﻿<%@ Page Title="GB - Purchase" Language="C#" MasterPageFile="~/UL/MasterPage/Site.Master" AutoEventWireup="true" CodeBehind="purchase.aspx.cs" Inherits="c3318556_Assignment1.UL.purchase" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 <!--  
     Author: James Moon
-    Last Updated: 3:24pm 3/4/2021
+    Last Updated: 3/6/2021
     Description: This is where the user enters their email (if they are a guest), their card detials and their prefered
         delivery address. The card validation checks to make sure the card details are valid and correctly formatted
         and fails if it is not correct.

@@ -11,97 +11,97 @@ namespace c3318556_Assignment1.UL
 {
 
 
-    public partial class products
+    public partial class product
     {
 
         /// <summary>
-        /// btnP1Admin control.
+        /// productName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnP1Admin;
+        protected global::System.Web.UI.WebControls.Label productName;
 
         /// <summary>
-        /// cartProduct1 control.
+        /// productID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button cartProduct1;
+        protected global::System.Web.UI.WebControls.Label productID;
 
         /// <summary>
-        /// btnP2Admin control.
+        /// productBrand control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnP2Admin;
+        protected global::System.Web.UI.WebControls.Label productBrand;
 
         /// <summary>
-        /// cartProduct2 control.
+        /// productType control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button cartProduct2;
+        protected global::System.Web.UI.WebControls.Label productType;
 
         /// <summary>
-        /// btnP3Admin control.
+        /// productModel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnP3Admin;
+        protected global::System.Web.UI.WebControls.Label productModel;
 
         /// <summary>
-        /// cartProduct3 control.
+        /// productDescription control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button cartProduct3;
+        protected global::System.Web.UI.WebControls.Label productDescription;
 
         /// <summary>
-        /// btnP4Admin control.
+        /// productPrice control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnP4Admin;
+        protected global::System.Web.UI.WebControls.Label productPrice;
 
         /// <summary>
-        /// cartProduct4 control.
+        /// addtocart control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button cartProduct4;
+        protected global::System.Web.UI.WebControls.Button addtocart;
 
         /// <summary>
-        /// btnP5Admin control.
+        /// removefromcart control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnP5Admin;
+        protected global::System.Web.UI.WebControls.Button removefromcart;
 
         /// <summary>
-        /// cartProduct5 control.
+        /// pImage control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button cartProduct5;
+        protected global::System.Web.UI.WebControls.Image pImage;
     }
 }

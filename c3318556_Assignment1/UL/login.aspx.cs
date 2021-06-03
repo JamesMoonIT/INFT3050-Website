@@ -1,19 +1,19 @@
 ﻿/*
     Author: James Moon
-    Last Updated: 3:13pm 3 / 4 / 2021
+    Last Updated: 3/6/2021
     Description: A reltively straight forward login screen including email and password. The emails and passwords are hard
         coded into the website until databases are linked. If you didnt read the README.txt, the logins are:
 
             Admin:
-                Email: admin @yopmail.com
+                Email: admin@yopmail.com
                 Password: Pas5word
 
             User: 
-                Email: user @yopmail.com
+                Email: user@yopmail.com
                 Password: Pas5word
 
-             Deactivated:
-                Email: deactivated @yopmail.com
+            Deactivated:
+                Email: deactivated@yopmail.com
                 Password: Pas5word
 
 */
@@ -32,7 +32,10 @@ namespace c3318556_Assignment1.UL
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Session["UID"] != null)
+            {
+                Response.Redirect("home.aspx");
+            }
         }
 
         protected void btnLogin_Click(object sender, EventArgs e)
@@ -41,8 +44,10 @@ namespace c3318556_Assignment1.UL
             string strEmailStore = Convert.ToString(emailAddress.Text);                 // stores email
             string strPasswordStore = Convert.ToString(userPassword.Text);              // stores password
 
-            LoginBL accBAL = new LoginBL();
-            result = accBAL.CheckUserLogin(strEmailStore, strPasswordStore);
+            LoginBL logBL = new LoginBL();
+            AccountBL accBL = new AccountBL();
+
+            result = logBL.CheckUserLogin(strEmailStore, strPasswordStore);
             if (result == 1)
             {
                 lblFeedback.Text = "Email is not valid. Please check the format of your email address";
@@ -65,9 +70,20 @@ namespace c3318556_Assignment1.UL
             }
             if (result == 6)
             {
+                lblFeedback.Text = "Account has been deactivated. Please use the Contact Us page to re-enable your account";
+            }
+            if (result == 7)
+            {
                 lblFeedback.Text = "Success, logging you in now...";
-                Session["UID"] = accBAL.CreateSession(accBAL.GetUserID(strEmailStore)); // IMPORTANT add UserName to Session table
-                Session["UserName"] = accBAL.GetName(Convert.ToInt32(Session["UID"]));
+                if (accBL.SessionAlreadyExists(logBL.GetUserID(strEmailStore)))
+                {
+                    Session["UID"] = logBL.GetSessionID(logBL.GetUserID(strEmailStore));
+                }
+                else
+                {
+                    Session["UID"] = logBL.CreateSession(logBL.GetUserID(strEmailStore), logBL.GetName(strEmailStore));
+                }
+                Session["UserName"] = logBL.GetName(Convert.ToInt32(Session["UID"]));
                 Response.Redirect("home.aspx");
             }
         }

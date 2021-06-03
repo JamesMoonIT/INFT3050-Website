@@ -1,4 +1,10 @@
-﻿using System;
+﻿/*
+    Name: James Moon
+    Last Updated: 3/6/2021
+    Description: This class handles all methods to do with Login.
+ 
+ */
+using System;
 using System.Text;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,8 +16,9 @@ namespace c3318556_Assignment1.BL
 {
     public class LoginBL
     {
-        LoginDAL accDAL = new LoginDAL();
-        public int CheckUserLogin(string email, string password)
+        LoginDAL logDAL = new LoginDAL();                                               // Creates a calling method for refering to methods inside LoginDAL.cs
+        AccountDAL accDAL = new AccountDAL();                                           // Creates a calling method for refering to methods inside AccountDAL.cs
+        public int CheckUserLogin(string email, string password)                        // Takes an email and password and checks for validation
         {
             try
             {
@@ -19,12 +26,19 @@ namespace c3318556_Assignment1.BL
                 {
                     return 1;
                 }
-                if (!IsPasswordSafe(password))
+                else if (!IsPasswordSafe(password))
                 {
                     return 2;
                 }
-                password = MD5Hash(password);
-                return accDAL.VerifyUserLogin(email, password);
+                else if (!logDAL.IsAccountDeactivated(email))
+                {
+                    return 6;
+                }
+                else
+                {
+                    password = MD5Hash(password);
+                    return logDAL.VerifyUserLogin(email, password);
+                }
             }
             catch
             {
@@ -32,11 +46,11 @@ namespace c3318556_Assignment1.BL
             }
         }
 
-        public bool IsAdmin(string email)
+        public bool IsAdmin(string email)                                               // Takes an email and returns bool if email is admin
         {
             try
             {
-                return accDAL.CheckPriviliges(email);
+                return logDAL.CheckPriviliges(email);
             }
             catch
             {
@@ -44,25 +58,39 @@ namespace c3318556_Assignment1.BL
             }
         }
 
-        public string GetName(int sessionID)
+        public string GetName(int sessionID)                                            // Takes a sessionID and returns a first name
         {
             string name = "";
             try
             {
-                name = accDAL.PullName(sessionID);
+                name = logDAL.PullName(sessionID);
                 return name;
             }
             catch
             {
-                return "NameNotFound";
+                throw;
             }
         }
 
-        private bool IsEmailValid(string email)
+        public string GetName(string email)                                             // Takes an email and returns a first name
+        {
+            string name = "";
+            try
+            {
+                name = logDAL.PullName(email);
+                return name;
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        private bool IsEmailValid(string email)                                         // Takes an email and returns if the email is valid
         {
             try
             {
-                var addr = new System.Net.Mail.MailAddress(email);              // checks format of email
+                var addr = new System.Net.Mail.MailAddress(email);                      // checks format of email
                 return addr.Address == email;
             }
             catch
@@ -71,7 +99,7 @@ namespace c3318556_Assignment1.BL
             }
         }
 
-        private bool IsPasswordSafe(string password)
+        private bool IsPasswordSafe(string password)                                    // Takes a password and checks if it is valid
         {
             const int minlength = 6;
             if (password.Length < minlength)
@@ -89,18 +117,44 @@ namespace c3318556_Assignment1.BL
             return true;
         }
 
-        public int GetUserID(string email)
+        public int GetUserID(string email)                                              // Takes an email and returns a UserID
         {
-            return accDAL.GrabUserID(email);
+            try
+            {
+                return logDAL.GrabUserID(email);
+            }
+            catch
+            {
+                throw;
+            }
         }
         
-        public int CreateSession(int userID)
+        public int CreateSession(int userID, string username)                           // Takes a userID and username and returns a sessionID
         {
-            return accDAL.BuildUserSession(userID);
+            try
+            {
+                return logDAL.BuildUserSession(userID, username);
+            }
+            catch
+            {
+                throw;
+            }
+        }
+        
+        public int GetSessionID(int userID)                                             // Takes a userID and returns a sessionID
+        {
+            try
+            {
+                return logDAL.GrabSessionID(userID);
+            }
+            catch
+            {
+                throw;
+            }
         }
 
         // sourced from https://www.godo.dev/tutorials/csharp-md5/ 24/5/2021 10:20am
-        public static string MD5Hash(string text)
+        public static string MD5Hash(string text)                                       // Takes a password and hash's it for encryption
         {
             MD5 md5 = new MD5CryptoServiceProvider();
 

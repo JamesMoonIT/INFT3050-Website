@@ -1,7 +1,7 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="c3318556_Assignment1.UL.MasterPage.Site" %>
 <!--  
     Author: James Moon
-    Last Updated: 3:48pm 3/4/2021
+    Last Updated: 3/6/2021
     Description: This masterpage acts as the overall style and look of the website fro mthe navigation bar to the footer, 
         excluding the body between. There are hidden and visible buttons all over the website dependign on UID. The site
         master also handles on every page user validation and updates accordingly. It also handles validation on

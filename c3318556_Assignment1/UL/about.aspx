@@ -1,8 +1,8 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/UL/MasterPage/Site.Master" AutoEventWireup="true" CodeBehind="about.aspx.cs" Inherits="c3318556_Assignment1.UL.about" %>
+﻿<%@ Page Title="GB - Admin" Language="C#" MasterPageFile="~/UL/MasterPage/Site.Master" AutoEventWireup="true" CodeBehind="about.aspx.cs" Inherits="c3318556_Assignment1.UL.about" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 <!--  
     Author: James Moon
-    Last Updated: 2:54pm 3/4/2021
+    Last Updated: 3/6/2021
     Description: This page is the about page for the website. It is, well, I got bored and started typing a mock interview,
         and I kind of just kept going.....there isnt too much else to it. Hope you enjoy Geoff or whoever is marking (I know
         you mentioned Lorem Ipsum is boring, so I tried something).

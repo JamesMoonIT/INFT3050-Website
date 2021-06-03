@@ -1,6 +1,6 @@
 ﻿/*
     Author: James Moon
-    Last Updated: 3:04pm 3/4/2021
+    Last Updated: 3/6/2021
     Description: The Contact page was my first try at getting emails working (which it does). You are able to enter all your
         and it will actually send you an email to your inbox (from the email myuser1245@gmail.com).
 */

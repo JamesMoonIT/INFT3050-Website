@@ -1,6 +1,6 @@
 ﻿/*
     Author: James Moon
-    Last Updated: 3:17pm 3 / 4 / 2021
+    Last Updated: 3/6/2021
     Description: This is a very straight forward page. If your have a user id and you click yes, it will wipe the uid from the
         session and send you bck to home. At home, it will look for an id and will default to a regular login. If you click no,
         it just redirects you back to the home screen.

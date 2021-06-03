@@ -7,21 +7,12 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace c3318556_Assignment1.UL
+namespace c3318556_Assignment1.UL.Admin
 {
 
 
-    public partial class manageusers
+    public partial class adminproducts
     {
-
-        /// <summary>
-        /// SqlDataSource1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource1;
 
         /// <summary>
         /// GridView1 control.
@@ -33,21 +24,12 @@ namespace c3318556_Assignment1.UL
         protected global::System.Web.UI.WebControls.GridView GridView1;
 
         /// <summary>
-        /// btnPreviousFive control.
+        /// c3318556_SQLDatabase control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnPreviousFive;
-
-        /// <summary>
-        /// btnNextFive control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnNextFive;
+        protected global::System.Web.UI.WebControls.SqlDataSource c3318556_SQLDatabase;
     }
 }

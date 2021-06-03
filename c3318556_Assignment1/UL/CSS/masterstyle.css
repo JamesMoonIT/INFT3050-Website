@@ -96,11 +96,27 @@ body {                    /* overall style type */
     background-color: none;
 }
 
+.width50 {
+    width: 50%;
+}
+
 .product {                          /* style of products */
     width: 100%;
     padding-bottom: 30px;
     border-collapse: collapse;
 }
+
+    .product id {
+        width: 10%;
+    }
+
+    .product photo {
+        width: 50%;
+    }
+
+    .product description {
+        width: 50%;
+    }
 
     .product tr {
         border-top: 1px solid black;
@@ -130,13 +146,10 @@ body {                    /* overall style type */
     }
 
     .product .pImage {
-        max-width: 200px;
+        max-width: 100%;
+        max-height:fit-content;
         height: auto;
-        padding-left: 20%;
-        padding-right: 20%;
-        padding-top: 20%;
-        padding-bottom: 20%;
-        float: left;
+        align-content:center;
     }
 
     .product .pInfo {
@@ -171,6 +184,10 @@ body {                    /* overall style type */
 
 .aspRow {                               /* width of set table rows */
     width: 25%;
+}
+
+.leftcart {
+    width: 76%;
 }
 
 .rightCart {                            /* designated area right of cart */
@@ -245,6 +262,27 @@ body {                    /* overall style type */
     width: 100%;
     text-align: center;
 }
+
+.alert {
+    padding: 20px;
+    background-color: #f44336;
+    color: white;
+}
+
+.closebtn {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+    .closebtn:hover {
+        color: black;
+    }
         
 .footerbar {                            /* footer style */
     position: fixed sticky;

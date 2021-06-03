@@ -1,4 +1,10 @@
-﻿using System;
+﻿/*
+    Name: James Moon
+    Last Updated: 3/6/2021
+    Description: This class handles all methods to do with Register and the database.
+ 
+ */
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,115 +19,240 @@ namespace c3318556_Assignment1.DAL
         private string conString = ConfigurationManager.ConnectionStrings["c3318556_SQLDatabaseConnectionString"].ToString();
         SqlConnection con = new SqlConnection();
 
-        public int InsertUser(string firstName, string lastName, string email, string phone)
-        {
+        public int InsertUser(string firstName, string lastName, string email, string phone, bool adminPriv, int addressID)
+        {                                                                                               // ^ takes user detail and returns userID
+            int result = 0;
             OpenConnection();
-            int userID = 0;
-            SqlCommand cmd1 = new SqlCommand("INSERT INTO Account (email, firstName, lastName, phone) VALUES ('@email', '@firstName', '@lastName', '@email', '@phone')");
-            SqlCommand cmd2 = new SqlCommand("SELECT userID FROM Account where email = @email");
+            SqlCommand cmd = new SqlCommand("INSERT INTO Account (email, firstName, lastName, phone) VALUES ('@email', '@firstName', '@lastName', '@email', '@phone')");
             try
             {
-                cmd1.Parameters.AddWithValue("@email", email);
-                cmd1.Parameters.AddWithValue("@firstName", firstName);
-                cmd1.Parameters.AddWithValue("@lastName", lastName);
-                cmd1.Parameters.AddWithValue("@phone", phone);
-                cmd1.Connection = con;
-                cmd1.ExecuteScalar();
-                cmd2.Parameters.AddWithValue("@email", email);
-                cmd2.Connection = con;
-                SqlDataReader rd = cmd2.ExecuteReader();
-                if (rd.HasRows)
-                {
-                    userID = rd.GetInt32(0);
-                }
+                cmd.Parameters.AddWithValue("@email", email);
+                cmd.Parameters.AddWithValue("@firstName", firstName);
+                cmd.Parameters.AddWithValue("@lastName", lastName);
+                cmd.Parameters.AddWithValue("@phone", phone);
+                cmd.Connection = con;
+                cmd.ExecuteScalar();
             }
             catch
             {
                 con.Close();
-                return userID;
+                return false;
             }
             finally
             {
-                con.Close();
+                CloseConnection();
+            }
+            return true;
+        }
+
+        public string InsertLogin(string email, string password)                                        // Takes email and password and returns email_PK
+        {
+            string result = "";
+            OpenConnection();
+            SqlCommand cmd1 = new SqlCommand("INSERT INTO Login (emailAddress, password) VALUES (@email, @password)");
+            SqlCommand cmd2 = new SqlCommand("SELECT emailAddress FROM Login WHERE emailAddress = @emailAddress");
+            try
+            {
+                cmd1.Parameters.AddWithValue("@email", email);
+                cmd1.Parameters.AddWithValue("@password", password);
+                cmd1.Connection = con;
+                cmd1.ExecuteNonQuery();
+                cmd2.Parameters.AddWithValue("@emailAddress", email);
+                cmd2.Connection = con;
+                SqlDataReader rd = cmd2.ExecuteReader();
+                rd.Read();
+                result = rd.GetString(0);
+            }
+            catch
+            {
+                throw;
+            }
+            finally
+            {
+                CloseConnection();
+            }
+            return result;
+        }
+
+        public bool GiveAdminPriv(int sessionID)                                                        // Takes sessionID and gives user admin privlages
+        {
+            OpenConnection();
+            int userID = GrabUserID(sessionID);
+            SqlCommand cmd = new SqlCommand("UPDATE Account SET adminPrivlages = true WHERE userID = @userID");
+            try
+            {
+                cmd.Parameters.AddWithValue("@userID", userID);
+                cmd.Connection = con;
+                cmd.ExecuteNonQuery();
+            }
+            catch
+            {
+                throw;
+            }
+            finally
+            {
+                CloseConnection();
+            }
+            return true;
+        }
+
+        public int GrabUserID(int sessionID)                                                            // Takes sessionID and returns userID
+        {
+            int userID = 0;
+            OpenConnection();
+            SqlCommand cmd = new SqlCommand("SELECT userID FROM Session WHERE sessionID = @sessionID");
+            try
+            {
+                cmd.Parameters.AddWithValue("@sessionID", sessionID);
+                cmd.Connection = con;
+                SqlDataReader rd = cmd.ExecuteReader();
+                rd.Read();
+                userID = rd.GetInt32(0);
+            }
+            catch
+            {
+                throw;
+            }
+            finally
+            {
+                CloseConnection();
             }
             return userID;
         }
 
-        public bool InsertLogin(string email, string password)
+        public bool CheckAdminPriv(int sessionID)                                                       // Takes sessionID and checks if user has admin privlages
         {
             OpenConnection();
-            SqlCommand cmd = new SqlCommand("INSERT INTO Login (emailAddress, password) VALUES ('@email', '@password')");
-            try
-            {
-                cmd.Parameters.AddWithValue("@email", email);
-                cmd.Parameters.AddWithValue("@password", password);
-                cmd.Connection = con;
-                cmd.ExecuteScalar();
-            }
-            catch
-            {
-                con.Close();
-                return false;
-            }
-            finally
-            {
-                con.Close();
-            }
-            return true;
-        }
-
-        public bool InsertAddress(string streetNumber, string streetName, string suburb, string state, string postcode)
-        {
-            OpenConnection();
-            SqlCommand cmd = new SqlCommand("INSERT INTO Address (streetNumber, streetName, suburb, state, postcode) VALUES ('@streetnumber','@streetName','@suburb','@state','@postcode')");
-            try
-            {
-                cmd.Parameters.AddWithValue("@streetNumber", streetNumber);
-                cmd.Parameters.AddWithValue("@streetName", streetName);
-                cmd.Parameters.AddWithValue("@suburb", suburb);
-                cmd.Parameters.AddWithValue("@state", state);
-                cmd.Parameters.AddWithValue("@postcode", postcode);
-                cmd.Connection = con;
-                cmd.ExecuteScalar();
-            }
-            catch
-            {
-                con.Close();
-                return false;
-            }
-            finally
-            {
-                con.Close();
-            }
-            return true;
-        }
-
-        public bool GiveAdminPriv(string email) 
-        {
-            OpenConnection();
-            SqlCommand cmd = new SqlCommand("UPDATE Account SET adminPrivlages = true WHERE email = @email");
-            try
-            {
-                cmd.Parameters.AddWithValue("@email", email);
-                cmd.Connection = con;
-                cmd.ExecuteScalar();
-            }
-            catch
-            {
-                con.Close();
-                return false;
-            }
-            finally
-            {
-                con.Close();
-            }
-            return true;
-        }
-
-        public bool CheckAdminPriv(string userID)
-        {
-            OpenConnection();
+            int userID = GrabUserID(sessionID);
             SqlCommand cmd = new SqlCommand("SELECT adminPrivlages FROM Account WHERE userID = @userID");
+            try
+            {
+                cmd.Parameters.AddWithValue("@userID", userID);
+                cmd.Connection = con;
+                SqlDataReader rd = cmd.ExecuteReader();
+                bool result;
+                rd.Read();
+                result = rd.GetBoolean(0);
+                con.Close();
+                if (result)
+                {
+                    return true;
+                }
+                return false;
+            }
+            catch
+            {
+                throw;
+            }
+            finally
+            {
+                CloseConnection();
+            }
+        }
+
+        public int CreateAddress(int streetNo, string streetName, string suburb, string state, int postcode)
+        {                                                                                               // ^ Takes address information and returns addressID
+            int result = 0;
+            OpenConnection();
+            SqlCommand cmd1 = new SqlCommand("INSERT INTO Address (streetNumber, streetName, suburb, state, postcode) VALUES (@streetNo, @streetName, @suburb, @state, @postcode)");
+            SqlCommand cmd2 = new SqlCommand("SELECT addressID FROM Address WHERE streetNumber = @streetNo AND streetName = @streetName AND suburb = @suburb AND state = @state AND postcode = @postcode");
+            try
+            {
+                cmd1.Parameters.AddWithValue("@streetNo", streetNo);
+                cmd1.Parameters.AddWithValue("@streetName", streetName);
+                cmd1.Parameters.AddWithValue("@suburb", suburb);
+                cmd1.Parameters.AddWithValue("@state", state);
+                cmd1.Parameters.AddWithValue("@postcode", postcode);
+                cmd1.Connection = con;
+                cmd1.ExecuteNonQuery();
+                cmd2.Parameters.AddWithValue("@streetNo", streetNo);
+                cmd2.Parameters.AddWithValue("@streetName", streetName);
+                cmd2.Parameters.AddWithValue("@suburb", suburb);
+                cmd2.Parameters.AddWithValue("@state", state);
+                cmd2.Parameters.AddWithValue("@postcode", postcode);
+                cmd2.Connection = con;
+                SqlDataReader rd = cmd2.ExecuteReader();
+                if (rd.HasRows)
+                {
+                    rd.Read();
+                    result = rd.GetInt32(0);
+                }
+            }
+            catch
+            {
+                throw;
+            }
+            finally
+            {
+                CloseConnection();
+            }
+            return result;
+        }
+
+        public int BuildUserSession(int userID, string firstname)                                       // Takes userID and firstname and returns sessionID
+        {
+            int result = 0;
+            OpenConnection();
+            SqlCommand cmd1 = new SqlCommand("INSERT INTO Session (userID, firstname) VALUES (@userID, @firstname)");
+            SqlCommand cmd2 = new SqlCommand("SELECT sessionID FROM Session WHERE userID = @userID");
+            try
+            {
+                cmd1.Parameters.AddWithValue("@userID", userID);
+                cmd1.Parameters.AddWithValue("@firstname", firstname);
+                cmd1.Connection = con;
+                cmd1.ExecuteNonQuery();
+                cmd2.Parameters.AddWithValue("@userID", userID);
+                cmd2.Connection = con;
+                SqlDataReader rd = cmd2.ExecuteReader();
+                if (rd.HasRows)
+                {
+                    rd.Read();
+                    result = rd.GetInt32(0);
+                }
+            }
+            catch
+            {
+                throw;
+            }
+            finally
+            {
+                CloseConnection();
+            }
+            return result;
+        }
+
+        public bool CheckEmailAddress(string email)                                                     // Takes email and checks if email exists in database
+        {
+            OpenConnection();
+            SqlCommand cmd = new SqlCommand("SELECT emailAddress FROM Account WHERE emailAddress = @email");
+            try
+            {
+                cmd.Parameters.AddWithValue("@email", email);
+                cmd.Connection = con;
+                SqlDataReader rd = cmd.ExecuteReader();
+                if (rd.HasRows)
+                {
+                    CloseConnection();
+                    return true;
+                }
+            }
+            catch
+            {
+                throw;
+            }
+            finally
+            {
+                CloseConnection();
+            }
+            return false;
+        }
+
+        public string PullName(int sessionID)                                                           // Takes sessionID and returns first name
+        {
+            int userID = GrabUserID(sessionID);
+            string name = "";
+            OpenConnection();
+            SqlCommand cmd = new SqlCommand("SELECT firstName FROM Account WHERE userID = @userID", con);
             try
             {
                 cmd.Parameters.AddWithValue("@userID", userID);
@@ -129,28 +260,32 @@ namespace c3318556_Assignment1.DAL
                 SqlDataReader rd = cmd.ExecuteReader();
                 if (rd.HasRows)
                 {
-                    bool result;
                     rd.Read();
-                    result = rd.GetBoolean(0);
-                    con.Close();
-                    if (result)
-                    {
-                        return true;
-                    }
+                    name = rd.GetString(0);
                 }
-                return false;
             }
             catch
             {
-                return false;
+                name = "NONAMEFOUND";
             }
+            finally
+            {
+                CloseConnection();
+            }
+            return name;
         }
 
-        private void OpenConnection()
+        private void OpenConnection()                                                                   // Opens the connection
         {
             con.ConnectionString = conString;
             if (ConnectionState.Closed == con.State)
                 con.Open();
+        }
+
+        private void CloseConnection()                                                                  // Closes the connection
+        {
+            if (ConnectionState.Open == con.State)
+                con.Close();
         }
     }
 }
