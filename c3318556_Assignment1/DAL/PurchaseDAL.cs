@@ -1,4 +1,10 @@
-﻿using System;
+﻿/*
+    Name: James Moon
+    Last Updated: 3/6/2021
+    Description: This class handles all methods to do with Purchase and the database.
+ 
+ */
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,7 +19,7 @@ namespace c3318556_Assignment1.DAL
         private string conString = ConfigurationManager.ConnectionStrings["c3318556_SQLDatabaseConnectionString"].ToString();
         SqlConnection con = new SqlConnection();
 
-        public string PullTransactionID(int invoiceID)
+        public string PullTransactionID(int invoiceID)                                      // Takes invoiceID and returns a transactionID
         {
             string result = "";
             OpenConnection();
@@ -37,7 +43,7 @@ namespace c3318556_Assignment1.DAL
             return result;
         }
 
-        public string PullSuccess(int invoiceID)
+        public string PullSuccess(int invoiceID)                                            // Takes invoiceID and returns bool for successful transaction
         {
             string result = "False";
             OpenConnection();
@@ -62,7 +68,7 @@ namespace c3318556_Assignment1.DAL
             return result;
         }
 
-        public string PullDateTime(int invoiceID)
+        public string PullDateTime(int invoiceID)                                           // Takes invoiceID and returns datetime
         {
             string result = "";
             OpenConnection();
@@ -86,14 +92,14 @@ namespace c3318556_Assignment1.DAL
             return result;
         }
 
-        private void OpenConnection()
+        private void OpenConnection()                                                       // Opens the connection
         {
             con.ConnectionString = conString;
             if (ConnectionState.Closed == con.State)
                 con.Open();
         }
 
-        private void CloseConnection()
+        private void CloseConnection()                                                      // Closes the connection
         {
             if (ConnectionState.Open == con.State)
                 con.Close();

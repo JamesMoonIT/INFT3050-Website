@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 <!--  
     Author: James Moon
-    Last Updated: 3:24pm 3/4/2021
+    Last Updated: 3/6/2021
     Description: This is where the user enters their email (if they are a guest), their card detials and their prefered
         delivery address. The card validation checks to make sure the card details are valid and correctly formatted
         and fails if it is not correct.

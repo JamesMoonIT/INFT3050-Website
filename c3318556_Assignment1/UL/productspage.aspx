@@ -1,9 +1,9 @@
 ﻿<%@ Page Title="GB - Products Page" Language="C#" MasterPageFile="~/UL/MasterPage/Site.Master" AutoEventWireup="true" CodeBehind="productspage.aspx.cs" Inherits="c3318556_Assignment1.UL.products" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <!--  
+<!--  
     Author: James Moon
-    Last Updated: 3:22pm 3/4/2021
+    Last Updated: 3/6/2021
     Description: This is the products page where all current cars are listed for sale. You can buy as many as you
         want (apparently..) so there you go. The items are in a table that can be expanded with more products. kept it
         at 5 for coding purposes and lack of time.
@@ -20,7 +20,7 @@
             </asp:BoundField>
             <asp:TemplateField ItemStyle-Width="60%">
                 <ItemTemplate>
-                    <div class="product description" >
+                    <div class="product description">
                         <h1>
                             <asp:LinkButton ID="name" CommandArgument='<%#Eval("productID") %>' Text='<%#Eval("pname") %>' runat="server" OnCommand="name_Command" />
                         </h1>
@@ -33,6 +33,8 @@
                         </p>
                         <p>
                             <asp:Button ID="addtocart" runat="server" Text="Add To Cart" CommandArgument='<%#Eval("productID") %>' OnCommand="addtocart_Command" />
+                            <asp:Button ID="removefromcart" runat="server" Text="Remove From Cart" CommandArgument='<%#Eval("productID") %>' OnCommand="removefromcart_Command" />
+
                         </p>
                         <!-- <asp:label ID="feedback" runat="server" Text="Please login before adding items to cart" /> -->
                     </div>

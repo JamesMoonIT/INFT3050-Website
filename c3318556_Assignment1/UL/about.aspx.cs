@@ -1,6 +1,6 @@
 ﻿/*
     Author: James Moon
-    Last Updated: 2:54pm 3 / 4 / 2021
+    Last Updated: 3/6/2021
     Description: This page is the about page for the website. It is, well, I got bored and started typing a mock interview,
         and I kind of just kept going.....there isnt too much else to it. Hope you enjoy Geoff or whoever is marking (I know
         you mentioned Lorem Ipsum is boring, so I tried something).
@@ -19,7 +19,7 @@ namespace c3318556_Assignment1.UL
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            // no code requried for thi page (all handles by master)
+            // no code requried for this page (all handles by master)
         }
     }
 }

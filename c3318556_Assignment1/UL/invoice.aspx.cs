@@ -1,9 +1,7 @@
 ﻿/*
     Author: James Moon
-    Last Updated: 3:11pm 3 / 4 / 2021
-    Description: There isnt too much to this page apart from if every form of validation on purchase.aspx is verified, it
-        sends you here to say "Good job, you spent money on something you could never possibly get. How on earth do you
-        expect us to ship this?". Wasnt really sure what else to put here.
+    Last Updated: 3/6/2021
+    Description: Once a payment is completed, this page will show transaction details and a transaction id. This is then shown on user.aspx page.
 */
 
 using System;
@@ -22,8 +20,8 @@ namespace c3318556_Assignment1.UL
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            string absoluteurl = HttpContext.Current.Request.Url.AbsoluteUri;
-            int lastPart = Convert.ToInt32(absoluteurl.Split('/').Last());
+            string absoluteurl = HttpContext.Current.Request.Url.AbsoluteUri;           // takes url
+            int lastPart = Convert.ToInt32(absoluteurl.Split('/').Last());              // grabs last part of url before slash
             lblInvoiceID.Text = Convert.ToString("lastPart");
             lblTransactionID.Text = purBL.GetTransactionID(lastPart);
             lblSuccess.Text = purBL.GetSuccess(lastPart);

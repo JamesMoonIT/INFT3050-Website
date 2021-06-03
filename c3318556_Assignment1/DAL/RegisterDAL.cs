@@ -1,4 +1,10 @@
-﻿using System;
+﻿/*
+    Name: James Moon
+    Last Updated: 3/6/2021
+    Description: This class handles all methods to do with Register and the database.
+ 
+ */
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -14,7 +20,7 @@ namespace c3318556_Assignment1.DAL
         SqlConnection con = new SqlConnection();
 
         public int InsertUser(string firstName, string lastName, string email, string phone, bool adminPriv, int addressID)
-        {
+        {                                                                                               // ^ takes user detail and returns userID
             int result = 0;
             OpenConnection();
             SqlCommand cmd1 = new SqlCommand("INSERT INTO Account (emailAddress, firstName, lastName, mobile, adminPrivlages, isActive, addressID) VALUES (@email, @firstName, @lastName, @phone, @adminPriv, @isActive, @addressID)");
@@ -52,7 +58,7 @@ namespace c3318556_Assignment1.DAL
             return result;
         }
 
-        public string InsertLogin(string email, string password)
+        public string InsertLogin(string email, string password)                                        // Takes email and password and returns email_PK
         {
             string result = "";
             OpenConnection();
@@ -81,7 +87,7 @@ namespace c3318556_Assignment1.DAL
             return result;
         }
 
-        public bool GiveAdminPriv(int sessionID)
+        public bool GiveAdminPriv(int sessionID)                                                        // Takes sessionID and gives user admin privlages
         {
             OpenConnection();
             int userID = GrabUserID(sessionID);
@@ -103,7 +109,7 @@ namespace c3318556_Assignment1.DAL
             return true;
         }
 
-        public int GrabUserID(int sessionID)
+        public int GrabUserID(int sessionID)                                                            // Takes sessionID and returns userID
         {
             int userID = 0;
             OpenConnection();
@@ -127,7 +133,7 @@ namespace c3318556_Assignment1.DAL
             return userID;
         }
 
-        public bool CheckAdminPriv(int sessionID)
+        public bool CheckAdminPriv(int sessionID)                                                       // Takes sessionID and checks if user has admin privlages
         {
             OpenConnection();
             int userID = GrabUserID(sessionID);
@@ -158,7 +164,7 @@ namespace c3318556_Assignment1.DAL
         }
 
         public int CreateAddress(int streetNo, string streetName, string suburb, string state, int postcode)
-        {
+        {                                                                                               // ^ Takes address information and returns addressID
             int result = 0;
             OpenConnection();
             SqlCommand cmd1 = new SqlCommand("INSERT INTO Address (streetNumber, streetName, suburb, state, postcode) VALUES (@streetNo, @streetName, @suburb, @state, @postcode)");
@@ -196,7 +202,7 @@ namespace c3318556_Assignment1.DAL
             return result;
         }
 
-        public int BuildUserSession(int userID, string firstname)
+        public int BuildUserSession(int userID, string firstname)                                       // Takes userID and firstname and returns sessionID
         {
             int result = 0;
             OpenConnection();
@@ -228,7 +234,7 @@ namespace c3318556_Assignment1.DAL
             return result;
         }
 
-        public bool CheckEmailAddress(string email)
+        public bool CheckEmailAddress(string email)                                                     // Takes email and checks if email exists in database
         {
             OpenConnection();
             SqlCommand cmd = new SqlCommand("SELECT emailAddress FROM Account WHERE emailAddress = @email");
@@ -254,7 +260,7 @@ namespace c3318556_Assignment1.DAL
             return false;
         }
 
-        public string PullName(int sessionID)
+        public string PullName(int sessionID)                                                           // Takes sessionID and returns first name
         {
             int userID = GrabUserID(sessionID);
             string name = "";
@@ -282,14 +288,14 @@ namespace c3318556_Assignment1.DAL
             return name;
         }
 
-        private void OpenConnection()
+        private void OpenConnection()                                                                   // Opens the connection
         {
             con.ConnectionString = conString;
             if (ConnectionState.Closed == con.State)
                 con.Open();
         }
 
-        private void CloseConnection()
+        private void CloseConnection()                                                                  // Closes the connection
         {
             if (ConnectionState.Open == con.State)
                 con.Close();

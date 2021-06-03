@@ -1,4 +1,10 @@
-﻿using System;
+﻿/*
+    Name: James Moon
+    Last Updated: 3/6/2021
+    Description: This class handles all methods to do with Product and the database.
+ 
+ */
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,7 +19,7 @@ namespace c3318556_Assignment1.DAL
         private string conString = ConfigurationManager.ConnectionStrings["c3318556_SQLDatabaseConnectionString"].ToString();
         SqlConnection con = new SqlConnection();
 
-        public string PullProductName(int productID)
+        public string PullProductName(int productID)                                            // Takes productID and returns product name
         {
             string result = "";
             OpenConnection();
@@ -37,7 +43,7 @@ namespace c3318556_Assignment1.DAL
             return result;
         }
 
-        public string PullProductBrand(int productID)
+        public string PullProductBrand(int productID)                                           // Takes productID and returns brand
         {
             string result = "";
             OpenConnection();
@@ -61,7 +67,7 @@ namespace c3318556_Assignment1.DAL
             return result;
         }
 
-        public string PullProductType(int productID)
+        public string PullProductType(int productID)                                            // Takes productID and returns product type
         {
             string result = "";
             OpenConnection();
@@ -85,7 +91,7 @@ namespace c3318556_Assignment1.DAL
             return result;
         }
 
-        public string PullProductModel(int productID)
+        public string PullProductModel(int productID)                                           // Takes productID and returns product model
         {
             string result = "";
             OpenConnection();
@@ -109,7 +115,7 @@ namespace c3318556_Assignment1.DAL
             return result;
         }
 
-        public string PullProductDescription(int productID)
+        public string PullProductDescription(int productID)                                     // Takes productID and returns product description
         {
             string result = "";
             OpenConnection();
@@ -133,7 +139,7 @@ namespace c3318556_Assignment1.DAL
             return result;
         }
 
-        public string PullProductPrice(int productID)
+        public string PullProductPrice(int productID)                                           // Takes productID and returns product price
         {
             string result = "";
             OpenConnection();
@@ -157,7 +163,7 @@ namespace c3318556_Assignment1.DAL
             return result;
         }
 
-        public string PullProductImage(int productID)
+        public string PullProductImage(int productID)                                           // Takes productID and returns product image url
         {
             string result = "";
             OpenConnection();
@@ -181,14 +187,14 @@ namespace c3318556_Assignment1.DAL
             return result;
         }
 
-        private void OpenConnection()
+        private void OpenConnection()                                                           // Opens the connection
         {
             con.ConnectionString = conString;
             if (ConnectionState.Closed == con.State)
                 con.Open();
         }
 
-        private void CloseConnection()
+        private void CloseConnection()                                                          // Closes the connection
         {
             if (ConnectionState.Open == con.State)
                 con.Close();

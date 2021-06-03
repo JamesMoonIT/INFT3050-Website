@@ -1,4 +1,10 @@
-﻿using System;
+﻿/*
+    Name: James Moon
+    Last Updated: 3/6/2021
+    Description: This class handles all methods to do with Login and the database.
+ 
+ */
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,7 +19,7 @@ namespace c3318556_Assignment1.DAL
         private string conString = ConfigurationManager.ConnectionStrings["c3318556_SQLDatabaseConnectionString"].ToString();
         SqlConnection con = new SqlConnection();
 
-        public int VerifyUserLogin(string strEmail, string strPassword)
+        public int VerifyUserLogin(string strEmail, string strPassword)                         // Takes an email and password and verifies them, then returns value based on verification
         {
             try
             {
@@ -33,7 +39,7 @@ namespace c3318556_Assignment1.DAL
             }
         }
 
-        public bool CheckEmailAndPassword(string strEmail, string strPassword)
+        public bool CheckEmailAndPassword(string strEmail, string strPassword)                  // Takes an email and password and sees if they exist in the database
         {
             OpenConnection();
             SqlCommand cmd = new SqlCommand("SELECT emailAddress, password FROM Login WHERE emailAddress = @emailAddress AND password = @password", con);
@@ -58,7 +64,7 @@ namespace c3318556_Assignment1.DAL
             return false;
         }
 
-        public bool CheckEmail(string email)
+        public bool CheckEmail(string email)                                                    // Takes an email and sees if they exist in the database
         {
             OpenConnection();
             SqlCommand cmd = new SqlCommand("SELECT emailAddress FROM Login WHERE emailAddress = @emailAddress", con);
@@ -82,7 +88,7 @@ namespace c3318556_Assignment1.DAL
             return false;
         }
 
-        public bool CheckPriviliges(string email)
+        public bool CheckPriviliges(string email)                                               // Takes an email and checks if user is admin
         {
             bool approval = false;
             OpenConnection();
@@ -106,7 +112,7 @@ namespace c3318556_Assignment1.DAL
             return approval;
         }
 
-        public string PullName(int sessionID)
+        public string PullName(int sessionID)                                                   // Takes a sessionID and returns first name
         {
             int userID = GrabUserID(sessionID);
             string name = "";
@@ -134,7 +140,7 @@ namespace c3318556_Assignment1.DAL
             return name;
         }
 
-        public string PullName(string email)
+        public string PullName(string email)                                                    // Tales an email and returns first name
         {
             string result = "";
             OpenConnection();
@@ -161,7 +167,7 @@ namespace c3318556_Assignment1.DAL
             return result;
         }
 
-        public int GrabUserID(string email)
+        public int GrabUserID(string email)                                                     // Takes an email and returns userID
         {
             int result = 0;
             OpenConnection();
@@ -188,7 +194,7 @@ namespace c3318556_Assignment1.DAL
             return result;
         }
 
-        public int GrabUserID(int sessionID)
+        public int GrabUserID(int sessionID)                                                    // Takes a sessionID and returns userID
         {
             int userID = 0;
             OpenConnection();
@@ -212,7 +218,7 @@ namespace c3318556_Assignment1.DAL
             return userID;
         }
 
-        public int BuildUserSession(int userID, string username)
+        public int BuildUserSession(int userID, string username)                                // Takes userID and username and returns sessionID
         {
             int result = 0;
             OpenConnection();
@@ -244,7 +250,7 @@ namespace c3318556_Assignment1.DAL
             return result;
         }
 
-        public int GrabSessionID(int userID)
+        public int GrabSessionID(int userID)                                                    // Takes userID and returns sessionID
         {
             int result = 0;
             OpenConnection();
@@ -268,7 +274,7 @@ namespace c3318556_Assignment1.DAL
             return result;
         }
 
-        public bool DoesEmailExist(string email)
+        public bool DoesEmailExist(string email)                                                // Takes email and returns if it exists in database
         {
             OpenConnection();
             SqlCommand cmd = new SqlCommand("SELECT emailAddress from Login where emailAddress = @emailAddress");
@@ -294,7 +300,7 @@ namespace c3318556_Assignment1.DAL
             return true;
         }
 
-        public bool IsAccountDeactivated(string email)
+        public bool IsAccountDeactivated(string email)                                          // Takes email and checks if the account is deactivated
         {
             bool result = true;
             OpenConnection();
@@ -318,14 +324,14 @@ namespace c3318556_Assignment1.DAL
             return result;
         }
 
-        private void OpenConnection()
+        private void OpenConnection()                                                           // Opens the connection
         {
             con.ConnectionString = conString;
             if (ConnectionState.Closed == con.State)
                 con.Open();
         }
 
-        private void CloseConnection()
+        private void CloseConnection()                                                          // Closes the connection
         {
             if (ConnectionState.Open == con.State)
                 con.Close();

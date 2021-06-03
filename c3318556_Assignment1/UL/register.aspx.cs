@@ -1,10 +1,9 @@
 ﻿/*
     Author: James Moon
-    Last Updated: 3:25pm 3 / 4 / 2021
-    Description: This page is used for registering a new user.It doubles as an admin register if the current user is also an
-        admin.User's enter their details and upon submitting, are sent an email with a randomly generated verification number.
-        Upon successfully entering the correct verification number, they are redirected home. Admins are redirected home with
-        the admin privileges and navigation differences to users.
+    Last Updated: 3/6/2021
+    Description: This page is used for registering a new user. User's enter their details and upon submitting, are sent an
+        email with a randomly generated verification number. Upon successfully entering the correct verification number,
+        they are redirected home. Admins are redirected home with the admin privileges and navigation differences to users.
 */
 
 using System;

@@ -1,10 +1,9 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/UL/MasterPage/Site.Master" AutoEventWireup="true" CodeBehind="adminmanageusers.aspx.cs" Inherits="c3318556_Assignment1.UL.Admin.adminmanageusers" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <!--  
+<!--  
     Author: James Moon
-    Last Updated: 3:19pm 3/4/2021
-    Description: An admin only page that manages the users on the website. Until it is linked, it has no purpose apart form
-        it current formatting style and buttons for later navigation of records.
+    Last Updated: 3/6/2021
+    Description: An admin only page that manages the users on the website. It can edit user details and remove user details from the database.
 -->
     <h1>Manage Users</h1>
     <p>With the abilities and permissions of admin, you can manage active users and add/remove them from the website.</p>

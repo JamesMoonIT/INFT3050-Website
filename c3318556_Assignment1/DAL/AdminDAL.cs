@@ -1,4 +1,10 @@
-﻿using System;
+﻿/*
+    Name: James Moon
+    Last Updated: 3/6/2021
+    Description: This class handles all methods to do with Admin and the database.
+ 
+ */
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,7 +19,7 @@ namespace c3318556_Assignment1.DAL
         private string conString = ConfigurationManager.ConnectionStrings["c3318556_SQLDatabaseConnectionString"].ToString();
         SqlConnection con = new SqlConnection();
 
-        public bool CheckPrivlages(int sessionID)
+        public bool CheckPrivlages(int sessionID)                                               // Takes sessionID and returns bool admin privlages
         {
             int userID = GrabUserID(sessionID);
             bool approval = false;
@@ -28,18 +34,21 @@ namespace c3318556_Assignment1.DAL
                 {
                     rd.Read();
                     approval = rd.GetBoolean(0);
-                    con.Close();
                 }
             }
             catch
             {
-                con.Close();
+                throw;
+            }
+            finally
+            {
+                CloseConnection();
             }
             return approval;
         }
 
-        public int GrabUserID(int sessionID)
-        {
+        public int GrabUserID(int sessionID)                                                    // Takes sessionID and returns userID
+        {   
             int userID = 0;
             OpenConnection();
             SqlCommand cmd = new SqlCommand("SELECT userID FROM Session WHERE sessionID = @sessionID");
@@ -53,11 +62,11 @@ namespace c3318556_Assignment1.DAL
             }
             catch
             {
-                con.Close();
+                throw;
             }
             finally
             {
-                con.Close();
+                CloseConnection();
             }
             return userID;
         }
@@ -67,6 +76,12 @@ namespace c3318556_Assignment1.DAL
             con.ConnectionString = conString;
             if (ConnectionState.Closed == con.State)
                 con.Open();
+        }
+
+        private void CloseConnection()
+        {
+            if (ConnectionState.Open == con.State)
+                con.Close();
         }
     }
 }

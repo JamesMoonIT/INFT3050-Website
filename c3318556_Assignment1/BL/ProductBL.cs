@@ -1,4 +1,10 @@
-﻿using System;
+﻿/*
+    Name: James Moon
+    Last Updated: 3/6/2021
+    Description: This class handles all methods to do with Product.
+ 
+ */
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,9 +14,9 @@ namespace c3318556_Assignment1.BL
 {
     public class ProductBL
     {
-        ProductDAL proDAL = new ProductDAL();
+        ProductDAL proDAL = new ProductDAL();                                           // Creates a calling method for refering to methods inside LoginDAL.cs
 
-        public string GetProductName(int productID)
+        public string GetProductName(int productID)                                     // Takes a productID and returns product name
         {
             try
             {
@@ -22,7 +28,7 @@ namespace c3318556_Assignment1.BL
             }
         }
 
-        public string GetProductBrand(int productID)
+        public string GetProductBrand(int productID)                                    // Takes a productID and returns product brand
         {
             try
             {
@@ -34,7 +40,7 @@ namespace c3318556_Assignment1.BL
             }
         }
 
-        public string GetProductType(int productID)
+        public string GetProductType(int productID)                                     // Takes a productID and returns product type
         {
             try
             {
@@ -46,7 +52,7 @@ namespace c3318556_Assignment1.BL
             }
         }
 
-        public string GetProductModel(int productID)
+        public string GetProductModel(int productID)                                    // Takes a productID and returns product model
         {
             try
             {
@@ -58,7 +64,7 @@ namespace c3318556_Assignment1.BL
             }
         }
 
-        public string GetProductDescription(int productID)
+        public string GetProductDescription(int productID)                              // Takes a productID and returns a product description
         {
             try
             {
@@ -70,7 +76,7 @@ namespace c3318556_Assignment1.BL
             }
         }
 
-        public string GetProductPrice(int productID)
+        public string GetProductPrice(int productID)                                    // Takes a productID and returns a product price
         {
             try
             {
@@ -82,7 +88,7 @@ namespace c3318556_Assignment1.BL
             }
         }
 
-        public string GetProductImage(int productID)
+        public string GetProductImage(int productID)                                    // Takes a productID and returns product image url
         {
             try
             {

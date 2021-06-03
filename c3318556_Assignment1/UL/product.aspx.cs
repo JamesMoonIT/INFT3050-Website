@@ -1,4 +1,9 @@
-﻿using System;
+﻿/* 
+    Author: James Moon
+    Last Updated: 3/6/2021
+    Description: This page displays product details on the selected product from the productpage. 
+ */
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -15,9 +20,9 @@ namespace c3318556_Assignment1.UL
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            string absoluteurl = HttpContext.Current.Request.Url.AbsoluteUri;
-            int lastPart = Convert.ToInt32(absoluteurl.Split('/').Last());
-            Session["PID"] = lastPart;
+            string absoluteurl = HttpContext.Current.Request.Url.AbsoluteUri;               // grabs url
+            int lastPart = Convert.ToInt32(absoluteurl.Split('/').Last());                  // pulls last part of url
+            Session["PID"] = lastPart;                                                      // stores product id
             productName.Text = proBL.GetProductName(lastPart);
             productID.Text = Convert.ToString(lastPart);
             productBrand.Text = proBL.GetProductBrand(lastPart);
@@ -28,7 +33,7 @@ namespace c3318556_Assignment1.UL
             pImage.ImageUrl = proBL.GetProductImage(lastPart);
         }
 
-        protected void addtocart_Click(object sender, EventArgs e)
+        protected void addtocart_Click(object sender, EventArgs e)                          // adds product to cart
         {
             if (Session["UID"] != null)
             {
@@ -46,6 +51,16 @@ namespace c3318556_Assignment1.UL
             else
             {
                 // lblFeedback.Text = "Please login before adding items to cart";
+            }
+        }
+
+        protected void removefromcart_Click(object sender, EventArgs e)                     // removes product to cart
+        {
+            if (Session["UID"] != null)
+            {
+                int productID = Convert.ToInt32(Session["PID"]);
+                int userID = cartBL.GetUserID(Convert.ToInt32(Session["UID"]));
+                cartBL.RemoveProductInCart(userID, productID);
             }
         }
     }

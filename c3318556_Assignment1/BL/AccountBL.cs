@@ -1,4 +1,10 @@
-﻿using System;
+﻿/*
+    Name: James Moon
+    Last Updated: 3/6/2021
+    Description: This class handles all methods to do with Account.
+ 
+ */
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,9 +14,9 @@ namespace c3318556_Assignment1.BL
 {
     public class AccountBL
     {
-        AccountDAL accDAL = new AccountDAL();
+        AccountDAL accDAL = new AccountDAL();                       // Creates a calling method for refering to methods inside AccountDAL.cs
 
-        public bool SessionAlreadyExists(int userID)
+        public bool SessionAlreadyExists(int userID)                // Takes a userID and returns a bool if session exists
         {
             try
             {
@@ -22,7 +28,7 @@ namespace c3318556_Assignment1.BL
             }
         }
 
-        public int GetUserID(int sessionID)
+        public int GetUserID(int sessionID)                         // Takes a sessionID and returns a userID
         {
             try
             {
@@ -34,7 +40,7 @@ namespace c3318556_Assignment1.BL
             }
         }
 
-        public int GetAddressID(int userID)
+        public int GetAddressID(int userID)                         // Takes a userID and returns an addressID
         {
             try
             {
@@ -46,7 +52,7 @@ namespace c3318556_Assignment1.BL
             }
         }
 
-        public int GetCartID(int userID)
+        public int GetCartID(int userID)                            // Takes a userID and returns a cartID
         {
             try
             {
@@ -58,7 +64,7 @@ namespace c3318556_Assignment1.BL
             }
         }
 
-        public string GetFirstName(int userID)
+        public string GetFirstName(int userID)                      // Takes a userID and returns a First Name
         {
             try
             {
@@ -70,7 +76,7 @@ namespace c3318556_Assignment1.BL
             }
         }
 
-        public string GetLastName(int userID)
+        public string GetLastName(int userID)                       // Takes a userID and returns a Last Name
         {
             try
             {
@@ -82,7 +88,7 @@ namespace c3318556_Assignment1.BL
             }
         }
 
-        public string GetEmail(int userID)
+        public string GetEmail(int userID)                          // Takes a userID and returns an email
         {
             try
             {
@@ -94,7 +100,7 @@ namespace c3318556_Assignment1.BL
             }
         }
 
-        public int GetMobile(int userID)
+        public int GetMobile(int userID)                            // Takes a userID and returns a mobile
         {
             try
             {
@@ -107,8 +113,15 @@ namespace c3318556_Assignment1.BL
         }
 
         public int CreateTransaction(int addressID, int cartID, string nameOnCard, int cardNo, int cardMonth, int cardYear, int cardCVV)
-        {
-            return accDAL.BuildTransaction(addressID, cartID, nameOnCard, cardNo, cardMonth, cardYear, cardCVV);
+        {                                                           // ^ Takes transaction information and returns a transactionID
+            try
+            {
+                return accDAL.BuildTransaction(addressID, cartID, nameOnCard, cardNo, cardMonth, cardYear, cardCVV);
+            }
+            catch
+            {
+                throw;
+            }
         }
     }
 }

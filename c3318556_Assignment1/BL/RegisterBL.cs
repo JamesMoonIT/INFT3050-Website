@@ -1,4 +1,10 @@
-﻿using System;
+﻿/*
+    Name: James Moon
+    Last Updated: 3/6/2021
+    Description: This class handles all methods to do with Register.
+ 
+ */
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -12,13 +18,13 @@ namespace c3318556_Assignment1.BL
 {
     public class RegisterBL
     {
-        RegisterDAL regDAL = new RegisterDAL();
+        RegisterDAL regDAL = new RegisterDAL();                                                             // Creates a calling method for refering to methods inside LoginDAL.cs
 
-        public bool IsValidEmail(string email)                                         // validates key
+        public bool IsValidEmail(string email)                                                              // Takes an email and returns bool of validation
         {
             try
             {
-                var addr = new System.Net.Mail.MailAddress(email);              // checks format of email
+                var addr = new System.Net.Mail.MailAddress(email);                                          // checks format of email
                 return addr.Address == email;
             }
             catch
@@ -27,14 +33,14 @@ namespace c3318556_Assignment1.BL
             }
         }
 
-        public string makeKey()                                                // creates a randomly generated key
+        public string makeKey()                                                                             // Generates a validation key
         {
-            var rand = new Random();                                            // declare random class
-            string key = Convert.ToString(rand.Next(10000, 99999));             // generates a random number between 10000 and 99999
-            return key;                                                         // returns randomly generated key
+            var rand = new Random();                                                                        // declare random class
+            string key = Convert.ToString(rand.Next(10000, 99999));                                         // generates a random number between 10000 and 99999
+            return key;                                                                                     // returns randomly generated key
         }
 
-        public void sendConfirmation(string key, string email)                                               // sends confirmation email with session key
+        public void sendConfirmation(string key, string email)                                              // Takes a validation key and email and sends an email
         {
             string to = email; //To address    
             string from = "myuser1245@gmail.com"; //From address    
@@ -62,7 +68,7 @@ namespace c3318556_Assignment1.BL
         }
 
         public int AddUser(string firstName, string lastName, string email, string phone, bool adminPriv, int addressID)
-        {
+        {                                                                                                   // ^Takes user details and returns a userID
             int result = 0;
             try
             {
@@ -75,13 +81,13 @@ namespace c3318556_Assignment1.BL
             return result;
         }
 
-        public string AddLogin(string email, string password)
+        public string AddLogin(string email, string password)                                               // Takes an email and password and returns email_PK
         {
             string result = "";
             password = MD5Hash(password);
             try
             {
-                result = regDAL.InsertLogin(email, password);
+                result = regDAL.InsertLogin(email, password);           
             }
             catch
             {
@@ -90,7 +96,7 @@ namespace c3318556_Assignment1.BL
             return result;
         }
 
-        public bool MakeAdmin(int sessionID)
+        public bool MakeAdmin(int sessionID)                                                                // Takes a sessionID and makes user Admin privlages
         {
             try
             {
@@ -103,7 +109,7 @@ namespace c3318556_Assignment1.BL
             return true;
         }
 
-        public bool CheckUserAdmin(int sessionID)
+        public bool CheckUserAdmin(int sessionID)                                                           // Takes session and checks if user is admin
         {
             try
             {
@@ -119,12 +125,12 @@ namespace c3318556_Assignment1.BL
             return true;
         }
 
-        public int CreateSession(int userID, string firstname)
+        public int CreateSession(int userID, string firstname)                                              // Takes a userid and firstname and returns sessionID
         {
             return regDAL.BuildUserSession(userID, firstname);
         }
 
-        public int AddAddress(int streetNo, string streetName, string suburb, string state, int postcode)
+        public int AddAddress(int streetNo, string streetName, string suburb, string state, int postcode)   // Takes address details and returns addressID
         {
             try
             {
@@ -136,7 +142,7 @@ namespace c3318556_Assignment1.BL
             }
         }
 
-        public bool DoesEmailExist(string email)
+        public bool DoesEmailExist(string email)                                                            // Takes an email and checks if it exists in database
         {
             try
             {
@@ -148,7 +154,7 @@ namespace c3318556_Assignment1.BL
             }
         }
 
-        public bool ValidateKey(int storedKey, int enteredKey)
+        public bool ValidateKey(int storedKey, int enteredKey)                                              // Takes a stored key and entered key and compares them
         {
             if (enteredKey == storedKey)                                 // checks if key emailed matches session
             {
@@ -158,7 +164,7 @@ namespace c3318556_Assignment1.BL
         }
 
         public bool IsAddressValid(string streetNo, string streetName, string suburb, string state, string postcode)
-        {
+        {                                                                                                   // ^ Takes address info and validates each field
             if (!IsAllDigits(streetNo))
             {
                 return false;
@@ -181,7 +187,7 @@ namespace c3318556_Assignment1.BL
             }
         }
 
-        private static bool IsAllLetters(string s)
+        private static bool IsAllLetters(string s)                                                          // Takes a string and checks if its all letters
         {
             foreach (char c in s)
             {
@@ -191,7 +197,7 @@ namespace c3318556_Assignment1.BL
             return true;
         }
 
-        public static bool IsAllDigits(string s)
+        public static bool IsAllDigits(string s)                                                            // Takes a string and checks if its all numbers
         {
             foreach (char c in s)
             {
@@ -201,7 +207,7 @@ namespace c3318556_Assignment1.BL
             return true;
         }
 
-        public string GetUserName(int sessionID)
+        public string GetUserName(int sessionID)                                                            // Takes a sessionID and returns username
         {
             string name = "";
             try
@@ -216,7 +222,7 @@ namespace c3318556_Assignment1.BL
         }
 
         // sourced from https://www.godo.dev/tutorials/csharp-md5/ 24/5/2021 10:20am
-        public static string MD5Hash(string text)
+        public static string MD5Hash(string text)                                                           // Takes a password and converts it to MD5
         {
             MD5 md5 = new MD5CryptoServiceProvider();
 

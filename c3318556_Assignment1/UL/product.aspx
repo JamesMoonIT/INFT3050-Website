@@ -1,6 +1,11 @@
 ﻿<%@ Page Title="GB - Product" Language="C#" MasterPageFile="~/UL/MasterPage/Site.Master" AutoEventWireup="true" CodeBehind="product.aspx.cs" Inherits="c3318556_Assignment1.UL.product" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+<!--  
+    Author: James Moon
+    Last Updated: 3/6/2021
+    Description: This page displays product details on the selected product from the productpage. 
+-->
     <div class="width50 left">
         <h1>
             <asp:Label ID="productName" runat="server" /></h1>
@@ -30,6 +35,7 @@
         </p>
         <p>
             <asp:Button ID="addtocart" runat="server" Text="Add To Cart" OnClick="addtocart_Click" />
+            <asp:Button ID="removefromcart" runat="server" Text="Remove From Cart" OnClick="removefromcart_Click" />
         </p>
     </div>
     <div class="width50 right">

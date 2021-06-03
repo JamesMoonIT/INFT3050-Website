@@ -1,7 +1,7 @@
 ﻿/*
     Author: James Moon
-    Last Updated: 3:40pm 3 / 4 / 2021
-    Description: This page acts as a stand in for when search works.It currently mentions it shows 5 results, and it redirects to the
+    Last Updated: 3/6/2021
+    Description: This page acts as a stand in for when search works. It currently mentions it shows 5 results, and it redirects to the
         products page with a session variable "search" and the entered text(for later implementation).
 */
 
@@ -21,7 +21,7 @@ namespace c3318556_Assignment1.UL
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            int userID = accBL.GetUserID(Convert.ToInt32(Session["UID"]));
+            int userID = accBL.GetUserID(Convert.ToInt32(Session["UID"]));                  // stores userid
             lblFirstName.Text = accBL.GetFirstName(userID);
             lblLastName.Text = accBL.GetLastName(userID);
             lblEmail.Text = accBL.GetEmail(userID);

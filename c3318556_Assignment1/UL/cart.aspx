@@ -1,12 +1,11 @@
 ﻿<%@ Page Title="GB - Cart" Language="C#" MasterPageFile="~/UL/MasterPage/Site.Master" AutoEventWireup="true" CodeBehind="cart.aspx.cs" Inherits="c3318556_Assignment1.UL.cart" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <!--  
+<!--  
     Author: James Moon
-    Last Updated: 3:01pm 3/4/2021
+    Last Updated: 3/6/2021
     Description: This page shows the shopping cart information the user sends to payment. Addmitedly, due to limited time, 
-        I could not make it adaptive and has hard coded products in the cart. It features interactive buttons to add item
-        to the cart. I also could not get it working where if you left cart, it would store the items (proven hard to code).
+        I could not make it adaptive and has hard coded total purchase price in the cart.
 -->
     <h1>Shopping Cart</h1>
     <div class="leftcart">

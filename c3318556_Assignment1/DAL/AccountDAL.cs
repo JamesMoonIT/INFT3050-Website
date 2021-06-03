@@ -1,4 +1,10 @@
-﻿using System;
+﻿/*
+    Name: James Moon
+    Last Updated: 3/6/2021
+    Description: This class handles all methods to do with Account and the database.
+ 
+ */
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,7 +19,7 @@ namespace c3318556_Assignment1.DAL
         private string conString = ConfigurationManager.ConnectionStrings["c3318556_SQLDatabaseConnectionString"].ToString();
         SqlConnection con = new SqlConnection();
 
-        public bool CheckUserID(int userID)
+        public bool CheckUserID(int userID)                                                             // Takes a userID and returns if it exists
         {
             bool result = false;
             OpenConnection();
@@ -25,8 +31,7 @@ namespace c3318556_Assignment1.DAL
                 SqlDataReader rd = cmd.ExecuteReader();
                 if (rd.HasRows)
                 {
-                    con.Close();
-                    return true;
+                    result =  true;
                 }
             }
             catch
@@ -35,12 +40,12 @@ namespace c3318556_Assignment1.DAL
             }
             finally
             {
-                con.Close();
+                CloseConnection();
             }
             return result;
         }
 
-        public int GrabUserID(int sessionID)
+        public int GrabUserID(int sessionID)                                                            // Takes a sessionID and returns UserID
         {
             int result = 0;
             OpenConnection();
@@ -64,7 +69,7 @@ namespace c3318556_Assignment1.DAL
             return result;
         }
 
-        public int GrabAddressID(int userID)
+        public int GrabAddressID(int userID)                                                            // Takes a userID and returns addressID
         {
             int result = 0;
             OpenConnection();
@@ -88,7 +93,7 @@ namespace c3318556_Assignment1.DAL
             return result;
         }
 
-        public int GrabCartID(int userID)
+        public int GrabCartID(int userID)                                                               // Takes a userID and returns cartID
         {
             int result = 0;
             OpenConnection();
@@ -113,7 +118,7 @@ namespace c3318556_Assignment1.DAL
         }
 
         public int BuildTransaction(int addressID, int cartID, string nameOnCard, int cardNo, int cardMonth, int cardYear, int cardCVV)
-        {
+        {                                                                                               // ^ Takes card details and returns a transactionID
             int result = 0;
             OpenConnection();
             SqlCommand cmd1 = new SqlCommand("INSERT INTO Transaction (addressID, cartID, cardName, cardNo, cardExpiryMonth, cardExpiryYear, cardCVV) VALUES (@addressID, @cartID, @cardName, @cardNo, @cardExpiryMonth, @cardExpiryYear, @cardCVV)");
@@ -152,7 +157,7 @@ namespace c3318556_Assignment1.DAL
             return result;
         }
 
-        public string PullFirstName(int userID)
+        public string PullFirstName(int userID)                                                         // Takes userID and returns first name
         {
             string result = "NONAMEFOUND";
             OpenConnection();
@@ -176,7 +181,7 @@ namespace c3318556_Assignment1.DAL
             return result;
         }
 
-        public string PullLastName(int userID)
+        public string PullLastName(int userID)                                                          // Takes userID and returns last name
         {
             string result = "NONAMEFOUND";
             OpenConnection();
@@ -200,7 +205,7 @@ namespace c3318556_Assignment1.DAL
             return result;
         }
 
-        public string PullEmail(int userID)
+        public string PullEmail(int userID)                                                             // Takes userID and returns email
         {
             string result = "NOEMAILFOUND";
             OpenConnection();
@@ -224,7 +229,7 @@ namespace c3318556_Assignment1.DAL
             return result;
         }
 
-        public int PullMobile(int userID)
+        public int PullMobile(int userID)                                                               // Takes userID and returns mobile
         {
             int result = 0;
             OpenConnection();
@@ -249,14 +254,14 @@ namespace c3318556_Assignment1.DAL
         }
 
 
-        private void OpenConnection()
+        private void OpenConnection()                                                               // Opens the connection
         {
             con.ConnectionString = conString;
             if (ConnectionState.Closed == con.State)
                 con.Open();
         }
 
-        private void CloseConnection()
+        private void CloseConnection()                                                              // Closes the connection
         {
             if (ConnectionState.Open == con.State)
                 con.Close();

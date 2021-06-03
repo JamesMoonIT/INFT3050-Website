@@ -2,7 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 <!-- 
    Author: James Moon
-   Last Updated: 2:55pm
+   Last Updated: 3/6/2021
    Description: This Admin page allows any admin user to navigate admin-privlaged pages including Edit Product (which is
        just the products page with hidden buttons now visible to admins), Register Admin (login page with extra options),
        which is an admin only page to manage users (security on boot to make sure they are admin)

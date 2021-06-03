@@ -3,9 +3,9 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 <!--  
     Author: James Moon
-    Last Updated: 3:09pm 3/4/2021
+    Last Updated: 3/6/2021
     Description: This is the default home page of the website, called home of course. Most redirects go here including logging
-        out, non-admin user kicks, invocie redirects and logins. I added an image simply for testing purposes and the text
+        out, non-admin user kicks, invoice redirects and logins. I added an image simply for testing purposes and the text
         is there for fun. Hope you enjoy the reading.
 -->
     <h1>GarageBay</h1>

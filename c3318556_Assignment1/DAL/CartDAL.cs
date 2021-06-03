@@ -1,4 +1,10 @@
-﻿using System;
+﻿/*
+    Name: James Moon
+    Last Updated: 3/6/2021
+    Description: This class handles all methods to do with Cart and the database.
+ 
+ */
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,7 +19,7 @@ namespace c3318556_Assignment1.DAL
         private string conString = ConfigurationManager.ConnectionStrings["c3318556_SQLDatabaseConnectionString"].ToString();
         SqlConnection con = new SqlConnection();
 
-        public int PullUserID(int sessionID)
+        public int PullUserID(int sessionID)                                                // Takes sessionID and returns userID
         {
             int userID = 0;
             OpenConnection();
@@ -37,7 +43,7 @@ namespace c3318556_Assignment1.DAL
             return userID;
         }
 
-        public void BuildCart(int userID, int productID)
+        public void BuildCart(int userID, int productID)                                    // Takes userID and productID and creates cart
         {
             OpenConnection();
             SqlCommand cmd = new SqlCommand("INSERT INTO ShoppingCart (userID, productID) VALUES (@userID, @productID)");
@@ -58,7 +64,7 @@ namespace c3318556_Assignment1.DAL
             }
         }
 
-        public bool CheckForCart(int userID, int productID)
+        public bool CheckForCart(int userID, int productID)                                 // Takes userID and productID and returns existing cart
         {
             bool result = true;
             OpenConnection();
@@ -89,7 +95,28 @@ namespace c3318556_Assignment1.DAL
             return result;
         }
 
-        public void IncreaseQuantity(int userID, int productID)
+        public void RemoveCart(int userID, int productID)                                   // Takes userID and productID and remove product from user cart
+        {
+            OpenConnection();
+            SqlCommand cmd = new SqlCommand("DELETE FROM ShoppingCart WHERE userID = @userID AND productID = @productID");
+            try
+            {
+                cmd.Parameters.AddWithValue("@userID", userID);
+                cmd.Parameters.AddWithValue("@productID", productID);
+                cmd.Connection = con;
+                cmd.ExecuteNonQuery();
+            }
+            catch
+            {
+                throw;
+            }
+            finally
+            {
+                CloseConnection();
+            }
+        }
+
+        public void IncreaseQuantity(int userID, int productID)                             // Takes userID and productID and increases quantity of product in cart
         {
             int result = 0;
             OpenConnection();
@@ -123,14 +150,14 @@ namespace c3318556_Assignment1.DAL
             }
         }
 
-        private void OpenConnection()
+        private void OpenConnection()                                                       // Opens the connection
         {
             con.ConnectionString = conString;
             if (ConnectionState.Closed == con.State)
                 con.Open();
         }
 
-        private void CloseConnection()
+        private void CloseConnection()                                                      // Closes the connection
         {
             if (ConnectionState.Open == con.State)
                 con.Close();

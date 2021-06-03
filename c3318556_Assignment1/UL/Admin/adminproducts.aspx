@@ -1,5 +1,10 @@
 ﻿<%@ Page Title="GB - Edit Products" Language="C#" MasterPageFile="~/UL/MasterPage/Site.Master" AutoEventWireup="true" CodeBehind="adminproducts.aspx.cs" Inherits="c3318556_Assignment1.UL.Admin.adminproducts" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+<!--  
+    Author: James Moon
+    Last Updated: 3/6/2021
+    Description: An admin only page that manages the products on the website. It can edit product details and remove product details from the database.
+-->
     <h1>Edit Products</h1>
     <asp:GridView ID="GridView1" runat="server" AllowPaging="True" AutoGenerateColumns="False" DataKeyNames="productID" DataSourceID="c3318556_SQLDatabase" BackColor="#CCCCCC" BorderColor="#999999" BorderStyle="Solid" BorderWidth="3px" CellPadding="4" CellSpacing="2" ForeColor="Black">
         <Columns>

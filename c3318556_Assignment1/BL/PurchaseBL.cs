@@ -1,4 +1,10 @@
-﻿using System;
+﻿/*
+    Name: James Moon
+    Last Updated: 3/6/2021
+    Description: This class handles all methods to do with Purchase.
+ 
+ */
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -12,7 +18,7 @@ namespace c3318556_Assignment1.BL
 {
     public class PurchaseBL
     {
-        PurchaseDAL purDAL = new PurchaseDAL();
+        PurchaseDAL purDAL = new PurchaseDAL();                                                         // Creates a calling method for refering to methods inside PurchaseDAL.cs
 
         public bool IsCreditCardInfoValid(string cardNo, string expiryDate, string cvv)          // Source https://stackoverflow.com/questions/32959273/c-sharp-validating-user-input-like-a-credit-card-number
         {
@@ -39,7 +45,7 @@ namespace c3318556_Assignment1.BL
             return (cardExpiry > DateTime.Now && cardExpiry < DateTime.Now.AddYears(6));
         }
 
-        public string SendEmail(string email, int price)                                        // sends email about successful purcahse
+        public string SendEmail(string email, int price)                                        // Takes an email and price and sends an email to the customer
         {
             string to = email;
             string from = "myuser1245@gmail.com"; //From address    
@@ -60,7 +66,7 @@ namespace c3318556_Assignment1.BL
             {
                 client.Send(message);
                 return "An email has been sent to your email. It will provide you with your current password so you can log in.";
-            }                                           // ^ updates user that email has been sent
+            }                                                                                   // ^ updates user that email has been sent
 
             catch (Exception ex)
             {
@@ -68,7 +74,7 @@ namespace c3318556_Assignment1.BL
             }
         }
 
-        public string GetTransactionID(int invoiceID)
+        public string GetTransactionID(int invoiceID)                                           // Takes an invoiceID and returns a transactionID
         {
             try
             {
@@ -80,7 +86,7 @@ namespace c3318556_Assignment1.BL
             }
         }
 
-        public string GetSuccess(int invoiceID) 
+        public string GetSuccess(int invoiceID)                                                 // Takes an invoiceID and returns bool success
         {
             try
             {
@@ -92,7 +98,7 @@ namespace c3318556_Assignment1.BL
             }
         }
 
-        public string GetDateTime(int invoiceID)
+        public string GetDateTime(int invoiceID)                                                // Takes an invoiceID and returns DateTime
         {
             try
             {
