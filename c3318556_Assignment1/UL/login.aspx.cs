@@ -70,6 +70,10 @@ namespace c3318556_Assignment1.UL
             }
             if (result == 6)
             {
+                lblFeedback.Text = "Account has been deactivated. Please use the Contact Us page to re-enable your account";
+            }
+            if (result == 7)
+            {
                 lblFeedback.Text = "Success, logging you in now...";
                 if (accBL.SessionAlreadyExists(logBL.GetUserID(strEmailStore)))
                 {

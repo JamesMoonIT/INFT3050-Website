@@ -12,6 +12,8 @@ namespace c3318556_Assignment1.BL
 {
     public class PurchaseBL
     {
+        PurchaseDAL purDAL = new PurchaseDAL();
+
         public bool IsCreditCardInfoValid(string cardNo, string expiryDate, string cvv)          // Source https://stackoverflow.com/questions/32959273/c-sharp-validating-user-input-like-a-credit-card-number
         {
             var cardCheck = new Regex(@"^(1298|1267|4512|4567|8901|8933)([\-\s]?[0-9]{4}){3}$");        // checks format and first 4 digits
@@ -63,6 +65,42 @@ namespace c3318556_Assignment1.BL
             catch (Exception ex)
             {
                 throw ex;
+            }
+        }
+
+        public string GetTransactionID(int invoiceID)
+        {
+            try
+            {
+                return purDAL.PullTransactionID(invoiceID);
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        public string GetSuccess(int invoiceID) 
+        {
+            try
+            {
+                return purDAL.PullSuccess(invoiceID);
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        public string GetDateTime(int invoiceID)
+        {
+            try
+            {
+                return purDAL.PullDateTime(invoiceID);
+            }
+            catch
+            {
+                throw;
             }
         }
     }

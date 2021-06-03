@@ -10,26 +10,32 @@
 -->
     <h1>Shopping Cart</h1>
     <div class="leftcart">
-        <asp:SqlDataSource ID="CartGrid" runat="server" ConnectionString="<%$ ConnectionStrings:c3318556_SQLDatabaseConnectionString %>" SelectCommand="SELECT * FROM [ShoppingCart]"></asp:SqlDataSource>
-        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataSourceID="CartGrid" DataKeyNames="cartID">
+        <asp:SqlDataSource ID="CartGrid" runat="server" ConnectionString="<%$ ConnectionStrings:c3318556_SQLDatabaseConnectionString %>" SelectCommand="SELECT * FROM [ShoppingCart] WHERE ([userID] = @userID)">
+            <SelectParameters>
+                <asp:SessionParameter Name="userID" SessionField="UserID" Type="Int32" />
+            </SelectParameters>
+        </asp:SqlDataSource>
+        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataSourceID="CartGrid" DataKeyNames="cartID" GridLines="Horizontal" OnRowUpdating="GridView1_RowUpdating">
             <Columns>
-                <asp:BoundField DataField="productID" SortExpression="productID" HeaderText="productID" ItemStyle-Width="10%" Visible="False"></asp:BoundField>
+                <asp:BoundField DataField="productID" HeaderText="productID" SortExpression="productID" />
                 <asp:TemplateField HeaderText="Product">
                     <ItemTemplate>
-                        <%--<div class="product description">
-                            <h1>
-                                <asp:Label ID="name" Text='<%#Eval("pName") %>' runat="server" />
-                            </h1>
-                            <h2>AUD$<asp:Label ID="price" runat="server" Text='<%#Eval("pPrice") %>' /></h2>
-                        </div>--%>
+                        <asp:Label ID="lblName" runat="server" />
+                        <asp:Label ID="lblPrice" runat="server" />
                     </ItemTemplate>
+                    <EditItemTemplate>
+                        <p>Name: <asp:Label ID="lblName" runat="server"/></p>
+                        <p>Price: <asp:Label ID="lblPrice" runat="server"/></p>
+                        <asp:SqlDataSource ID="ProductDetails" runat="server" ConnectionString="<%$ ConnectionStrings:c3318556_SQLDatabaseConnectionString %>" SelectCommand="SELECT * FROM [Product]"></asp:SqlDataSource>
+                    </EditItemTemplate>
                 </asp:TemplateField>
-                <asp:BoundField DataField="productQuantity" HeaderText="productQuantity" SortExpression="productQuantity" />
+                <asp:BoundField DataField="productQuantity" HeaderText="Quantity" SortExpression="productQuantity" />
             </Columns>
         </asp:GridView>
+        <asp:Label ID="lblGuest" Visible="false" runat="server" Text="You must be logged in before adding items to a cart" />
 
     </div>
-    <div class="rightCart">
+    <div class="rightCart" id="rightcart">
         <table class="centerTextButton">
             <tr>
                 <td>

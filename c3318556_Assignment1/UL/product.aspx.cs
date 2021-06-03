@@ -11,11 +11,13 @@ namespace c3318556_Assignment1.UL
     public partial class product : System.Web.UI.Page
     {
         ProductBL proBL = new ProductBL();
+        CartBL cartBL = new CartBL();
 
         protected void Page_Load(object sender, EventArgs e)
         {
             string absoluteurl = HttpContext.Current.Request.Url.AbsoluteUri;
             int lastPart = Convert.ToInt32(absoluteurl.Split('/').Last());
+            Session["PID"] = lastPart;
             productName.Text = proBL.GetProductName(lastPart);
             productID.Text = Convert.ToString(lastPart);
             productBrand.Text = proBL.GetProductBrand(lastPart);
@@ -24,6 +26,27 @@ namespace c3318556_Assignment1.UL
             productDescription.Text = proBL.GetProductDescription(lastPart);
             productPrice.Text = proBL.GetProductPrice(lastPart);
             pImage.ImageUrl = proBL.GetProductImage(lastPart);
+        }
+
+        protected void addtocart_Click(object sender, EventArgs e)
+        {
+            if (Session["UID"] != null)
+            {
+                int productID = Convert.ToInt32(Session["PID"]);
+                int userID = cartBL.GetUserID(Convert.ToInt32(Session["UID"]));
+                if (cartBL.CartExists(userID, productID))
+                {
+                    cartBL.IncreaseProductInCart(userID, productID);
+                }
+                else
+                {
+                    cartBL.CreateCart(userID, productID);
+                }
+            }
+            else
+            {
+                // lblFeedback.Text = "Please login before adding items to cart";
+            }
         }
     }
 }

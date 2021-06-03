@@ -20,16 +20,33 @@ namespace c3318556_Assignment1.UL
     public partial class cart : System.Web.UI.Page
     {
         CartBL cartBL = new CartBL();
+        AccountBL accBL = new AccountBL();
 
         protected void Page_Load(object sender, EventArgs e)                      // if sent from cart, runs the page load code
         {
-
+            if (Session["UID"] != null)
+            {
+                Session["UserID"] = accBL.GetUserID(Convert.ToInt32(Session["UID"]));
+                
+            }
+            else
+            {
+                Session["UserID"] = null;
+                lblGuest.Visible = true;
+            }
         }
 
         protected void btnPayment_Click(object sender, EventArgs e)
         {
             Session["Price"] = 100000;                             // stores total amount in session
             Response.Redirect("purchase.aspx");                                 // redirects to purchase
+        }
+
+        protected void GridView1_RowUpdating(object sender, GridViewUpdateEventArgs e)
+        {
+            string name = ((Label)((GridView)sender).Rows[e.RowIndex].FindControl("lblName")).Text;
+            e.NewValues["pName"] = name;
+            e.Cancel = false;
         }
     }
 }

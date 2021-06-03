@@ -40,7 +40,14 @@ namespace c3318556_Assignment1.UL
             {
                 int productID = Convert.ToInt32(e.CommandArgument);
                 int userID = cartBL.GetUserID(Convert.ToInt32(Session["UID"]));
-                cartBL.CreateCart(userID, productID);
+                if (cartBL.CartExists(userID, productID))
+                {
+                    cartBL.IncreaseProductInCart(userID, productID);
+                }
+                else
+                {
+                    cartBL.CreateCart(userID, productID);
+                }
             }
             else
             {

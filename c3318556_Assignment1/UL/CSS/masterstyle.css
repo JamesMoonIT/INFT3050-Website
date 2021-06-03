@@ -111,7 +111,7 @@ body {                    /* overall style type */
     }
 
     .product photo {
-        width: 40%;
+        width: 50%;
     }
 
     .product description {
@@ -147,6 +147,7 @@ body {                    /* overall style type */
 
     .product .pImage {
         max-width: 100%;
+        max-height:fit-content;
         height: auto;
         align-content:center;
     }

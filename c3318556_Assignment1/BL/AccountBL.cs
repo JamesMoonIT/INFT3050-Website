@@ -58,6 +58,54 @@ namespace c3318556_Assignment1.BL
             }
         }
 
+        public string GetFirstName(int userID)
+        {
+            try
+            {
+                return accDAL.PullFirstName(userID);
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        public string GetLastName(int userID)
+        {
+            try
+            {
+                return accDAL.PullLastName(userID);
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        public string GetEmail(int userID)
+        {
+            try
+            {
+                return accDAL.PullEmail(userID);
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        public int GetMobile(int userID)
+        {
+            try
+            {
+                return accDAL.PullMobile(userID);
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
         public int CreateTransaction(int addressID, int cartID, string nameOnCard, int cardNo, int cardMonth, int cardYear, int cardCVV)
         {
             return accDAL.BuildTransaction(addressID, cartID, nameOnCard, cardNo, cardMonth, cardYear, cardCVV);

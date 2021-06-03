@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using c3318556_Assignment1.BL;
+using Microsoft.AspNet.FriendlyUrls;
 
 namespace c3318556_Assignment1.UL
 {
@@ -19,6 +20,7 @@ namespace c3318556_Assignment1.UL
             {
                 lblGuestEmail.Visible = true;                               // show email area
                 tblGuestCheckout.Visible = true;                            //      "
+                Response.Redirect("home.aspx");
             }
             else                                                            // if user is not a guest
             {
@@ -61,7 +63,6 @@ namespace c3318556_Assignment1.UL
 
         private void success()
         {
-            lblFeedback.Text =  purBL.SendEmail(Session["Email"].ToString(), Convert.ToInt32(Session["Price"]));
             int userID = accBL.GetUserID(Convert.ToInt32(Session["UID"]));
             int addressID = accBL.GetAddressID(userID);
             int cartID = accBL.GetCartID(userID);
@@ -69,18 +70,15 @@ namespace c3318556_Assignment1.UL
             int cardMonth = Convert.ToInt32(txbxExpiryMonth.Text);
             int cardYear = Convert.ToInt32(txbxExpiryYear.Text);
             int cardCVV = Convert.ToInt32(txbxCVV.Text);
-            int trransactionID = accBL.CreateTransaction(addressID, cartID, txbxName.Text, cardNo, cardMonth, cardYear, cardCVV);
-            Response.Redirect("invoice.aspx");
+            int transactionID = accBL.CreateTransaction(addressID, cartID, txbxName.Text, cardNo, cardMonth, cardYear, cardCVV);
+            lblFeedback.Text = purBL.SendEmail(Session["Email"].ToString(), Convert.ToInt32(Session["Price"]));
+            var url = FriendlyUrl.Href("~UL/invoice.aspx", transactionID);
+            Response.Redirect(url);
         }
 
         protected void btnCancel_Click(object sender, EventArgs e)
         {
             Response.Redirect("home.aspx");
-        }
-
-        protected void cbxCardType_CheckedChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

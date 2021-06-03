@@ -9,5 +9,9 @@
 -->
     <h1>Invoice</h1>
     <p>Congratulations on your new purchase! Please expect an email with your payment invoice in the next 24 hours! Any queries can be brought up with our support team under the Contact Us page. Your purchase should also appear under your user profile by clicking on your name on the navigation bar.</p>
+    <p><b><u>Invoice ID:</u></b></p> <asp:Label ID="lblInvoiceID" runat="server" />
+    <p><b><u>Transaction ID:</u></b></p> <asp:Label ID="lblTransactionID" runat="server" />
+    <p><b><u>Success:</u></b></p> <asp:Label ID="lblSuccess" runat="server" />
+    <p><b><u>Date & Time of purchase:</u></b></p> <asp:Label ID="lblDateTime" runat="server" />
     <asp:Button ID="btnReturn" Text="Return Home" runat="server" OnClick="btnReturn_Click" />
 </asp:Content>

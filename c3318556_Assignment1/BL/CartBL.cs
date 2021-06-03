@@ -33,5 +33,29 @@ namespace c3318556_Assignment1.BL
                 throw;
             }
         }
+
+        public bool CartExists(int userID, int productID)
+        {
+            try
+            {
+                return cartDAL.CheckForCart(userID, productID);
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        public void IncreaseProductInCart(int useriD, int productID)
+        {
+            try
+            {
+                cartDAL.IncreaseQuantity(useriD, productID);
+            }
+            catch
+            {
+                throw;
+            }
+        }
     }
 }

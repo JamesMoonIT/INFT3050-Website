@@ -7,10 +7,10 @@
         products page with a session variable "search" and the entered text (for later implementation).
 -->
     <h1>Your user details:</h1>
-    <p>First Name: <asp:Label ID="lblFirstName" Text="(FIRST NAME NOT FOUND)" runat="server" /></p>
-    <p>Last Name: <asp:Label ID="lblLastName" Text="(LAST NAME NOT FOUND)" runat="server" /></p>
-    <p>Email: <asp:Label ID="lblEmail" Text="(EMAIL NOT FOUND)" runat="server" /></p>
-    <p>Mobile Number: <asp:Label ID="lblMobile" Text="(MOBILE NOT FOUND)" runat="server" /></p>
+    <p><b><u>First Name:</u></b> <asp:Label ID="lblFirstName" Text="(FIRST NAME NOT FOUND)" runat="server" /></p>
+    <p><b><u>Last Name:</u></b> <asp:Label ID="lblLastName" Text="(LAST NAME NOT FOUND)" runat="server" /></p>
+    <p><b><u>Email:</u></b> <asp:Label ID="lblEmail" Text="(EMAIL NOT FOUND)" runat="server" /></p>
+    <p><b><u>Mobile Number:</u></b> <asp:Label ID="lblMobile" Text="(MOBILE NOT FOUND)" runat="server" /></p>
     <br />
     <h2>Purchase History:</h2>
     <p>Last 5 purchases:</p>

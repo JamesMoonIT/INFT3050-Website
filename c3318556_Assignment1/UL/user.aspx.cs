@@ -17,11 +17,15 @@ namespace c3318556_Assignment1.UL
 {
     public partial class user : System.Web.UI.Page
     {
-
+        AccountBL accBL = new AccountBL();
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            //lblFirstName.Text = GetName(lblEmail.Text);
+            int userID = accBL.GetUserID(Convert.ToInt32(Session["UID"]));
+            lblFirstName.Text = accBL.GetFirstName(userID);
+            lblLastName.Text = accBL.GetLastName(userID);
+            lblEmail.Text = accBL.GetEmail(userID);
+            lblMobile.Text = Convert.ToString(accBL.GetMobile(userID));
         }
     }
 }

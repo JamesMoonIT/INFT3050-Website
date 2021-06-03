@@ -152,6 +152,102 @@ namespace c3318556_Assignment1.DAL
             return result;
         }
 
+        public string PullFirstName(int userID)
+        {
+            string result = "NONAMEFOUND";
+            OpenConnection();
+            SqlCommand cmd = new SqlCommand("SELECT firstName FROM Account WHERE userID = @userID");
+            try
+            {
+                cmd.Parameters.AddWithValue("@userID", userID);
+                cmd.Connection = con;
+                SqlDataReader rd = cmd.ExecuteReader();
+                rd.Read();
+                result = rd.GetString(0);
+            }
+            catch
+            {
+                throw;
+            }
+            finally
+            {
+                CloseConnection();
+            }
+            return result;
+        }
+
+        public string PullLastName(int userID)
+        {
+            string result = "NONAMEFOUND";
+            OpenConnection();
+            SqlCommand cmd = new SqlCommand("SELECT lastName FROM Account WHERE userID = @userID");
+            try
+            {
+                cmd.Parameters.AddWithValue("@userID", userID);
+                cmd.Connection = con;
+                SqlDataReader rd = cmd.ExecuteReader();
+                rd.Read();
+                result = rd.GetString(0);
+            }
+            catch
+            {
+                throw;
+            }
+            finally
+            {
+                CloseConnection();
+            }
+            return result;
+        }
+
+        public string PullEmail(int userID)
+        {
+            string result = "NOEMAILFOUND";
+            OpenConnection();
+            SqlCommand cmd = new SqlCommand("SELECT emailAddress FROM Account WHERE userID = @userID");
+            try
+            {
+                cmd.Parameters.AddWithValue("@userID", userID);
+                cmd.Connection = con;
+                SqlDataReader rd = cmd.ExecuteReader();
+                rd.Read();
+                result = rd.GetString(0);
+            }
+            catch
+            {
+                throw;
+            }
+            finally
+            {
+                CloseConnection();
+            }
+            return result;
+        }
+
+        public int PullMobile(int userID)
+        {
+            int result = 0;
+            OpenConnection();
+            SqlCommand cmd = new SqlCommand("SELECT mobile FROM Account WHERE userID = @userID");
+            try
+            {
+                cmd.Parameters.AddWithValue("@userID", userID);
+                cmd.Connection = con;
+                SqlDataReader rd = cmd.ExecuteReader();
+                rd.Read();
+                result = rd.GetInt32(0);
+            }
+            catch
+            {
+                throw;
+            }
+            finally
+            {
+                CloseConnection();
+            }
+            return result;
+        }
+
 
         private void OpenConnection()
         {

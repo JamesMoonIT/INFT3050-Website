@@ -58,6 +58,71 @@ namespace c3318556_Assignment1.DAL
             }
         }
 
+        public bool CheckForCart(int userID, int productID)
+        {
+            bool result = true;
+            OpenConnection();
+            SqlCommand cmd = new SqlCommand("SELECT cartID FROM ShoppingCart WHERE userID = @userID AND productID = @productID");
+            try
+            {
+                cmd.Parameters.AddWithValue("@userID", userID);
+                cmd.Parameters.AddWithValue("@productID", productID);
+                cmd.Connection = con;
+                SqlDataReader rd = cmd.ExecuteReader();
+                if (rd.HasRows)
+                {
+                    result = true;
+                }
+                else
+                {
+                    result = false;
+                }
+            }
+            catch
+            {
+                throw;
+            }
+            finally
+            {
+                CloseConnection();
+            }
+            return result;
+        }
+
+        public void IncreaseQuantity(int userID, int productID)
+        {
+            int result = 0;
+            OpenConnection();
+            SqlCommand cmd1 = new SqlCommand("SELECT productQuantity FROM ShoppingCart WHERE userID = @userID AND productID = @productID");
+            SqlCommand cmd2 = new SqlCommand("UPDATE ShoppingCart SET productQuantity = @newQuantity WHERE userID = @userID AND productID = @productID");
+            try
+            {
+                cmd1.Parameters.AddWithValue("@userID", userID);
+                cmd1.Parameters.AddWithValue("@productID", productID);
+                cmd1.Connection = con;
+                SqlDataReader rd = cmd1.ExecuteReader();
+                if (rd.HasRows)
+                {
+                    rd.Read();
+                    result = rd.GetInt32(0);
+                    result++;
+                }
+                cmd2.Parameters.AddWithValue("@newQuantity", result);
+                cmd2.Parameters.AddWithValue("@userID", userID);
+                cmd2.Parameters.AddWithValue("@productID", productID);
+                cmd2.Connection = con;
+                cmd2.ExecuteNonQuery();
+            }
+            catch
+            {
+                throw;
+            }
+            finally
+            {
+                CloseConnection();
+            }
+        }
+
         private void OpenConnection()
         {
             con.ConnectionString = conString;

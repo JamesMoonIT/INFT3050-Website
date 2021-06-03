@@ -24,6 +24,10 @@ namespace c3318556_Assignment1.BL
                 {
                     return 2;
                 }
+                else if (!logDAL.IsAccountDeactivated(email))
+                {
+                    return 6;
+                }
                 else
                 {
                     password = MD5Hash(password);

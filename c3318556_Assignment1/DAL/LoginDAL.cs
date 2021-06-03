@@ -25,7 +25,7 @@ namespace c3318556_Assignment1.DAL
                 {
                     return 4;
                 }
-                return 6;
+                return 7;
             }
             catch
             {
@@ -277,9 +277,9 @@ namespace c3318556_Assignment1.DAL
                 cmd.Parameters.AddWithValue("@emailAddress", email);
                 cmd.Connection = con;
                 SqlDataReader rd = cmd.ExecuteReader();
-                rd.Read();
                 if (!rd.HasRows)
                 {
+                    rd.Read();
                     return false;
                 }
             }
@@ -292,6 +292,30 @@ namespace c3318556_Assignment1.DAL
                 CloseConnection();
             }
             return true;
+        }
+
+        public bool IsAccountDeactivated(string email)
+        {
+            bool result = true;
+            OpenConnection();
+            SqlCommand cmd = new SqlCommand("SELECT isActive FROM Account WHERE emailAddress = @emailAddress");
+            try
+            {
+                cmd.Parameters.AddWithValue("@emailAddress", email);
+                cmd.Connection = con;
+                SqlDataReader rd = cmd.ExecuteReader();
+                rd.Read();
+                result = rd.GetBoolean(0);
+            }
+            catch
+            {
+                throw;
+            }
+            finally
+            {
+                CloseConnection();
+            }
+            return result;
         }
 
         private void OpenConnection()
