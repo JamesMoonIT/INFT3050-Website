@@ -87,7 +87,7 @@ namespace c3318556_Assignment1.BL
             password = MD5Hash(password);
             try
             {
-                result = regDAL.InsertLogin(email, password);           
+                result = regDAL.InsertLogin(email, password);
             }
             catch
             {
@@ -98,19 +98,39 @@ namespace c3318556_Assignment1.BL
 
         public bool MakeAdmin(int sessionID)                                                                // Takes a sessionID and makes user Admin privlages
         {
-            RegisterDAL regDAL = new RegisterDAL();
             try
             {
-                regDAL.InsertUser(firstName, lastName, email, phone);
+                regDAL.GiveAdminPriv(sessionID);
             }
             catch
             {
-                return false;
+                throw;
             }
             return true;
         }
 
-        public bool AddLogin(string email, string password)
+        public bool CheckUserAdmin(int sessionID)                                                           // Takes session and checks if user is admin
+        {
+            try
+            {
+                if (!regDAL.CheckAdminPriv(sessionID))
+                {
+                    return false;
+                }
+            }
+            catch
+            {
+                throw;
+            }
+            return true;
+        }
+
+        public int CreateSession(int userID, string firstname)                                              // Takes a userid and firstname and returns sessionID
+        {
+            return regDAL.BuildUserSession(userID, firstname);
+        }
+
+        public int AddAddress(int streetNo, string streetName, string suburb, string state, int postcode)   // Takes address details and returns addressID
         {
             try
             {
@@ -118,7 +138,7 @@ namespace c3318556_Assignment1.BL
             }
             catch
             {
-                return false;
+                throw;
             }
         }
 

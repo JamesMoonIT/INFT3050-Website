@@ -15,7 +15,7 @@
     <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:c3318556_SQLDatabaseConnectionString %>" OldValuesParameterFormatString="original_{0}" SelectCommand="SELECT * FROM [Product]"></asp:SqlDataSource>
     <asp:GridView ID="GridView1" runat="server" CssClass="product" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" DataKeyNames="productID">
         <Columns>
-            <asp:BoundField DataField="productID" SortExpression="productID" ReadOnly="true" HeaderText="ID" ItemStyle-Width="10%" Visible="false">
+            <asp:BoundField DataField="productID" SortExpression="productID" ReadOnly="true" ItemStyle-Width="10%" Visible="false">
                 <ItemStyle Width="10%"></ItemStyle>
             </asp:BoundField>
             <asp:TemplateField ItemStyle-Width="60%">

@@ -23,26 +23,39 @@ namespace c3318556_Assignment1.DAL
         {                                                                                               // ^ takes user detail and returns userID
             int result = 0;
             OpenConnection();
-            SqlCommand cmd = new SqlCommand("INSERT INTO Account (email, firstName, lastName, phone) VALUES ('@email', '@firstName', '@lastName', '@email', '@phone')");
+            SqlCommand cmd1 = new SqlCommand("INSERT INTO Account (emailAddress, firstName, lastName, mobile, adminPrivlages, isActive, addressID) VALUES (@email, @firstName, @lastName, @phone, @adminPriv, @isActive, @addressID)");
+            SqlCommand cmd2 = new SqlCommand("SELECT userID FROM Account WHERE emailAddress = @email");
             try
             {
-                cmd.Parameters.AddWithValue("@email", email);
-                cmd.Parameters.AddWithValue("@firstName", firstName);
-                cmd.Parameters.AddWithValue("@lastName", lastName);
-                cmd.Parameters.AddWithValue("@phone", phone);
-                cmd.Connection = con;
-                cmd.ExecuteScalar();
+                cmd1.Parameters.AddWithValue("@email", email);
+                cmd1.Parameters.AddWithValue("@firstName", firstName);
+                cmd1.Parameters.AddWithValue("@lastName", lastName);
+                cmd1.Parameters.AddWithValue("@phone", phone);
+                cmd1.Parameters.AddWithValue("@adminPriv", adminPriv);
+                cmd1.Parameters.AddWithValue("@isActive", true);
+                cmd1.Parameters.AddWithValue("@addressID", addressID);
+                cmd1.Connection = con;
+                cmd1.ExecuteNonQuery();
+                cmd2.Parameters.AddWithValue("@email", email);
+                cmd2.Connection = con;
+                SqlDataReader rd = cmd2.ExecuteReader();
+                if (rd.HasRows)
+                {
+                    rd.Read();
+                    result = rd.GetInt32(0);
+                }
+
             }
             catch
             {
-                con.Close();
-                return false;
+                CloseConnection();
+                return result;
             }
             finally
             {
                 CloseConnection();
             }
-            return true;
+            return result;
         }
 
         public string InsertLogin(string email, string password)                                        // Takes email and password and returns email_PK
