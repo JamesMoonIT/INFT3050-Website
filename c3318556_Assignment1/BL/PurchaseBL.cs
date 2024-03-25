@@ -58,7 +58,7 @@ namespace c3318556_Assignment1.BL
             message.IsBodyHtml = true;
             SmtpClient client = new SmtpClient("smtp.gmail.com", 587); //Gmail smtp    
             System.Net.NetworkCredential basicCredential1 = new
-            System.Net.NetworkCredential("myuser1245@gmail.com", "Pas5word");
+            System.Net.NetworkCredential(EMAILUSER, EMAILPASS);
             client.EnableSsl = true;
             client.UseDefaultCredentials = false;
             client.Credentials = basicCredential1;
